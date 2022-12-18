@@ -15,7 +15,6 @@ local jdtls_dap = require'jdtls.dap'
 
 local data_dir = vim.fn.stdpath'data'
 local jdtls_install = data_dir .. '/mason/packages/jdtls'
-local projname = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace = vim.fn.getcwd() .. '/.nvpunk_jdtls_workspace'
 
 local vscode_java_test_path = data_dir .. '/vscode-java-test'
@@ -57,7 +56,7 @@ M.install_java_debug = function()
 
     local function clone()
         Job:new({
-            command = '/usr/bin/git',
+            command = 'git',
             args = {
                 'clone',
                 'https://github.com/microsoft/java-debug',
@@ -114,7 +113,7 @@ M.install_vscode_java_test = function()
 
     local function clone()
         Job:new({
-            command = '/usr/bin/git',
+            command = 'git',
             args = {
                 'clone',
                 'https://github.com/microsoft/vscode-java-test',
@@ -131,6 +130,18 @@ M.install_vscode_java_test = function()
     end
 
     clone()
+end
+
+--- Remove vscode java test and java debug
+---@param cb function
+M.remove_extra_java_tools = function(cb)
+    Job:new({
+        command = 'rm',
+        args = { '-rf', vscode_java_test_path, java_debug_path },
+        on_exit = function(_, _)
+            cb()
+        end
+    })
 end
 
 M.start_jdtls = function()

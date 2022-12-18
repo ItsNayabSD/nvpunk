@@ -80,4 +80,15 @@ vim.api.nvim_create_user_command(
     { nargs = 0 }
 )
 
+vim.api.nvim_create_user_command(
+    'NvpunkReinstallJavaTools',
+    function(_)
+        local j = require'nvpunk.lsp.jdtls_conf'
+        j.remove_extra_java_tools(function()
+            j.setup()
+        end)
+    end,
+    { nargs = 0 }
+)
+
 return M
