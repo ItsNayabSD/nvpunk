@@ -139,7 +139,7 @@ M.remove_extra_java_tools = function(cb)
         command = 'rm',
         args = { '-rf', vscode_java_test_path, java_debug_path },
         on_exit = function(_, _)
-            cb()
+            vim.schedule(cb)
         end
     }):start()
 end
