@@ -141,7 +141,7 @@ M.remove_extra_java_tools = function(cb)
         on_exit = function(_, _)
             cb()
         end
-    })
+    }):start()
 end
 
 M.start_jdtls = function()
