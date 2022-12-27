@@ -1,11 +1,16 @@
-require'nvpunk.util.try'.require'lspconfig'
+local lsp_confs = {
+    'lspconfig',  -- preload lsp config
+    'nvpunk.lsp.base_conf',
+    'nvpunk.lsp.mason_lsp_conf',
+    'nvpunk.lsp.cmp_conf',
+    'nvpunk.lsp.signature_conf',
+    'nvpunk.lsp.trouble_conf',
+    'nvpunk.lsp.null_ls_conf',
+}
 
-require'nvpunk.lsp.base_conf'
-
-require'nvpunk.lsp.mason_lsp_conf'
-require'nvpunk.lsp.cmp_conf'
-require'nvpunk.lsp.signature_conf'
-require'nvpunk.lsp.trouble_conf'
-require'nvpunk.lsp.null_ls_conf'
+local try = require'nvpunk.util.try'
+for _, conf in ipairs(lsp_confs) do
+    try.require(conf)
+end
 
 require'nvpunk.lsp.langs.default'.setup'blueprint_ls'
