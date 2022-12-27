@@ -241,7 +241,10 @@ load any configuration override or other custom configuration code in here.
 
 `plugins.lua` needs to return a table of tables, each subtable is a Packer
 style plugin definition (|nvim-ref-packer|), one you would pass to the `use`
-function. Here is an example of a `plugins.lua` file:
+function. After adding your custom plugins to `plugins.lua`, you can install
+them by restarting nvim and running `:PackerSync`.
+
+Here is an example of a `plugins.lua` file:
 
 >
     return {
