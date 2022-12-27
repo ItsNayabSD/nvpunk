@@ -15,7 +15,6 @@ local jdtls_dap = require'jdtls.dap'
 
 local data_dir = vim.fn.stdpath'data'
 local jdtls_install = data_dir .. '/mason/packages/jdtls'
-local workspace = vim.fn.getcwd() .. '/.nvpunk_jdtls_workspace'
 
 local vscode_java_test_path = data_dir .. '/vscode-java-test'
 local java_debug_path = data_dir .. '/java-debug'
@@ -158,6 +157,8 @@ M.start_jdtls = function()
 
     local extendedClientCapabilities =  jdtls.extendedClientCapabilities
     extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+
+    local workspace = vim.fn.getcwd() .. '/.nvpunk_jdtls_workspace'
 
     -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
     local config = {
