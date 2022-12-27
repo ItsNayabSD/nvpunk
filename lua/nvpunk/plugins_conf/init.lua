@@ -24,7 +24,6 @@ local configs = {
     'nvpunk.plugins_conf.dressing_conf',
     'nvpunk.plugins_conf.navic_conf',
     'nvpunk.dap',
-    'nvpunk.plugins_conf.numbertoggle_conf',
     'nvpunk.plugins_conf.ufo_conf',
     'nvpunk.plugins_conf.fidget_conf',
     'nvpunk.plugins_conf.indent_blankline_conf',
