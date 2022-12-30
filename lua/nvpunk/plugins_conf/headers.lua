@@ -24,7 +24,7 @@ M.images = {
             '      S  A  M  U  R  A  I      ',
             '                               ',
         },
-        hl = 'DiagnosticError'
+        hl = 'NvpunkRed'
     },
     gabmus = {
         content = {
@@ -101,7 +101,7 @@ M.images = {
             '⢿⣧⡀⠀⠀⢸⣿⢘⣿⣷⣦⣀⠀⠀⠀⢿⣧⡀⠀⠀⢸⣿⢠⣤⡌⠙⠿⣿⣦⣄⢿⣧⡀⠀⠀⢸⣿⢘⣿⣿⣤⡀⠘⣿⣇⠀⠀⠀⢸⣿',
             '⠈⠻⢿⣿⣷⢸⣿⠈⠉⠉⠙⠿⣷⣦⣀⠈⠻⢿⣿⣷⢸⣿⠈⢿⣿⣿⣿⣿⣿⣿⠈⠻⢿⣿⣷⢸⣿⠈⠉⠈⠛⢿⣷⣽⡿⢿⣿⣷⢸⣿',
         },
-        hl = 'DiagnosticError'
+        hl = 'NvpunkRed'
     },
     arasaka_notype = {
         content = {
@@ -117,7 +117,7 @@ M.images = {
             '⠀⠀⠀⠈⠛⢿⣦⣤⣀⣀⠿⠇⣀⣀⣤⣶⡿⠋⠁⠀⠀⠀',
             '⠀⠀⠀⠀⠀⠀⠈⠙⠛⠛⠛⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀',
         },
-        hl = 'DiagnosticError'
+        hl = 'NvpunkRed'
     },
     apex = {
         content = {
@@ -132,7 +132,7 @@ M.images = {
             '████    ████',
             ' ██      ██ ',
         },
-        hl = 'DiagnosticError'
+        hl = 'NvpunkRed'
     },
     titanfall = {
         content = {

@@ -76,7 +76,7 @@ dashboard.section.buttons.val = {
         'q',
         '  Quit',
         ':qa<CR>',
-        'DiagnosticError'
+        'NvpunkRed'
     ),
 }
 

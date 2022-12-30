@@ -2,23 +2,10 @@ local Job = require'plenary.job'
 local lines = {}
 local BUFNAME = 'NvpunkHealthcheck'
 
-local HEADER_HL = 'NvpunkHealthcheckHeader'
-local GOOD_HL   = 'NvpunkHealthcheckGood'
-local BAD_HL    = 'NvpunkHealthcheckBad'
-
-local function def_hl()
-    vim.api.nvim_set_hl(0, HEADER_HL, {
-        bg = '#f6c177',
-        fg = '#191724',
-        bold = true,
-    })
-    vim.api.nvim_set_hl(0, GOOD_HL, {
-        fg = '#a6d189',
-    })
-    vim.api.nvim_set_hl(0, BAD_HL, {
-        fg = '#eb6f92',
-    })
-end
+local hls = require'nvpunk.highlights'
+local HEADER_HL = hls.HC_HEADER
+local GOOD_HL   = hls.HC_GOOD
+local BAD_HL    = hls.HC_BAD
 
 --- Test if a system command is callable
 ---@param cmd string
@@ -80,7 +67,6 @@ local function test_and_log(cmd, message, help_page)
 end
 
 return function()
-    def_hl()
     lines = {}
     table.insert(lines, {message = ''})
     table.insert(lines, {message = '                                      ', hl = HEADER_HL})
