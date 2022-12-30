@@ -17,10 +17,7 @@ vim.fn.sign_define(
 
 require'nvpunk.dap.dapui_conf'
 
--- languages
-
-require'nvpunk.dap.langs.cpp'
-require'nvpunk.dap.langs.python'
+require'nvpunk.dap.mason_nvim_dap'
 
 -- keymaps
 
