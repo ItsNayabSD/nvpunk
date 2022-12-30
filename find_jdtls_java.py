@@ -15,13 +15,9 @@ def get_version(java_exec: str) -> int:
     return int(lines[0].split('"')[1].split('.')[0])
 
 
-if get_version('java') >= 17:
-    print('java')
-    exit(0)
-
 jvm_dir = Path('/usr/lib/jvm/')
+
 for dir in jvm_dir.iterdir():
-    java = str(dir.joinpath('bin/java'))
-    if get_version(java) >= 17:
-        print(java)
+    if get_version(str(dir.joinpath('bin/java'))) == 17:
+        print(dir)
         exit(0)

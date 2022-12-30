@@ -20,6 +20,7 @@ local vscode_java_test_path = data_dir .. '/vscode-java-test'
 local java_debug_path = data_dir .. '/java-debug'
 
 -- replace with a specific java version (newer is better)
+local java_home = ''
 local java_exec = 'java'
 
 local Job = require'plenary.job'
@@ -40,6 +41,7 @@ M.install_java_debug = function()
             command = java_debug_path .. '/mvnw',
             args = { 'clean', 'install' },
             cwd = java_debug_path,
+            env = { ['JAVA_HOME'] = java_home },
             on_exit = function (_, ret)
                 if ret == 0 then
                     this_notif('java-debug installed')
@@ -82,6 +84,7 @@ M.install_vscode_java_test = function()
             command = 'npm',
             args = { 'run', 'build-plugin' },
             cwd = vscode_java_test_path,
+            env = { ['JAVA_HOME'] = java_home },
             on_exit = function (_, ret2)
                 if ret2 == 0 then
                     this_notif('vscode-java-test installed')
@@ -100,6 +103,7 @@ M.install_vscode_java_test = function()
             command = 'npm',
             args = { 'install' },
             cwd = vscode_java_test_path,
+            env = { ['JAVA_HOME'] = java_home },
             on_exit = function (_, ret1)
                 if ret1 == 0 then
                     build_plugin()
@@ -158,7 +162,7 @@ M.start_jdtls = function()
     local extendedClientCapabilities =  jdtls.extendedClientCapabilities
     extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
-    local workspace = vim.fn.getcwd() .. '/.nvpunk_jdtls_workspace'
+    local workspace = vim.fn.stdpath('data') .. '/nvpunk_jdtls_workspace'
 
     -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
     local config = {
@@ -176,16 +180,18 @@ M.start_jdtls = function()
             '-Dlog.level=ALL',
             '-javaagent:' .. jdtls_install .. '/lombok.jar',
             '-Xms1g',
-            '--add-modules=ALL-SYSTEM',
-            '--add-opens', 'java.base/java.util=ALL-UNNAMED',
-            '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+            '-Xmx2G',
 
             '-jar', vim.fn.glob(jdtls_install .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
 
             '-configuration', jdtls_install .. '/config_linux',
+            '-data', workspace,
+
+            '--add-modules=ALL-SYSTEM',
+            '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+            '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
             -- See `data directory configuration` section in the README
-            '-data', workspace
         },
 
         -- 💀
@@ -254,14 +260,15 @@ M.start_jdtls = function()
 end
 
 M.setup = function()
-    if not M.has_java_debug() then
-        return M.install_java_debug()
-    end
-    if not M.has_vscode_java_test() then
-        return M.install_vscode_java_test()
-    end
-    require'nvpunk.util.find_jdtls_java'(function(found_exec)
-        java_exec = found_exec or java_exec
+    require'nvpunk.util.find_jdtls_java'(function(home)
+        java_exec = (home .. '/bin/java') or java_exec
+        java_home = home
+        if not M.has_java_debug() then
+            return M.install_java_debug()
+        end
+        if not M.has_vscode_java_test() then
+            return M.install_vscode_java_test()
+        end
         M.start_jdtls()
     end)
 end
