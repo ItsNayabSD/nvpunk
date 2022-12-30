@@ -8,6 +8,12 @@ local builtin_themes = {
     'catppuccin_mocha',
     'doom_one',
     'dracula',
+    'everforest_hard',
+    'everforest_hard_light',
+    'everforest_medium',
+    'everforest_medium_light',
+    'everforest_soft',
+    'everforest_soft_light',
     'gruvbox_dark',
     'gruvbox_medium',
     'kanagawa',
@@ -60,7 +66,6 @@ end
 M.load_theme = function(theme, notify, save_pref)
     if notify == nil then notify = true end
     if save_pref == nil then save_pref = true end
-    vim.cmd'colorscheme default'
     require'nvpunk.util.try'.load_theme(theme, function()
         if vim.tbl_contains(builtin_themes, theme) then
             reload(
@@ -82,6 +87,7 @@ M.load_theme = function(theme, notify, save_pref)
             require'nvpunk.preferences'.set_theme(theme)
         end
     end)
+    require'nvpunk.highlights'.setup()
 end
 
 M.change_theme = function()
