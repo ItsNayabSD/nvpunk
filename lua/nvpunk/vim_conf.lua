@@ -16,6 +16,7 @@ local vim_opts = {
     mouse = 'a',  -- enable mouse
     pumheight = 10,  -- popup menu height
     showtabline = 2,  -- always show tabline
+    showmode = false,
     splitbelow = true,  -- hsplits open below current window
     splitright = true,  -- vsplits open right of the current window
     swapfile = false,
