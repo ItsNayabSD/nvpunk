@@ -31,6 +31,7 @@ local vim_opts = {
     relativenumber = true,
     signcolumn = 'yes:2',  -- always show sign column (git gutter?)
     wrap = true,  -- would want this off, but it's good for markdown and txt...
+    linebreak = true,
     -- scrolloff = 8,  -- always keep 8 lines below the cursor
     -- sidescrolloff = 8,  -- similar to above, for hscroll
     -- show the 80 columns mark
