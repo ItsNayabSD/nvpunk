@@ -81,6 +81,7 @@ return function()
     test_and_log('git', '[git] Git version control', 'nvpunk-deps-git')
     test_and_log('npm', '[npm] Node Package Manager', 'nvpunk-deps-npm')
     test_and_log('gcc', '[gcc] GNU Compiler Collection', 'nvpunk-deps-gcc')
+    test_and_log('g++', '[gcc] GNU Compiler Collection (C++)', 'nvpunk-deps-gcc')
     test_and_log('python3', '[python3] Python', 'nvpunk-deps-python')
     require'nvpunk.util.find_jdtls_java'(function(data)
         if data == nil or data == '' then
