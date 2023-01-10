@@ -30,14 +30,19 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
 
     -- Mappings
 
-    bm.nkeymap('gD', function()
-        vim.cmd'tab split'
-        vim.lsp.buf.declaration()
-    end, 'Declaration')
-    bm.nkeymap('gd', function()
+    bm.nkeymap('gD', vim.lsp.buf.declaration, 'Declaration')
+    bm.nkeymap('gdt', function()
         vim.cmd'tab split'
         vim.lsp.buf.definition()
-    end, 'Definition')
+    end, 'Definition (tab)')
+    bm.nkeymap('gdi', function()
+        vim.cmd'split'
+        vim.lsp.buf.definition()
+    end, 'Definition (hsplit)')
+    bm.nkeymap('gds', function()
+        vim.cmd'vsplit'
+        vim.lsp.buf.definition()
+    end, 'Definition (vsplit)')
     bm.nkeymap('K', vim.lsp.buf.hover)
     bm.nkeymap('gI', vim.lsp.buf.implementation, 'Implementation')
     bm.inkeymap('<C-k>', vim.lsp.buf.signature_help)
