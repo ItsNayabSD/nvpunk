@@ -1,9 +1,6 @@
-local ignored_filetypes_dict = {}
-for _, f in ipairs(require'nvpunk.util.nonfile_buffers') do
-    ignored_filetypes_dict[f] = true
-end
+local nonfile_bufs = require'nvpunk.util.nonfile_buffers'
 
-require'bufferline'.setup{
+require'bufferline'.setup {
     options = {
         mode = 'tabs',  -- 'buffers' | 'tabs'
         numbers = 'none',
@@ -12,8 +9,7 @@ require'bufferline'.setup{
         -- 'slant' | 'padded_slant' | 'thin' | 'thick'
         separator_style = require'nvpunk.preferences'.get_tab_style(),
         custom_filter = function(buf_number, buf_numbers)
-            -- return true if filetype is to be ignored
-            return ignored_filetypes_dict[vim.bo[buf_number].filetype] == nil
+            return not vim.tbl_contains(nonfile_bufs, vim.bo[buf_number].filetype)
         end,
     }
 }
