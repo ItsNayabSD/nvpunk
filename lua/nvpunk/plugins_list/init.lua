@@ -1,6 +1,7 @@
 local plugins = {
     require'nvpunk.plugins_list.themes',
     require'nvpunk.plugins_list.interface',
+    require'nvpunk.plugins_list.tools',
     require'nvpunk.plugins_list.shortcuts',
     require'nvpunk.plugins_list.languages',
     require'nvpunk.plugins_list.lsp',

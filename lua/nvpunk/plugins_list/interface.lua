@@ -22,9 +22,6 @@ return {
         end,
     },
 
-    -- rainbow delimiters (brackets etc)
-    -- use 'p00f/nvim-ts-rainbow'
-
     -- better tabline
     {
         'akinsho/bufferline.nvim',
@@ -43,15 +40,6 @@ return {
     -- show which key does what in long key combos
     {'folke/which-key.nvim'},
 
-    -- Telescope: modular, powerful, extensible fuzzy finder
-    {'nvim-telescope/telescope.nvim'},
-
-    -- use telescope as a selector for code actions and more things
-    {'nvim-telescope/telescope-ui-select.nvim'},
-
-    -- toggle-able terminal (ctrl backslash)
-    {'akinsho/toggleterm.nvim'},
-
     -- greeter
     {'goolord/alpha-nvim', branch = 'main'},
 
@@ -66,9 +54,6 @@ return {
 
     -- pretty and better folding
     {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'},
-
-    -- nice diffview
-    {'sindrets/diffview.nvim'},
 
     -- indentation marks
     {'lukas-reineke/indent-blankline.nvim'},

@@ -40,6 +40,6 @@ return {
     -- java language server from eclipse
     {'mfussenegger/nvim-jdtls'},
 
-    -- show language server starting progress in the lower left corner
+    -- show language server starting progress in the lower right corner
     {'j-hui/fidget.nvim'},
 }
