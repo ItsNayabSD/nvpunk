@@ -8,6 +8,7 @@ local configs = {
     'nvpunk.plugins_conf.astro_conf',
     'nvpunk.plugins_conf.treesitter_conf',
     'nvpunk.plugins_conf.mason_conf',
+    'nvpunk.plugins_conf.neodev_conf',  -- before lspconfig
     'nvpunk.lsp',
     'nvpunk.plugins_conf.autopairs_conf',
     'nvpunk.plugins_conf.aerial_conf',

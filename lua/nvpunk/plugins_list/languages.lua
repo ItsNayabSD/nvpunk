@@ -18,5 +18,8 @@ return {
     {'wuelnerdotexe/vim-astro'},
 
     -- support for MDX
-    {'jxnblk/vim-mdx-js'}
+    {'jxnblk/vim-mdx-js'},
+
+    -- neovim specific lua stuff
+    {'folke/neodev.nvim'},
 }
