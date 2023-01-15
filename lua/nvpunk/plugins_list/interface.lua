@@ -49,9 +49,6 @@ return {
     -- replace vim.ui.input with pretty text entry
     {'stevearc/dressing.nvim'},
 
-    -- disable relative numbers where they don't make sense
-    {'sitiom/nvim-numbertoggle'},
-
     -- pretty and better folding
     {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'},
 

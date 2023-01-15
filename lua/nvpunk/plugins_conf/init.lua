@@ -29,6 +29,7 @@ local configs = {
     'nvpunk.plugins_conf.indent_blankline_conf',
     'nvpunk.plugins_conf.bqf_conf',
     -- 'nvpunk.plugins_conf.noice_conf',
+    'nvpunk.plugins_conf.numbertoggle_conf',  -- numbertoggle is internal, not a plugin
 }
 
 local try = require'nvpunk.util.try'

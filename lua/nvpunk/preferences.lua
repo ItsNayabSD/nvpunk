@@ -18,6 +18,7 @@ local DEFAULT_PREFERENCES = {
     popup_border = 'none',  -- 'solid' | 'none' | 'single' | 'rounded' | 'double'
     column_mark_enabled = true,
     folding_guide_enabled = true,
+    relative_numbers = true,
 }
 
 --- Make sure that conf has all keys
@@ -118,6 +119,19 @@ M.set_folding_guide_enabled = function(nval)
     conf.folding_guide_enabled = nval
     save_conf(conf)
     vim.o.foldcolumn = nval and '1' or '0'
+end
+
+---@return boolean
+M.get_relative_numbers_enabled = function()
+    return load_conf().relative_numbers
+end
+
+---@param nval boolean
+M.set_relative_numbers_enabled = function(nval)
+    local conf = load_conf()
+    conf.relative_numbers = nval
+    save_conf(conf)
+    reload'nvpunk.plugins_conf.numbertoggle_conf'
 end
 
 ---@return 'slant' | 'padded_slant' | 'thin' | 'thick'
@@ -245,6 +259,7 @@ local preferences_menus = {
             local navic_enabled = M.get_navic_enabled()
             local column_mark_enabled = M.get_column_mark_enabled()
             local folding_guide_enabled = M.get_folding_guide_enabled()
+            local relative_numbers_enabled = M.get_relative_numbers_enabled()
             vim.ui.select(
                 {
                     {
@@ -279,6 +294,14 @@ local preferences_menus = {
                                 ' Column Mark',
                         func = function()
                             M.set_column_mark_enabled(not column_mark_enabled)
+                        end
+                    },
+                    {
+                        label = '  ' ..
+                                (relative_numbers_enabled and 'Disable' or 'Enable') ..
+                                ' Relative Numbers',
+                        func = function ()
+                            M.set_relative_numbers_enabled(not relative_numbers_enabled)
                         end
                     },
                     {
