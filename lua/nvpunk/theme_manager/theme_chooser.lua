@@ -79,7 +79,7 @@ M.load_theme = function(theme, notify, save_pref)
             end
         end
         if notify then
-            vim.notify('Switched to theme ' .. theme, 'info', {
+            vim.notify('Switched to theme ' .. theme, vim.log.levels.INFO, {
                 title = 'nvpunk.theme_manager.theme_chooser'
             })
         end

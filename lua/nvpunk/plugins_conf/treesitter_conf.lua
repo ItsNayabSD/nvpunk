@@ -49,7 +49,7 @@ require'plenary.job':new({
             vim.notify(
                 'Treesitter is disabled\n' ..
                 'Please install gcc to enable Treesitter',
-                'error',
+                vim.log.levels.ERROR,
                 { title = 'nvpunk.plugins.treesitter' }
             )
         end

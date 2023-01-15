@@ -1,12 +1,15 @@
 local M = {}
 
+--- Send notification with jdtls context
+---@param msg string
+---@param type? number from vim.log.levels
 local function this_notif(msg, type)
-    if type == nil then type = 'info' end
+    if type == nil then type = vim.log.levels.INFO end
     vim.notify(msg, type, { title = 'nvpunk.lsp.jdtls' })
 end
 
 local function this_err(msg)
-    this_notif(msg, 'error')
+    this_notif(msg, vim.log.levels.ERROR)
 end
 
 local jdtls = require'jdtls'

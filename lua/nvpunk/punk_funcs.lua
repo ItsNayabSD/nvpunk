@@ -1,7 +1,7 @@
 local M = {}
 
 M.nvpunk_update = function()
-    vim.notify('Updating Nvpunk...', 'info', {
+    vim.notify('Updating Nvpunk...', vim.log.levels.INFO, {
         title = 'Nvpunk Update'
     })
     require'plenary.job':new({
@@ -12,7 +12,7 @@ M.nvpunk_update = function()
         },
         on_exit = function(_, res)
             if res == 0 then
-                vim.notify('Nvpunk updated', 'info', {
+                vim.notify('Nvpunk updated', vim.log.levels.INFO, {
                     title = 'Nvpunk Update'
                 })
                 vim.schedule(function()
@@ -24,7 +24,7 @@ M.nvpunk_update = function()
                     require'packer'.sync()
                 end)
             else
-                vim.notify('Nvpunk update failed', 'error', {
+                vim.notify('Nvpunk update failed', vim.log.levels.ERROR, {
                     title = 'Nvpunk Update'
                 })
             end

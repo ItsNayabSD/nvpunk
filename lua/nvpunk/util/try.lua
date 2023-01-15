@@ -14,7 +14,7 @@ M.call = function(func, args, err, context)
     end
     local ok, res = pcall(func, unpack(args))
     if not ok then
-        vim.notify(err, 'error', {title = context})
+        vim.notify(err, vim.log.levels.ERROR, {title = context})
     end
     return res
 end
