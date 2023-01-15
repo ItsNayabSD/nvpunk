@@ -2,10 +2,7 @@ local Job = require'plenary.job'
 local lines = {}
 local BUFNAME = 'NvpunkHealthcheck'
 
-local hls = require'nvpunk.highlights'
-local HEADER_HL = hls.HC_HEADER
-local GOOD_HL   = hls.HC_GOOD
-local BAD_HL    = hls.HC_BAD
+local hls = require'nvpunk.internals.highlights'
 
 --- Test if a system command is callable
 ---@param cmd string
@@ -33,8 +30,8 @@ local Float = require'nvpunk.internals.float'
 ---@param ok boolean
 ---@param help_page string
 local function msg(message, ok, help_page)
-    local hl = BAD_HL
-    if ok then hl = GOOD_HL end
+    local hl = hls.HC_BAD
+    if ok then hl = hls.HC_GOOD end
     table.insert(lines, {
         message = message,
         hl = hl,
@@ -69,9 +66,9 @@ end
 return function()
     lines = {}
     table.insert(lines, {message = ''})
-    table.insert(lines, {message = '                                      ', hl = HEADER_HL})
-    table.insert(lines, {message = '                Nvpunk Health Check   ', hl = HEADER_HL})
-    table.insert(lines, {message = '                                      ', hl = HEADER_HL})
+    table.insert(lines, {message = '                                      ', hl = hls.HC_HEADER})
+    table.insert(lines, {message = '                Nvpunk Health Check   ', hl = hls.HC_HEADER})
+    table.insert(lines, {message = '                                      ', hl = hls.HC_HEADER})
     table.insert(lines, {message = ''})
     table.insert(lines, {message = '        q, <esc>  -  Quit', hl = 'Comment'})
     table.insert(lines, {message = '        <cr>      -  Open help page', hl = 'Comment'})

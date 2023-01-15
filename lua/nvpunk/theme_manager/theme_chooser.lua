@@ -87,7 +87,7 @@ M.load_theme = function(theme, notify, save_pref)
             require'nvpunk.preferences'.set_theme(theme)
         end
     end)
-    require'nvpunk.highlights'.setup()
+    require'nvpunk.internals.highlights'.setup()
 end
 
 M.change_theme = function()
