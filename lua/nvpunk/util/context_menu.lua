@@ -4,7 +4,9 @@ local M = {}
 ---@return boolean
 M.buf_has_lsp = function()
     return not vim.tbl_isempty(
-        vim.lsp.buf_get_clients(vim.api.nvim_get_current_buf())
+        vim.lsp.get_active_clients({
+            bufnr = vim.api.nvim_get_current_buf()
+        })
     )
 end
 
