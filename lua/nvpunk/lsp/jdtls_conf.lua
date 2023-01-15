@@ -263,7 +263,7 @@ M.start_jdtls = function()
 end
 
 M.setup = function()
-    require'nvpunk.util.find_jdtls_java'(function(home)
+    require'nvpunk.internals.find_jdtls_java'(function(home)
         java_exec = (home .. '/bin/java') or java_exec
         java_home = home
         if not M.has_java_debug() then

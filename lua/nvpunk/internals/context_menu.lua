@@ -10,7 +10,7 @@ M.buf_has_lsp = function()
     )
 end
 
-local nonfile_bufs = require'nvpunk.util.nonfile_buffers'
+local nonfile_bufs = require'nvpunk.internals.nonfile_buffers'
 
 --- Checks if current buf is a file
 ---@return boolean

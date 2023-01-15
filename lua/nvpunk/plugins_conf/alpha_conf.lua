@@ -64,7 +64,7 @@ dashboard.section.buttons.val = {
     button(
         'ch',
         '  Health Check',
-        ':lua require"nvpunk.util.healthcheck"()<CR>'
+        ':lua require"nvpunk.internals.healthcheck"()<CR>'
     ),
     button(
         'H',

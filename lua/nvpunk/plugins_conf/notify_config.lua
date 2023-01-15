@@ -1,6 +1,6 @@
 vim.notify = require'notify'
 
-local km = require'nvpunk.util.keymapper'
+local km = require'nvpunk.internals.keymapper'
 km.wk.register({ ['<leader>n'] = { name = ' Notifications' } }, { mode = 'n' })
 km.nkeymap(
     '<leader>nd',

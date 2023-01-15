@@ -10,7 +10,7 @@ local plugins = {
     require'nvpunk.plugins_list.misc',
 }
 
-local user_plugins = require'nvpunk.util.user_conf'.user_plugins()
+local user_plugins = require'nvpunk.internals.user_conf'.user_plugins()
 
 if user_plugins ~= nil then
     table.insert(plugins, user_plugins)

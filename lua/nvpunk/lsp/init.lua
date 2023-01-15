@@ -8,7 +8,7 @@ local lsp_confs = {
     'nvpunk.lsp.null_ls_conf',
 }
 
-local try = require'nvpunk.util.try'
+local try = require'nvpunk.internals.try'
 for _, conf in ipairs(lsp_confs) do
     try.require(conf)
 end

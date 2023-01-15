@@ -57,7 +57,7 @@ require'gitsigns'.setup {
     },
 }
 
-local km = require'nvpunk.util.keymapper'
+local km = require'nvpunk.internals.keymapper'
 
 km.wk.register({ ['<leader>g'] = { name = ' Git' } }, { mode = 'n' })
 km.nkeymap('<leader>gb', '<cmd>Gitsigns blame_line<cr>', ' Blame line')

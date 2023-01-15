@@ -16,11 +16,7 @@ M.nvpunk_update = function()
                     title = 'Nvpunk Update'
                 })
                 vim.schedule(function()
-                    vim.cmd(
-                        'source ' ..
-                        vim.fn.stdpath'config' ..
-                        '/lua/nvpunk/plugins.lua'
-                        )
+                    reload'nvpunk.plugins'
                     require'packer'.sync()
                 end)
             else
@@ -40,7 +36,7 @@ vim.api.nvim_create_user_command(
 
 vim.api.nvim_create_user_command(
     'NvpunkHealthcheck',
-    function(_) require'nvpunk.util.healthcheck'() end,
+    function(_) require'nvpunk.internals.healthcheck'() end,
     { nargs = 0 }
 )
 

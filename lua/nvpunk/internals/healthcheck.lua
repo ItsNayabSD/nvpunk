@@ -25,7 +25,7 @@ local function test_command(cmd, on_success, on_fail)
     }):start()
 end
 
-local Float = require'nvpunk.util.float'
+local Float = require'nvpunk.internals.float'
 
 --- Show message in healthcheck window. Upon activation it opens the given
 --- help page
@@ -83,7 +83,7 @@ return function()
     test_and_log('gcc', '[gcc] GNU Compiler Collection', 'nvpunk-deps-gcc')
     test_and_log('g++', '[gcc] GNU Compiler Collection (C++)', 'nvpunk-deps-gcc')
     test_and_log('python3', '[python3] Python', 'nvpunk-deps-python')
-    require'nvpunk.util.find_jdtls_java'(function(data)
+    require'nvpunk.internals.find_jdtls_java'(function(data)
         if data == nil or data == '' then
             msg_fail('[java17] Java 17+', 'nvpunk-deps-java17')
         else

@@ -17,7 +17,7 @@ telescope.setup {
 
 telescope.load_extension('ui-select')
 
-local km = require'nvpunk.util.keymapper'
+local km = require'nvpunk.internals.keymapper'
 
 km.wk.register({ ['<leader>t'] = { name = ' Telescope' } }, { mode = 'n' })
 km.nkeymap('<leader>tf', function()

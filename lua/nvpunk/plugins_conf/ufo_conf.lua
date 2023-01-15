@@ -1,4 +1,4 @@
-local km = require'nvpunk.util.keymapper'
+local km = require'nvpunk.internals.keymapper'
 
 -- blocked by: https://github.com/neovim/neovim/pull/17446
 -- vim.o.fillchars = [[eob: , fold: , foldopen:, foldsep: , foldclose:]]

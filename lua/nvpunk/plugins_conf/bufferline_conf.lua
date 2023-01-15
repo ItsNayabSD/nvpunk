@@ -1,4 +1,4 @@
-local nonfile_bufs = require'nvpunk.util.nonfile_buffers'
+local nonfile_bufs = require'nvpunk.internals.nonfile_buffers'
 
 require'bufferline'.setup {
     options = {

@@ -1,5 +1,5 @@
 local M = {}
-local km = require'nvpunk.util.keymapper'
+local km = require'nvpunk.internals.keymapper'
 
 M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
     local bm = km.create_bufkeymapper(bufnr)

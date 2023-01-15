@@ -4,7 +4,7 @@ require'window-picker'.setup({
     include_current = false,
     filter_rules = {
         bo = {
-            filetype = require'nvpunk.util.nonfile_buffers',
+            filetype = require'nvpunk.internals.nonfile_buffers',
             buftype = { 'terminal', 'quickfix' },
         },
     },
@@ -230,5 +230,5 @@ require'neo-tree'.setup{
     },
 }
 
-local km = require'nvpunk.util.keymapper'
+local km = require'nvpunk.internals.keymapper'
 km.nkeymap('ge', '<cmd>Neotree toggle<CR>', 'פּ Toggle Explorer')

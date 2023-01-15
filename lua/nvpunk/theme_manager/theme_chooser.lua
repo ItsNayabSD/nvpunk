@@ -50,7 +50,7 @@ local builtin_themes = {
 local user_func_themes = {}
 
 M.available_themes = {unpack(builtin_themes)}
-for k, v in pairs(require'nvpunk.util.user_conf'.user_themes()) do
+for k, v in pairs(require'nvpunk.internals.user_conf'.user_themes()) do
     if type(k) == 'number' then
         table.insert(M.available_themes, v)
     elseif type(k) == 'string' and type(v) == 'function' then
@@ -66,7 +66,7 @@ end
 M.load_theme = function(theme, notify, save_pref)
     if notify == nil then notify = true end
     if save_pref == nil then save_pref = true end
-    require'nvpunk.util.try'.load_theme(theme, function()
+    require'nvpunk.internals.try'.load_theme(theme, function()
         if vim.tbl_contains(builtin_themes, theme) then
             reload(
                 'nvpunk.theme_manager.themes.' .. theme

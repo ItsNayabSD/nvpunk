@@ -10,6 +10,6 @@ require'aerial'.setup {
     nerd_font = 'auto',
 }
 
-require'nvpunk.util.keymapper'.nkeymap(
+require'nvpunk.internals.keymapper'.nkeymap(
     'go', '<cmd>AerialToggle<cr>', 'פּ Outline'
 )

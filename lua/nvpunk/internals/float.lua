@@ -34,7 +34,7 @@ local function set_keymaps(bname)
     for k, v in pairs(mappings) do
         vim.api.nvim_buf_set_keymap(
             M.bufs[bname], 'n', k,
-            '<cmd>lua require"nvpunk.util.float".__keybinds.' .. v ..
+            '<cmd>lua require"nvpunk.internals.float".__keybinds.' .. v ..
             '("' .. bname .. '")<cr>',
             { nowait = true, noremap = true, silent = true }
         )

@@ -1,6 +1,6 @@
 -- lsp/buffer specific keymaps in lsp/keymaps.lua
 
-local km = require'nvpunk.util.keymapper'
+local km = require'nvpunk.internals.keymapper'
 
 ----------
 ---------- Leader
@@ -88,5 +88,5 @@ km.nkeymap(
 ---------- Context Menu
 ----------
 
-require'nvpunk.util.context_menu'.setup_rclick_menu_autocommands()
+require'nvpunk.internals.context_menu'.setup_rclick_menu_autocommands()
 km.nkeymap('<A-m>', '<cmd>popup PopUp<cr>', 'Open Context Menu')

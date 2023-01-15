@@ -10,7 +10,7 @@ M.export_user_conf_path = function()
     package.path = USER_CONF_DIR .. '/lua/?.lua;' .. package.path
 end
 
-local try_require = require'nvpunk.util.try'.require
+local try_require = require'nvpunk.internals.try'.require
 
 M.user_init = function()
     if vim.fn.filereadable(USER_CONF_INIT) == 1 then
