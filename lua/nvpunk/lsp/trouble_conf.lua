@@ -6,13 +6,13 @@ require'trouble'.setup {
         cancel = '<esc>', -- cancel the preview and get back to your last window / buffer / cursor
         refresh = 'r', -- manually refresh
         jump = {'<cr>', '<tab>'}, -- jump to the diagnostic or open / close folds
-        open_split = { 'i' }, -- open buffer in new split
-        open_vsplit = { 's' }, -- open buffer in new vsplit
-        open_tab = {}, -- { '<c-t>' }, -- open buffer in new tab
-        jump_close = {'o'}, -- jump to the diagnostic and close the list
+        open_split = 'i', -- open buffer in new split
+        open_vsplit = 's', -- open buffer in new vsplit
+        open_tab = 't', -- { '<c-t>' }, -- open buffer in new tab
+        jump_close = 'o', -- jump to the diagnostic and close the list
         toggle_mode = 'm', -- toggle between 'workspace' and 'document' diagnostics mode
         toggle_preview = 'P', -- toggle auto_preview
-        hover = 'K', -- opens a small popup with the full multiline message
+        hover = { 'K', '<leader>e' }, -- opens a small popup with the full multiline message
         preview = 'p', -- preview the diagnostic location
         close_folds = {'zM', 'zm'}, -- close all folds
         open_folds = {'zR', 'zr'}, -- open all folds
@@ -22,4 +22,6 @@ require'trouble'.setup {
     },
     use_diagnostic_signs = true
 }
--- keymap in keymaps.lua
+
+local km = require'nvpunk.internals.keymapper'
+km.nkeymap('<leader>T', '<cmd>TroubleToggle<cr>', 'Trouble')

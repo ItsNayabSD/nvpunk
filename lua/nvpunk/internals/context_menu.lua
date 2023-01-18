@@ -184,4 +184,15 @@ end
 
 M.clear_menu'PopUp'
 
+M.set_keymap = function()
+    require'nvpunk.internals.keymapper'.nkeymap(
+        '<A-m>', '<cmd>popup PopUp<cr>', 'Open Context Menu'
+    )
+end
+
+M.setup = function()
+    M.setup_rclick_menu_autocommands()
+    M.set_keymap()
+end
+
 return M

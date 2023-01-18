@@ -49,44 +49,9 @@ km.vkeymap('p', '"_dP')
 km.tkeymap('<Esc><Esc>', '<C-\\><C-n>')
 
 ----------
----------- Trouble
-----------
-
-km.nkeymap('<leader>T', '<cmd>TroubleToggle<cr>', 'Trouble')
-
-----------
 ---------- Terminal splitter
 ----------
 
 km.wk.register({ ['<leader>/'] = { name = ' Term Split' } })
 km.nkeymap('<leader>/v', '<cmd>vs<cr><cmd>terminal<cr>', 'ﲖ Vertical')
 km.nkeymap('<leader>/h', '<cmd>sp<cr><cmd>terminal<cr>', 'ﲐ Horizontal')
-
-----------
----------- Diff View
-----------
-
-km.wk.register({ ['<leader>?'] = { name = ' Diff View' } })
-km.nkeymap('<leader>?o', '<cmd>DiffviewOpen<cr>', 'DiffviewOpen')
-km.nkeymap('<leader>?c', '<cmd>DiffviewClose<cr>', 'DiffviewClose')
-km.nkeymap('<leader>?r', '<cmd>DiffviewRefresh<cr>', 'DiffviewRefresh')
-km.nkeymap('<leader>?f', '<cmd>DiffviewToggleFiles<cr>', 'DiffviewToggleFiles')
-
-km.nkeymap('<leader>?0', '<cmd>DiffviewOpen HEAD<cr>', 'DiffviewOpen HEAD')
-km.nkeymap('<leader>?1', '<cmd>DiffviewOpen HEAD^<cr>', 'DiffviewOpen HEAD^')
-km.nkeymap('<leader>?2', '<cmd>DiffviewOpen HEAD^^<cr>', 'DiffviewOpen HEAD^^')
-km.nkeymap('<leader>?3', '<cmd>DiffviewOpen HEAD^^^<cr>', 'DiffviewOpen HEAD^^^')
-km.nkeymap('<leader>?4', '<cmd>DiffviewOpen HEAD^^^^<cr>', 'DiffviewOpen HEAD^^^^')
-
-km.nkeymap(
-    '<leader>?H',
-    '<cmd>h nvpunk-shortcuts-diffview<cr>',
-    'Show Shortcuts'
-)
-
-----------
----------- Context Menu
-----------
-
-require'nvpunk.internals.context_menu'.setup_rclick_menu_autocommands()
-km.nkeymap('<A-m>', '<cmd>popup PopUp<cr>', 'Open Context Menu')

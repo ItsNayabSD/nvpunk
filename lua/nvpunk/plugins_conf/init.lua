@@ -1,6 +1,5 @@
 local configs = {
     'nvpunk.theme_manager',
-    'nvpunk.keymaps',
     'nvpunk.plugins_conf.notify_config',
     'nvpunk.plugins_conf.webdevicons_conf',
     'nvpunk.plugins_conf.highlight_colors_conf',
@@ -31,6 +30,7 @@ local configs = {
     'nvpunk.plugins_conf.bqf_conf',
     -- 'nvpunk.plugins_conf.noice_conf',
     'nvpunk.plugins_conf.numbertoggle_conf',  -- numbertoggle is internal, not a plugin
+    'nvpunk.plugins_conf.diffview_conf',
 }
 
 local try = require'nvpunk.internals.try'
