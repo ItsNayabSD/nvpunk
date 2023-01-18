@@ -6,7 +6,7 @@ return {
     {'ryanoasis/vim-devicons'},
 
     -- file explorer
-    {'nvim-neo-tree/neo-tree.nvim', branch = 'main', requires = {
+    {'nvim-neo-tree/neo-tree.nvim', branch = 'main', dependencies = {
         'kyazdani42/nvim-web-devicons', 'MunifTanjim/nui.nvim',
         's1n7ax/nvim-window-picker'
     }},
@@ -17,7 +17,7 @@ return {
     -- treesitter based syntax highlighting
     {
         'nvim-treesitter/nvim-treesitter',
-        run = function()
+        build = function()
             require('nvim-treesitter.install').update({ with_sync = true })
         end,
     },
@@ -50,7 +50,7 @@ return {
     {'stevearc/dressing.nvim'},
 
     -- pretty and better folding
-    {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'},
+    {'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async'},
 
     -- indentation marks
     {'lukas-reineke/indent-blankline.nvim'},

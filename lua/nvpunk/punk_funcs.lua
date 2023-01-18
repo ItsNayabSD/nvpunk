@@ -16,8 +16,7 @@ M.nvpunk_update = function()
                     title = 'Nvpunk Update'
                 })
                 vim.schedule(function()
-                    reload'nvpunk.plugins'
-                    require'packer'.sync()
+                    require'lazy'.restore()
                 end)
             else
                 vim.notify('Nvpunk update failed', vim.log.levels.ERROR, {

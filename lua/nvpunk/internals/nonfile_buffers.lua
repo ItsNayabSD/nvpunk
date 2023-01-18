@@ -11,6 +11,7 @@ return {
     'alpha',
     'dashboard',
     'help',
+    'lazy',
     'lir',
     'neo-tree',
     'neo-tree-popup',

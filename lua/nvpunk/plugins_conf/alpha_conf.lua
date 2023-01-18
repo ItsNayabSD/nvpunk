@@ -54,7 +54,7 @@ dashboard.section.buttons.val = {
     button(
         'cu',
         '  Update Plugins',
-        ':PackerSync<CR>'
+        ':Lazy restore<CR>'
     ),
     button(
         'cU',

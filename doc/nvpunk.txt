@@ -239,10 +239,10 @@ Inside the `user` directory you can add the following files:
 `init.lua` will be called after the Nvpunk configuration is loaded. You can
 load any configuration override or other custom configuration code in here.
 
-`plugins.lua` needs to return a table of tables, each subtable is a Packer
-style plugin definition (|nvim-ref-packer|), one you would pass to the `use`
+`plugins.lua` needs to return a table of tables, each subtable is a Lazy
+style plugin definition (|nvim-ref-lazy|), one you would pass to the `use`
 function. After adding your custom plugins to `plugins.lua`, you can install
-them by restarting nvim and running `:PackerSync`.
+them by restarting nvim and running `:Lazy install`.
 
 Here is an example of a `plugins.lua` file:
 
@@ -307,6 +307,6 @@ LSP specific:
 
 https://www.nerdfonts.com/
 
-## Packer                                                  *nvpunk-ref-packer*
+## Lazy                                                      *nvpunk-ref-lazy*
 
-https://github.com/wbthomason/packer.nvim
+https://github.com/folke/lazy.nvim

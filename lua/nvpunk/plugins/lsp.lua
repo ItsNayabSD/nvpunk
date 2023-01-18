@@ -6,12 +6,12 @@ return {
     {'neovim/nvim-lspconfig'},
 
     -- lua based snippets
-    {'L3MON4D3/LuaSnip', requires = {
+    {'L3MON4D3/LuaSnip', dependencies = {
         'rafamadriz/friendly-snippets'
     }},
 
     -- completion
-    {'hrsh7th/nvim-cmp', requires = {
+    {'hrsh7th/nvim-cmp', dependencies = {
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-path',

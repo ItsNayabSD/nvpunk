@@ -11,8 +11,8 @@ nvpunk-healthcheck	nvpunk.txt	/*nvpunk-healthcheck*
 nvpunk-lsp	nvpunk.txt	/*nvpunk-lsp*
 nvpunk-navigation	nvpunk.txt	/*nvpunk-navigation*
 nvpunk-ref-keybinds	nvpunk.txt	/*nvpunk-ref-keybinds*
+nvpunk-ref-lazy	nvpunk.txt	/*nvpunk-ref-lazy*
 nvpunk-ref-nerdfonts	nvpunk.txt	/*nvpunk-ref-nerdfonts*
-nvpunk-ref-packer	nvpunk.txt	/*nvpunk-ref-packer*
 nvpunk-ref-terminals	nvpunk.txt	/*nvpunk-ref-terminals*
 nvpunk-references	nvpunk.txt	/*nvpunk-references*
 nvpunk-shortcuts	nvpunk.txt	/*nvpunk-shortcuts*

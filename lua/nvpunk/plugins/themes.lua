@@ -1,0 +1,18 @@
+return {
+    {'navarasu/onedark.nvim', lazy = true},
+    {'catppuccin/nvim', name = 'catppuccin', lazy = true},
+    {'Mofiqul/dracula.nvim', lazy = true},
+    {'folke/tokyonight.nvim', lazy = true},
+    {'shaunsingh/nord.nvim', lazy = true},
+    {'luisiacc/gruvbox-baby', lazy = true},
+    {'tanvirtin/monokai.nvim', lazy = true},
+    {'shaunsingh/moonlight.nvim', lazy = true},
+    {'NTBBloodbath/doom-one.nvim', lazy = true},
+    {'sam4llis/nvim-tundra', lazy = true},
+    {'EdenEast/nightfox.nvim', lazy = true},
+    {'rose-pine/neovim', name = 'rose-pine', lazy = true},
+    {'rebelot/kanagawa.nvim', lazy = true},
+    {'kvrohit/mellow.nvim', lazy = true},
+    {'w3barsi/barstrata.nvim', lazy = true},
+    {'neanias/everforest-nvim', branch = 'main', lazy = true},
+}
