@@ -108,3 +108,7 @@ dashboard.config.layout = {
 
 dashboard.section.buttons.opts.spacing = 0
 require'alpha'.setup(dashboard.opts)
+
+require'nvpunk.internals.keymapper'.nkeymap(
+    '<leader>A', '<CMD>Alpha<CR>', ' Open Greeter'
+)
