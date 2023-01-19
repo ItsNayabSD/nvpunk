@@ -2,10 +2,6 @@ return {
     {'petRUShka/vim-opencl'},
     {'arrufat/vala.vim'},
     {'tikhomirov/vim-glsl'},
-    -- typescript (2 plugins)
-    {'neomake/neomake'},
-    -- typescript syntax
-    {'HerringtonDarkholme/yats.vim'},
     -- XML, HTML tag autoclosing (requires treesitter)
     -- doesn't work right now
     -- use { 'windwp/nvim-ts-autotag', requires = 'nvim-treesitter/nvim-treesitter' }

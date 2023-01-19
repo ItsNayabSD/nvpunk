@@ -42,4 +42,10 @@ return {
 
     -- show language server starting progress in the lower right corner
     {'j-hui/fidget.nvim'},
+
+    -- completion icons
+    {'onsails/lspkind-nvim'},
+
+    -- diagnostic colors for all themes
+    {'folke/lsp-colors.nvim'},
 }

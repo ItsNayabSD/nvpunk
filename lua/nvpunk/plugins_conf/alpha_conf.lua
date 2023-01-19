@@ -28,17 +28,17 @@ dashboard.section.buttons.val = {
     button(
         'tf',
         '  Find file',
-        ':lua require"telescope.builtin".find_files(require("telescope.themes").get_dropdown({ previewer = false }))<CR>'
+        ':lua require"nvpunk.internals.telescope_pickers".find_files()<CR>'
     ),
     button(
         'tg',
         '  Find word',
-        ':Telescope live_grep<CR>'
+        ':lua require"nvpunk.internals.telescope_pickers".live_grep()<CR>'
     ),
     button(
         'tr',
         '  Recent files',
-        ':lua require"telescope.builtin".oldfiles(require("telescope.themes").get_dropdown({ previewer = false }))<CR>'
+        ':lua require"telescope.builtin".oldfiles()<CR>'
     ),
     { type = 'padding', val = 1 },
     button(

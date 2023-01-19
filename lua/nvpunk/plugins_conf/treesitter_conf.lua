@@ -2,6 +2,7 @@ local function setup_treesitter()
     require'nvim-treesitter.configs'.setup {
         ensure_installed = 'all',
         ignore_install = {'phpdoc', 'swift', 'fortran', 'php'},
+        sync_install = true,  -- don't peg slow systems
         highlight = {
             enable = true,
             use_languagetree = true,

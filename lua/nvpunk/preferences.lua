@@ -191,7 +191,6 @@ M.set_window_border = function(border)
     local conf = load_conf()
     conf.window_border = border
     save_conf(conf)
-    -- TODO: reload what needs reloading
 end
 
 ---@return table | 'none' | 'single' | 'rounded' | 'double'
@@ -204,7 +203,6 @@ M.set_small_window_border = function(border)
     local conf = load_conf()
     conf.small_window_border = border
     save_conf(conf)
-    -- TODO: reload what needs reloading
 end
 
 ---@return table | 'none' | 'single' | 'rounded' | 'double'
@@ -217,7 +215,6 @@ M.set_popup_border = function(border)
     local conf = load_conf()
     conf.popup_border = border
     save_conf(conf)
-    -- TODO: reload what needs reloading
 end
 
 local BORDER_SELECT_OPTS = {
@@ -230,6 +227,13 @@ local BORDER_SELECT_OPTS = {
 
 local function select_format_get_label(item) return item.label end
 
+local function menu(items, opts, on_choice)
+    vim.ui.select(items, opts, function(item, index)
+        if item == nil then return end
+        on_choice(item, index)
+    end)
+end
+
 local preferences_menus = {
     {
         label = '  Change Theme',
@@ -240,7 +244,7 @@ local preferences_menus = {
     {
         label = 'שּ  Change Greeter Header',
         func = function()
-            vim.ui.select(
+            menu(
                 require'nvpunk.plugins_conf.headers'.headers,
                 {
                     prompt = 'Choose a header:',
@@ -260,7 +264,7 @@ local preferences_menus = {
             local column_mark_enabled = M.get_column_mark_enabled()
             local folding_guide_enabled = M.get_folding_guide_enabled()
             local relative_numbers_enabled = M.get_relative_numbers_enabled()
-            vim.ui.select(
+            menu(
                 {
                     {
                         label = '  '..
@@ -315,7 +319,7 @@ local preferences_menus = {
                     {
                         label = '裡 Tab Style',
                         func = function ()
-                            vim.ui.select(
+                            menu(
                                 {
                                     {label = 'Slant', value = 'slant'},
                                     {label = 'Padded Slant', value = 'padded_slant'},
@@ -333,7 +337,7 @@ local preferences_menus = {
                     {
                         label = '  Statusline Style',
                         func = function ()
-                            vim.ui.select(
+                            menu(
                                 {
                                     {label = 'Powerline', value = 'powerline'},
                                     {label = 'Plain', value = 'plain'},
@@ -354,7 +358,7 @@ local preferences_menus = {
                     {
                         label = '  Window Borders',
                         func = function ()
-                            vim.ui.select(
+                            menu(
                                 BORDER_SELECT_OPTS,
                                 {
                                     prompt = 'Window Borders:',
@@ -367,7 +371,7 @@ local preferences_menus = {
                     {
                         label = '  Floating Window Borders',
                         func = function ()
-                            vim.ui.select(
+                            menu(
                                 BORDER_SELECT_OPTS,
                                 {
                                     prompt = 'Floating Window Borders:',
@@ -380,7 +384,7 @@ local preferences_menus = {
                     {
                         label = '  Popup Borders',
                         func = function ()
-                            vim.ui.select(
+                            menu(
                                 BORDER_SELECT_OPTS,
                                 {
                                     prompt = 'Popup Borders:',
@@ -409,7 +413,7 @@ local preferences_menus = {
 }
 
 M.preferences_menu = function()
-    vim.ui.select(
+    menu(
         preferences_menus,
         {
             prompt = 'Preferences:',

@@ -28,6 +28,7 @@ M.buf_has_dap = function()
 end
 
 --- Create a context menu
+---@deprecated
 ---@param prompt string
 ---@param strings table[string]
 ---@param funcs table[function]

@@ -90,6 +90,7 @@ M.load_theme = function(theme, notify, save_pref)
     require'nvpunk.internals.highlights'.setup()
 end
 
+---@deprecated
 M.change_theme = function()
     vim.ui.select(
         M.available_themes,

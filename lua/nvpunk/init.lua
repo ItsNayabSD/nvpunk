@@ -1,5 +1,4 @@
 local try = require'nvpunk.internals.try'
-try.require'impatient'
 reload = require'nvpunk.internals.reload'
 require'nvpunk.vim_conf'
 require'nvpunk.gui_conf'
