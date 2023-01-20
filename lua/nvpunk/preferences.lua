@@ -79,7 +79,7 @@ M.set_indent_blankline_enabled = function(nval)
     local conf = load_conf()
     conf.indent_blankline_enabled = nval
     save_conf(conf)
-    reload'nvpunk.plugins_conf.indent_blankline_conf'
+    require'nvpunk.plugins.interface.indent_blankline'.config()
 end
 
 ---@return boolean
@@ -92,7 +92,7 @@ M.set_navic_enabled = function(nval)
     local conf = load_conf()
     conf.navic_enabled = nval
     save_conf(conf)
-    reload'nvpunk.plugins_conf.navic_conf'
+    require'nvpunk.plugins.interface.navic'.config()
 end
 
 ---@return boolean
@@ -145,7 +145,7 @@ M.set_tab_style = function(style)
     local conf = load_conf()
     conf.tab_style = style
     save_conf(conf)
-    reload'nvpunk.plugins_conf.bufferline_conf'
+    require'nvpunk.plugins.interface.bufferline'.config()
 end
 
 ---@return 'powerline' | 'plain' | 'plain_separators' | 'slant_low' |
@@ -251,7 +251,8 @@ local preferences_menus = {
                 },
                 function(greeter, _)
                     M.set_greeter(greeter)
-                    reload('nvpunk.plugins_conf.alpha_conf')
+                    require'nvpunk.plugins.interface.alpha'.config()
+                    vim.cmd'AlphaRedraw'
                 end
             )
         end

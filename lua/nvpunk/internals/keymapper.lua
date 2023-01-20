@@ -9,12 +9,9 @@ local keymap_opts = {noremap = true, silent = true}
 ---@param cmd function | string
 ---@param desc? string
 M.keymap = function(mode, kb, cmd, desc)
-    vim.keymap.set(mode, kb, cmd, keymap_opts)
-    if desc then
-        M.wk.register({
-            [kb] = {desc}
-        }, { mode = mode })
-    end
+    local opts = keymap_opts
+    if desc ~= nil then opts.desc = desc end
+    vim.keymap.set(mode, kb, cmd, opts)
 end
 
 --- Create visual mode keymap
@@ -68,12 +65,9 @@ M.create_bufkeymapper = function(bufnr)
     ---@param cmd function | string
     ---@param desc? string
     bm.keymap = function (mode, kb, cmd, desc)
-        vim.keymap.set(mode, kb, cmd, buf_km_opts)
-        if desc then
-            M.wk.register({
-                [kb] = {desc}
-            }, { mode = mode, buffer = bufnr })
-        end
+        local opts = buf_km_opts
+        if desc ~= nil then opts.desc = desc end
+        vim.keymap.set(mode, kb, cmd, opts)
     end
 
     --- Create visual mode keymap

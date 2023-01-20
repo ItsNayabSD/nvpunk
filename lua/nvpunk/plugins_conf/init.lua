@@ -1,26 +1,14 @@
 local configs = {
     'nvpunk.theme_manager',
-    'nvpunk.plugins_conf.webdevicons_conf',
-    'nvpunk.plugins_conf.highlight_colors_conf',
     'nvpunk.plugins_conf.astro_conf',
-    'nvpunk.plugins_conf.treesitter_conf',
     'nvpunk.plugins_conf.mason_conf',
     'nvpunk.plugins_conf.neodev_conf',  -- before lspconfig
     'nvpunk.lsp',
     'nvpunk.plugins_conf.autopairs_conf',
     'nvpunk.plugins_conf.aerial_conf',
     -- lualine config done by theme manager
-    'nvpunk.plugins_conf.bufferline_conf',
-    'nvpunk.plugins_conf.neotree_conf',
-    'nvpunk.plugins_conf.whichkey_conf',
-    'nvpunk.plugins_conf.gitsigns_conf',
-    'nvpunk.plugins_conf.alpha_conf',
-    'nvpunk.plugins_conf.navic_conf',
     'nvpunk.dap',
-    'nvpunk.plugins_conf.ufo_conf',
     'nvpunk.plugins_conf.fidget_conf',
-    'nvpunk.plugins_conf.indent_blankline_conf',
-    'nvpunk.plugins_conf.bqf_conf',
     -- 'nvpunk.plugins_conf.noice_conf',
     'nvpunk.plugins_conf.numbertoggle_conf',  -- numbertoggle is internal, not a plugin
 }

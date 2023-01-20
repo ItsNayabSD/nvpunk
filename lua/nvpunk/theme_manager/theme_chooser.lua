@@ -66,6 +66,7 @@ end
 M.load_theme = function(theme, notify, save_pref)
     if notify == nil then notify = true end
     if save_pref == nil then save_pref = true end
+    vim.cmd'colorscheme default'
     require'nvpunk.internals.try'.load_theme(theme, function()
         if vim.tbl_contains(builtin_themes, theme) then
             reload(
