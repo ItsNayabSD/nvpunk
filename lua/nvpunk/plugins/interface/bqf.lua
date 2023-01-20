@@ -1,7 +1,8 @@
 -- better quick fix pane
 return {
     'kevinhwang91/nvim-bqf',
-    config = function()
+    lazy = true,
+    init = function()
         -- format qf window to make it tolerable
         -- code from https://github.com/kevinhwang91/nvim-bqf
 
@@ -56,10 +57,9 @@ return {
         end
 
         vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
-
-
+    end,
+    config = function()
         -- use mostly the same shortcuts used for the file explorer
-
         require'bqf'.setup {
             auto_enable = true,
             func_map = {
@@ -68,5 +68,6 @@ return {
                 vsplit = 's',
             },
         }
-    end
+    end,
+    ft = {'qf'},
 }
