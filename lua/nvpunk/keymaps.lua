@@ -34,6 +34,11 @@ M.set_keymaps = function()
     km.wk.register({ ['<leader>/'] = { name = ' Term Split' } })
     km.nkeymap('<leader>/s', '<cmd>vs<cr><cmd>terminal<cr>', 'ﲖ Vertical')
     km.nkeymap('<leader>/i', '<cmd>sp<cr><cmd>terminal<cr>', 'ﲐ Horizontal')
+
+    km.nkeymap('<A-j>', 'gj')
+    km.nkeymap('<A-k>', 'gk')
+    km.nkeymap('<A-Down>', 'gj')
+    km.nkeymap('<A-Up>', 'gk')
 end
 
 return M
