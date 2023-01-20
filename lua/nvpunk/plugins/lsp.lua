@@ -107,7 +107,20 @@ return {
     {'mfussenegger/nvim-jdtls'},
 
     -- show language server starting progress in the lower right corner
-    {'j-hui/fidget.nvim'},
+    {
+        'j-hui/fidget.nvim',
+        config = function()
+            require'fidget'.setup {
+                text = {
+                    spinner = 'dots',
+                },
+                align = {
+                    bottom = true,
+                    right = true,
+                }
+            }
+        end,
+    },
 
     -- completion icons
     {'onsails/lspkind-nvim'},

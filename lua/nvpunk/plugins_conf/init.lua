@@ -5,7 +5,6 @@ local configs = {
     'nvpunk.lsp',
     'nvpunk.plugins_conf.autopairs_conf',
     'nvpunk.dap',
-    'nvpunk.plugins_conf.fidget_conf',
     'nvpunk.plugins_conf.numbertoggle_conf',  -- numbertoggle is internal, not a plugin
 }
 
