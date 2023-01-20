@@ -245,7 +245,7 @@ local preferences_menus = {
         label = 'שּ  Change Greeter Header',
         func = function()
             menu(
-                require'nvpunk.plugins_conf.headers'.headers,
+                require'nvpunk.internals.greeter_headers'.headers,
                 {
                     prompt = 'Choose a header:',
                 },

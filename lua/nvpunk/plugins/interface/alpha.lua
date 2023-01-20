@@ -4,7 +4,7 @@ return {
     config = function()
         local dashboard = require'alpha.themes.dashboard'
 
-        local header = require'nvpunk.plugins_conf.headers'.images[
+        local header = require'nvpunk.internals.greeter_headers'.images[
             require'nvpunk.preferences'.get_greeter()
         ]
 
