@@ -1,7 +1,6 @@
 local configs = {
     'nvpunk.theme_manager',
     'nvpunk.plugins_conf.mason_conf',
-    'nvpunk.plugins_conf.neodev_conf',  -- before lspconfig
     'nvpunk.lsp',
     'nvpunk.plugins_conf.autopairs_conf',
     'nvpunk.dap',
