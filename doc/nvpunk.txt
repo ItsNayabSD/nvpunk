@@ -240,16 +240,16 @@ Inside the `user` directory you can add the following files:
 load any configuration override or other custom configuration code in here.
 
 `plugins.lua` needs to return a table of tables, each subtable is a Lazy
-style plugin definition (|nvpunk-ref-lazy|), one you would pass to the `use`
-function. After adding your custom plugins to `plugins.lua`, you can install
-them by restarting nvim and running `:Lazy install`.
+style plugin definition (|nvpunk-ref-lazy|). After adding your custom plugins
+to `plugins.lua`, you can install them by restarting nvim and running
+`:Lazy install`.
 
 Here is an example of a `plugins.lua` file:
 
 >
     return {
         {'vimwiki/vimwiki'},
-        {'someuser/someplugin', branch = 'main', requires = {
+        {'someuser/someplugin', branch = 'main', dependencies = {
             'someother/plugin'
         }},
     }
