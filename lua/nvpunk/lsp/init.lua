@@ -4,7 +4,6 @@ local lsp_confs = {
     'nvpunk.lsp.mason_lsp_conf',
     'nvpunk.lsp.cmp_conf',
     'nvpunk.lsp.signature_conf',
-    'nvpunk.lsp.trouble_conf',
     'nvpunk.lsp.null_ls_conf',
 }
 
