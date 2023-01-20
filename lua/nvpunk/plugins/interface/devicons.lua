@@ -4,9 +4,11 @@ return {
     dependencies = {
         'ryanoasis/vim-devicons',
     },
-    config = function()
+    lazy = true,
+    init = function()
         vim.g.WebDevIconsUnicodeGlyphDoubleWidth = 1
-
+    end,
+    config = function()
         require'nvim-web-devicons'.setup{
             override = {
                 ['meson.build'] = {
