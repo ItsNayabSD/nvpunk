@@ -1,7 +1,7 @@
 local M = {}
 
-M.wk = require'which-key'
-local keymap_opts = {noremap = true, silent = true}
+M.wk = require 'which-key'
+local keymap_opts = { noremap = true, silent = true }
 
 --- Create keymap
 ---@param mode 'v' | 'x' | 'i' | 'n' | 't' | ''
@@ -48,23 +48,25 @@ M.tkeymap = function(kb, cmd, desc) M.keymap('t', kb, cmd, desc) end
 ---@param kb string
 ---@param cmd function | string
 ---@param desc? string
-M.inkeymap = function(kb, cmd, desc) M.ikeymap(kb, cmd, desc) M.nkeymap(kb, cmd, desc) end
+M.inkeymap = function(kb, cmd, desc)
+    M.ikeymap(kb, cmd, desc)
+    M.nkeymap(kb, cmd, desc)
+end
 
 --- Create a table of functions to create keymaps relative to the given buffer
 ---@param bufnr integer
 ---@return table[function]
 M.create_bufkeymapper = function(bufnr)
     local bm = {}
-    local buf_km_opts = vim.tbl_deep_extend(
-        'force', keymap_opts, {buffer = bufnr}
-    )
+    local buf_km_opts =
+        vim.tbl_deep_extend('force', keymap_opts, { buffer = bufnr })
 
     --- Create keymap
     ---@param mode 'v' | 'x' | 'i' | 'n' | 't' | ''
     ---@param kb string
     ---@param cmd function | string
     ---@param desc? string
-    bm.keymap = function (mode, kb, cmd, desc)
+    bm.keymap = function(mode, kb, cmd, desc)
         local opts = buf_km_opts
         if desc ~= nil then opts.desc = desc end
         vim.keymap.set(mode, kb, cmd, opts)
@@ -104,7 +106,10 @@ M.create_bufkeymapper = function(bufnr)
     ---@param kb string
     ---@param cmd function | string
     ---@param desc? string
-    bm.inkeymap = function(kb, cmd, desc) bm.ikeymap(kb, cmd, desc) bm.nkeymap(kb, cmd, desc) end
+    bm.inkeymap = function(kb, cmd, desc)
+        bm.ikeymap(kb, cmd, desc)
+        bm.nkeymap(kb, cmd, desc)
+    end
     return bm
 end
 

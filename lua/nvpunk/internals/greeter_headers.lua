@@ -24,7 +24,7 @@ M.images = {
             '      S  A  M  U  R  A  I      ',
             '                               ',
         },
-        hl = 'NvpunkRed'
+        hl = 'NvpunkRed',
     },
     gabmus = {
         content = {
@@ -41,7 +41,7 @@ M.images = {
             '│                        │',
             '╰────────────────────────╯',
         },
-        hl = 'Include'
+        hl = 'Include',
     },
     robots = {
         content = {
@@ -54,7 +54,7 @@ M.images = {
             '⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⡟⠁⠀⠀⠈⠻⣿⣿⣿⠟⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇',
             '⠀⠀⠀⠀⠀⠀⠀⠙⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠛⠉⠀⠀⠀⠀⠀⠀⠈⠛⠁⠀⠀⠀⠀⠀⠛⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠛⠁',
         },
-        hl = ''
+        hl = '',
     },
     squid = {
         content = {
@@ -81,7 +81,7 @@ M.images = {
             '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣷⣶⣤⣴⣶⣿⣿⠿⠙⢿⣿⣿⣶⣦⣴⣶⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀',
             '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠛⠋⠁⠀⠀⠀⠈⠙⠛⠿⠿⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
         },
-        hl = 'Function'
+        hl = 'Function',
     },
     arasaka = {
         content = {
@@ -101,7 +101,7 @@ M.images = {
             '⢿⣧⡀⠀⠀⢸⣿⢘⣿⣷⣦⣀⠀⠀⠀⢿⣧⡀⠀⠀⢸⣿⢠⣤⡌⠙⠿⣿⣦⣄⢿⣧⡀⠀⠀⢸⣿⢘⣿⣿⣤⡀⠘⣿⣇⠀⠀⠀⢸⣿',
             '⠈⠻⢿⣿⣷⢸⣿⠈⠉⠉⠙⠿⣷⣦⣀⠈⠻⢿⣿⣷⢸⣿⠈⢿⣿⣿⣿⣿⣿⣿⠈⠻⢿⣿⣷⢸⣿⠈⠉⠈⠛⢿⣷⣽⡿⢿⣿⣷⢸⣿',
         },
-        hl = 'NvpunkRed'
+        hl = 'NvpunkRed',
     },
     arasaka_notype = {
         content = {
@@ -117,7 +117,7 @@ M.images = {
             '⠀⠀⠀⠈⠛⢿⣦⣤⣀⣀⠿⠇⣀⣀⣤⣶⡿⠋⠁⠀⠀⠀',
             '⠀⠀⠀⠀⠀⠀⠈⠙⠛⠛⠛⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀',
         },
-        hl = 'NvpunkRed'
+        hl = 'NvpunkRed',
     },
     apex = {
         content = {
@@ -132,7 +132,7 @@ M.images = {
             '████    ████',
             ' ██      ██ ',
         },
-        hl = 'NvpunkRed'
+        hl = 'NvpunkRed',
     },
     titanfall = {
         content = {
@@ -145,7 +145,7 @@ M.images = {
             ' ███   ████████ ',
             '███     ████████',
         },
-        hl = ''
+        hl = '',
     },
     kaiser = {
         content = {
@@ -156,7 +156,7 @@ M.images = {
             ' ██     ██ ',
             ' ▀▀       ▀▀ ',
         },
-        hl = 'Typedef'
+        hl = 'Typedef',
     },
     punk = {
         content = {
@@ -170,7 +170,7 @@ M.images = {
             '⠀⡼⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑',
             '⠰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
         },
-        hl = 'Typedef'
+        hl = 'Typedef',
     },
     nvpunk = {
         content = {
@@ -184,7 +184,7 @@ M.images = {
             '⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙',
             '⠀⠀⠀⠀⠀⠀⠀⠀⢠⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
         },
-        hl = 'Typedef'
+        hl = 'Typedef',
     },
     edgerunner = {
         content = {
@@ -211,7 +211,7 @@ M.images = {
             '⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀',
             '⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
         },
-        hl = 'DevIconZsh'
+        hl = 'DevIconZsh',
     },
     lambda = {
         content = {
@@ -223,7 +223,7 @@ M.images = {
             '  █  █   ',
             ' █    ████',
         },
-        hl = 'DevIconSvg'
+        hl = 'DevIconSvg',
     },
     haskell = {
         content = {
@@ -236,7 +236,7 @@ M.images = {
             ' ██  █   ',
             '██    █  ',
         },
-        hl = 'DevIconHs'
+        hl = 'DevIconHs',
     },
     switch = {
         content = {
@@ -258,8 +258,8 @@ M.images = {
             '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠧⡀⠀⡇⣇⣇⡠⠠⣺⣠⠤⠒⡖⡛⡇⠀⢧⠀⠀⠀⠀⠀⠀⠀⠀',
             '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠾⠥⡿⠁⠉⠉⠁⠀⠀⠀⢣⡸⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
         },
-        hl = 'DevIconRs'
-    }
+        hl = 'DevIconRs',
+    },
 }
 
 M.headers = vim.tbl_keys(M.images)

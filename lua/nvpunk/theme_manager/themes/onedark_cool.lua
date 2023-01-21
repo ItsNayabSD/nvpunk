@@ -1,1 +1,1 @@
-require'nvpunk.theme_manager.themes.__onedark'('cool')
+require 'nvpunk.theme_manager.themes.__onedark' 'cool'

@@ -2,27 +2,37 @@
 return {
     'lewis6991/gitsigns.nvim',
     config = function()
-        require'gitsigns'.setup {
+        require('gitsigns').setup {
             signs = {
                 add = {
-                    hl = 'GitSignsAdd', text = '▌',
-                    numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn'
+                    hl = 'GitSignsAdd',
+                    text = '▌',
+                    numhl = 'GitSignsAddNr',
+                    linehl = 'GitSignsAddLn',
                 },
                 change = {
-                    hl = 'GitSignsChange', text = '▌',
-                    numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn'
+                    hl = 'GitSignsChange',
+                    text = '▌',
+                    numhl = 'GitSignsChangeNr',
+                    linehl = 'GitSignsChangeLn',
                 },
                 delete = {
-                    hl = 'GitSignsDelete', text = '▁',
-                    numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn'
+                    hl = 'GitSignsDelete',
+                    text = '▁',
+                    numhl = 'GitSignsDeleteNr',
+                    linehl = 'GitSignsDeleteLn',
                 },
                 topdelete = {
-                    hl = 'GitSignsDelete', text = '▔',
-                    numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn'
+                    hl = 'GitSignsDelete',
+                    text = '▔',
+                    numhl = 'GitSignsDeleteNr',
+                    linehl = 'GitSignsDeleteLn',
                 },
                 changedelete = {
-                    hl = 'GitSignsChange', text = '▌',
-                    numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn'
+                    hl = 'GitSignsChange',
+                    text = '▌',
+                    numhl = 'GitSignsChangeNr',
+                    linehl = 'GitSignsChangeLn',
                 },
             },
             signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
@@ -50,7 +60,7 @@ return {
             max_file_length = 40000,
             preview_config = {
                 -- Options passed to nvim_open_win
-                border = require'nvpunk.preferences'.get_small_window_border(),
+                border = require('nvpunk.preferences').get_small_window_border(),
                 style = 'minimal',
                 relative = 'cursor',
                 row = 0,
@@ -61,12 +71,20 @@ return {
             },
         }
 
-        local km = require'nvpunk.internals.keymapper'
+        local km = require 'nvpunk.internals.keymapper'
 
         km.wk.register({ ['<leader>g'] = { name = ' Git' } }, { mode = 'n' })
-        km.nkeymap('<leader>gb', '<cmd>Gitsigns blame_line<cr>', ' Blame line')
+        km.nkeymap(
+            '<leader>gb',
+            '<cmd>Gitsigns blame_line<cr>',
+            ' Blame line'
+        )
         km.nkeymap('<leader>g]', '<cmd>Gitsigns next_hunk<cr>', ' Next hunk')
         km.nkeymap('<leader>g[', '<cmd>Gitsigns prev_hunk<cr>', ' Prev hunk')
-        km.nkeymap('<leader>g?', '<cmd>Gitsigns preview_hunk<cr>', ' Preview changes')
+        km.nkeymap(
+            '<leader>g?',
+            '<cmd>Gitsigns preview_hunk<cr>',
+            ' Preview changes'
+        )
     end,
 }

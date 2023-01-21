@@ -1,10 +1,14 @@
-require'noice'.setup {
+require('noice').setup {
     cmdline = {
         view = 'cmdline_popup',
         icons = {
             ['/'] = { icon = ' ', hl_group = 'DiagnosticWarn' },
             ['?'] = { icon = ' ', hl_group = 'DiagnosticWarn' },
-            [':'] = { icon = ' ', hl_group = 'DiagnosticInfo', firstc = false },
+            [':'] = {
+                icon = ' ',
+                hl_group = 'DiagnosticInfo',
+                firstc = false,
+            },
         },
     },
     popupmenu = {
@@ -38,7 +42,10 @@ require'noice'.setup {
                 padding = { 0, 1 },
             },
             win_options = {
-                winhighlight = { Normal = 'Normal', FloatBorder = 'DiagnosticInfo' },
+                winhighlight = {
+                    Normal = 'Normal',
+                    FloatBorder = 'DiagnosticInfo',
+                },
             },
         },
     },

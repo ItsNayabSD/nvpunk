@@ -4,7 +4,7 @@ local function _assign(old, new, k)
     -- if (otype == 'thread' or otype == 'userdata') or
     --     (ntype == 'thread' or ntype == 'userdata')
     -- then
-        -- WARN old or new attr type is thread or userdata
+    -- WARN old or new attr type is thread or userdata
     -- end
     old[k] = new[k]
 end
@@ -15,9 +15,7 @@ local function _replace(old, new, repeat_tbl)
 
     local dellist = {}
     for k, _ in pairs(old) do
-        if not new[k] then
-            table.insert(dellist, k)
-        end
+        if not new[k] then table.insert(dellist, k) end
     end
 
     for _, v in ipairs(dellist) do

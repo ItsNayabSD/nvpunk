@@ -1,1 +1,1 @@
-require'nvpunk.theme_manager.themes.__tokyonight'('day')
+require 'nvpunk.theme_manager.themes.__tokyonight' 'day'

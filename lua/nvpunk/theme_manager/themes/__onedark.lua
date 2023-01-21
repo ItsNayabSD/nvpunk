@@ -1,10 +1,10 @@
 --- Set onedark theme with specific style
 ---@param style 'dark' | 'darker' | 'cool' | 'deep' | 'warm' | 'warmer'
 return function(style)
-    local t = require'onedark'
+    local t = require 'onedark'
     t.setup {
-        style = style
+        style = style,
     }
     t.load()
-    reload'nvpunk.theme_manager.lualine'('onedark')
+    reload 'nvpunk.theme_manager.lualine' 'onedark'
 end

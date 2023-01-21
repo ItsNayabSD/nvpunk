@@ -1,1 +1,1 @@
-require'nvpunk.theme_manager.themes.__tokyonight'('storm')
+require 'nvpunk.theme_manager.themes.__tokyonight' 'storm'

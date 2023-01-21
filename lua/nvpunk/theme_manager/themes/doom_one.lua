@@ -27,5 +27,5 @@ vim.g.doom_one_plugin_whichkey = true
 vim.g.doom_one_plugin_indent_blankline = false
 vim.g.doom_one_plugin_vim_illuminate = true
 vim.g.doom_one_plugin_lspsaga = false
-vim.cmd[[colorscheme doom-one]]
-reload'nvpunk.theme_manager.lualine'('auto')
+vim.cmd [[colorscheme doom-one]]
+reload 'nvpunk.theme_manager.lualine' 'auto'

@@ -1,1 +1,1 @@
-require'nvpunk.theme_manager.themes.__tokyonight'('moon')
+require 'nvpunk.theme_manager.themes.__tokyonight' 'moon'

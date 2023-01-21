@@ -1,19 +1,20 @@
 -- file explorer
 return {
-    'nvim-neo-tree/neo-tree.nvim', branch = 'main',
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'main',
     dependencies = {
         'MunifTanjim/nui.nvim',
         's1n7ax/nvim-window-picker',
     },
     lazy = true,
     config = function()
-        require'window-picker'.setup{
+        require('window-picker').setup {
             autoselect_one = true,
             selection_chars = '1234567890-=QWERTYUIOPASDFGHJKLZXCVBNM',
             include_current = false,
             filter_rules = {
                 bo = {
-                    filetype = require'nvpunk.internals.nonfile_buffers',
+                    filetype = require 'nvpunk.internals.nonfile_buffers',
                     buftype = { 'terminal', 'quickfix' },
                 },
             },
@@ -22,16 +23,20 @@ return {
         vim.g.neo_tree_remove_legacy_commands = 1
 
         vim.fn.sign_define('DiagnosticSignError', {
-            text = ' ', texthl = 'DiagnosticSignError'
+            text = ' ',
+            texthl = 'DiagnosticSignError',
         })
         vim.fn.sign_define('DiagnosticSignWarn', {
-            text = ' ', texthl = 'DiagnosticSignWarn'
+            text = ' ',
+            texthl = 'DiagnosticSignWarn',
         })
         vim.fn.sign_define('DiagnosticSignInfo', {
-            text = ' ', texthl = 'DiagnosticSignInfo'
+            text = ' ',
+            texthl = 'DiagnosticSignInfo',
         })
         vim.fn.sign_define('DiagnosticSignHint', {
-            text = ' ', texthl = 'DiagnosticSignHint'
+            text = ' ',
+            texthl = 'DiagnosticSignHint',
         })
 
         -- shim for non existing highlight groups
@@ -57,13 +62,13 @@ return {
             end
         end
 
-        require'neo-tree'.setup{
+        require('neo-tree').setup {
             close_if_last_window = true,
-            popup_border_style = require'nvpunk.preferences'.get_small_window_border(),
+            popup_border_style = require('nvpunk.preferences').get_small_window_border(),
             enable_git_status = true,
             enable_diagnostics = true,
             sort_case_insensitive = true,
-            sort_function = nil,  -- can use custom
+            sort_function = nil, -- can use custom
             use_default_mappings = false,
             default_component_configs = {
                 container = {
@@ -71,12 +76,12 @@ return {
                 },
                 indent = {
                     indent_size = 2,
-                    padding = 1,  -- padding left
-                    with_markers = true,  -- indent markers
+                    padding = 1, -- padding left
+                    with_markers = true, -- indent markers
                     indent_marker = '│',
                     last_indent_marker = '└',
                     highlight = 'NeoTreeIndentMarker',
-                    with_expanders = true,  -- expander arrows for folders
+                    with_expanders = true, -- expander arrows for folders
                     expander_collapsed = '',
                     expander_expanded = '',
                     expander_highlight = 'NeoTreeExpander',
@@ -129,7 +134,8 @@ return {
                     ['<cr>'] = 'open',
                     ['<esc>'] = 'revert_preview',
                     ['P'] = {
-                        'toggle_preview', config = { use_float = true }
+                        'toggle_preview',
+                        config = { use_float = true },
                     },
                     ['i'] = 'open_split',
                     ['s'] = 'open_vsplit',
@@ -201,23 +207,23 @@ return {
                     system_open = function(state)
                         local node = state.tree:get_node()
                         local path = node:get_id()
-                        if vim.fn.has('linux') == 1 then
-                            vim.api.nvim_command(string.format(
-                                "silent !xdg-open '%s'", path
-                            ))
-                        elseif vim.fn.has('macunix') == 1 then
-                            vim.api.nvim_command(string.format(
-                                "silent !open '%s'", path
-                            ))
+                        if vim.fn.has 'linux' == 1 then
+                            vim.api.nvim_command(
+                                string.format("silent !xdg-open '%s'", path)
+                            )
+                        elseif vim.fn.has 'macunix' == 1 then
+                            vim.api.nvim_command(
+                                string.format("silent !open '%s'", path)
+                            )
                         else
-                            vim.notify('Operation unsupported')
+                            vim.notify 'Operation unsupported'
                         end
-                    end
+                    end,
                 },
             },
             buffers = {
                 follow_current_file = true, -- This will find and focus the file in the active buffer every
-                                             -- time the current file is changed while the tree is open.
+                -- time the current file is changed while the tree is open.
                 group_empty_dirs = false, -- when true, empty folders will be grouped together
                 show_unloaded = true,
                 window = {
@@ -225,7 +231,7 @@ return {
                         -- ["bd"] = "buffer_delete",
                         -- ["<bs>"] = "navigate_up",
                         -- ["."] = "set_root",
-                    }
+                    },
                 },
             },
             git_status = {
@@ -239,13 +245,15 @@ return {
             },
         }
 
-        local km = require'nvpunk.internals.keymapper'
+        local km = require 'nvpunk.internals.keymapper'
         km.nkeymap('ge', '<cmd>Neotree toggle<CR>', 'פּ Toggle Explorer')
     end,
     keys = {
         {
-            'ge', '<cmd>Neotree toggle<cr>',
-            mode = 'n', desc = 'פּ Toggle Explorer',
+            'ge',
+            '<cmd>Neotree toggle<cr>',
+            mode = 'n',
+            desc = 'פּ Toggle Explorer',
         },
     },
     cmd = {

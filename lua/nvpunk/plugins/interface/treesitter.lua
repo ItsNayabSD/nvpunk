@@ -2,22 +2,22 @@
 return {
     'nvim-treesitter/nvim-treesitter',
     build = function()
-        require('nvim-treesitter.install').update({ with_sync = true })
+        require('nvim-treesitter.install').update { with_sync = true }
     end,
     config = function()
         -- TODO: optimize this so that it doesn't alwyas run on startup
-        if vim.fn.executable('gcc') ~= 1 or vim.fn.executable('g++') ~= 1 then
+        if vim.fn.executable 'gcc' ~= 1 or vim.fn.executable 'g++' ~= 1 then
             vim.notify(
-                'Treesitter is disabled\n' ..
-                'Please install gcc and g++ to enable Treesitter',
+                'Treesitter is disabled\n'
+                    .. 'Please install gcc and g++ to enable Treesitter',
                 vim.log.levels.ERROR,
                 { title = 'nvpunk.plugins.treesitter' }
             )
             return
         end
-        require'nvim-treesitter.configs'.setup {
+        require('nvim-treesitter.configs').setup {
             ensure_installed = 'all',
-            ignore_install = {'phpdoc', 'swift', 'fortran', 'php'},
+            ignore_install = { 'phpdoc', 'swift', 'fortran', 'php' },
             -- sync_install = false,  -- don't peg slow systems
             highlight = {
                 enable = true,
@@ -37,19 +37,28 @@ return {
                 -- indentation with treesitter isn't great
                 enable = false,
                 disable = {
-                    'html', 'scss', 'css', 'yaml', 'python'
-                }
+                    'html',
+                    'scss',
+                    'css',
+                    'yaml',
+                    'python',
+                },
             },
             autopairs = {
-                enable = true
+                enable = true,
             },
-            autotag = {  -- this is a plugin: nvim-ts-autotag
+            autotag = { -- this is a plugin: nvim-ts-autotag
                 enable = true,
                 filetypes = {
-                    'html', 'xml', 'javascript', 'javascriptreact', 'typescriptreact',
-                    'svelte', 'vue'
-                }
-            }
+                    'html',
+                    'xml',
+                    'javascript',
+                    'javascriptreact',
+                    'typescriptreact',
+                    'svelte',
+                    'vue',
+                },
+            },
         }
     end,
 }

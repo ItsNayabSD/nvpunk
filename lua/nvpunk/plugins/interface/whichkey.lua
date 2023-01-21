@@ -2,7 +2,7 @@
 return {
     'folke/which-key.nvim',
     config = function()
-        require'which-key'.setup {
+        require('which-key').setup {
             icons = {
                 -- symbol used in the command line area that shows your active key combo
                 breadcrumb = '»',
@@ -11,7 +11,7 @@ return {
                 -- symbol prepended to a group
                 group = '…',
             },
-            spelling = { enabled = true, suggestions = 20 }
+            spelling = { enabled = true, suggestions = 20 },
         }
     end,
 }

@@ -1,6 +1,6 @@
-require'lsp_signature'.setup {
+require('lsp_signature').setup {
     handler_opts = {
-        border = require'nvpunk.preferences'.get_small_window_border()
+        border = require('nvpunk.preferences').get_small_window_border(),
     },
-    hint_enable = false
+    hint_enable = false,
 }

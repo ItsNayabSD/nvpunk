@@ -6,18 +6,18 @@ return function(style)
     else
         vim.o.background = 'dark'
     end
-    local t = require'catppuccin'
+    local t = require 'catppuccin'
     t.setup {
         flavour = style,
         dim_inactive = {
             enabled = false,
             shade = 'dark',
-            percentage = 0.15
+            percentage = 0.15,
         },
         term_colors = true,
         styles = {
-            comments = { "italic" },
-            conditionals = { "italic" },
+            comments = { 'italic' },
+            conditionals = { 'italic' },
             loops = {},
             functions = {},
             keywords = {},
@@ -44,7 +44,8 @@ return function(style)
             nvimtree = true,
             neotree = true,
             dap = {
-                enabled = true, enable_ui = true,
+                enabled = true,
+                enable_ui = true,
             },
             which_key = true,
             indent_blankline = {
@@ -70,7 +71,7 @@ return function(style)
             aerial = true,
         },
     }
-    vim.cmd'colorscheme catppuccin'
+    vim.cmd 'colorscheme catppuccin'
     vim.cmd('Catppuccin ' .. style)
-    reload'nvpunk.theme_manager.lualine'('catppuccin')
+    reload 'nvpunk.theme_manager.lualine' 'catppuccin'
 end

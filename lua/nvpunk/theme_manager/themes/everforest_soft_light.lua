@@ -1,1 +1,1 @@
-require'nvpunk.theme_manager.themes.__everforest'('soft', true)
+require 'nvpunk.theme_manager.themes.__everforest'('soft', true)

@@ -1,12 +1,12 @@
 -- greeter
 return {
-    'goolord/alpha-nvim', branch = 'main',
+    'goolord/alpha-nvim',
+    branch = 'main',
     config = function()
-        local dashboard = require'alpha.themes.dashboard'
+        local dashboard = require 'alpha.themes.dashboard'
 
-        local header = require'nvpunk.internals.greeter_headers'.images[
-            require'nvpunk.preferences'.get_greeter()
-        ]
+        local header =
+            require('nvpunk.internals.greeter_headers').images[require('nvpunk.preferences').get_greeter()]
 
         dashboard.section.header.val = header.content
         dashboard.section.header.opts.hl = header.hl
@@ -19,16 +19,8 @@ return {
         end
 
         dashboard.section.buttons.val = {
-            button(
-                'fn',
-                '  New file',
-                ':NvpunkNewFileDialog<CR>'
-            ),
-            button(
-                'ge',
-                '  Open explorer',
-                ':NvpunkExplorerToggle<CR>'
-            ),
+            button('fn', '  New file', ':NvpunkNewFileDialog<CR>'),
+            button('ge', '  Open explorer', ':NvpunkExplorerToggle<CR>'),
             button(
                 'tf',
                 '  Find file',
@@ -45,21 +37,13 @@ return {
                 ':lua require"telescope.builtin".oldfiles()<CR>'
             ),
             { type = 'padding', val = 1 },
-            button(
-                'M',
-                '  Mason Package Manager',
-                ':Mason<CR>'
-            ),
+            button('M', '  Mason Package Manager', ':Mason<CR>'),
             button(
                 'C',
                 '  Preferences',
                 ':lua require"nvpunk.preferences".preferences_menu()<CR>'
             ),
-            button(
-                'cu',
-                '  Update Plugins',
-                ':Lazy restore<CR>'
-            ),
+            button('cu', '  Update Plugins', ':Lazy restore<CR>'),
             button(
                 'cU',
                 '  Update Nvpunk',
@@ -70,35 +54,40 @@ return {
                 '  Health Check',
                 ':lua require"nvpunk.internals.healthcheck"()<CR>'
             ),
-            button(
-                'H',
-                'ﬤ  Nvpunk Documentation',
-                ':h nvpunk<CR>'
-            ),
+            button('H', 'ﬤ  Nvpunk Documentation', ':h nvpunk<CR>'),
             { type = 'padding', val = 1 },
-            button(
-                'q',
-                '  Quit',
-                ':qa<CR>',
-                'NvpunkRed'
-            ),
+            button('q', '  Quit', ':qa<CR>', 'NvpunkRed'),
         }
 
         local function get_nvpunk_version()
-            return '#' .. vim.trim(vim.split(
-                vim.api.nvim_exec(
-                    '!git -C "' .. vim.fn.stdpath'config' .. '" describe --always',
-                    true
-                ),
-            '\r')[2])
+            return '#'
+                .. vim.trim(
+                    vim.split(
+                        vim.api.nvim_exec(
+                            '!git -C "'
+                                .. vim.fn.stdpath 'config'
+                                .. '" describe --always',
+                            true
+                        ),
+                        '\r'
+                    )[2]
+                )
         end
 
         local function get_neovim_version()
             local v = vim.version()
-            return 'v' .. tostring(v.major) .. '.' .. tostring(v.minor) .. '.' .. tostring(v.patch)
+            return 'v'
+                .. tostring(v.major)
+                .. '.'
+                .. tostring(v.minor)
+                .. '.'
+                .. tostring(v.patch)
         end
 
-        dashboard.section.footer.val = ' Nvpunk ' .. get_nvpunk_version() .. '    Neovim ' .. get_neovim_version()
+        dashboard.section.footer.val = ' Nvpunk '
+            .. get_nvpunk_version()
+            .. '    Neovim '
+            .. get_neovim_version()
         dashboard.section.footer.opts.hl = 'Comment'
 
         dashboard.config.layout = {
@@ -111,10 +100,12 @@ return {
         }
 
         dashboard.section.buttons.opts.spacing = 0
-        require'alpha'.setup(dashboard.opts)
+        require('alpha').setup(dashboard.opts)
 
-        require'nvpunk.internals.keymapper'.nkeymap(
-            '<leader>A', '<CMD>Alpha<CR>', ' Open Greeter'
+        require('nvpunk.internals.keymapper').nkeymap(
+            '<leader>A',
+            '<CMD>Alpha<CR>',
+            ' Open Greeter'
         )
     end,
 }

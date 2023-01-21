@@ -1,1 +1,1 @@
-require'nvpunk.theme_manager.themes.__gruvbox'('dark')
+require 'nvpunk.theme_manager.themes.__gruvbox' 'dark'

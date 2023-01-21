@@ -1,1 +1,1 @@
-require'nvpunk.theme_manager.themes.__catppuccin'('mocha')
+require 'nvpunk.theme_manager.themes.__catppuccin' 'mocha'

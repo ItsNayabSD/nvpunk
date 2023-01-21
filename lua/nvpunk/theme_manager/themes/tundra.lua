@@ -1,4 +1,4 @@
-require'nvim-tundra'.setup {
+require('nvim-tundra').setup {
     transparent_background = false,
     editor = {
         search = {},
@@ -39,5 +39,5 @@ require'nvim-tundra'.setup {
     },
 }
 
-vim.cmd[[colorscheme tundra]]
-reload'nvpunk.theme_manager.lualine'('auto')  -- no theme for lualine
+vim.cmd [[colorscheme tundra]]
+reload 'nvpunk.theme_manager.lualine' 'auto' -- no theme for lualine

@@ -1,1 +1,1 @@
-require'nvpunk.theme_manager.themes.__catppuccin'('macchiato')
+require 'nvpunk.theme_manager.themes.__catppuccin' 'macchiato'

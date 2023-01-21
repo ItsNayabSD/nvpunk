@@ -7,7 +7,7 @@ return function(style)
     else
         vim.o.background = 'dark'
     end
-    local t = require'rose-pine'
+    local t = require 'rose-pine'
     t.setup {
         dark_variant = style,
         bold_vert_split = false,
@@ -16,6 +16,6 @@ return function(style)
         disable_float_background = false,
         disable_italics = false,
     }
-    vim.cmd'colorscheme rose-pine'
-    reload'nvpunk.theme_manager.lualine'('auto')
+    vim.cmd 'colorscheme rose-pine'
+    reload 'nvpunk.theme_manager.lualine' 'auto'
 end

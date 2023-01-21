@@ -1,1 +1,1 @@
-require'nvpunk.theme_manager.themes.__catppuccin'('frappe')
+require 'nvpunk.theme_manager.themes.__catppuccin' 'frappe'

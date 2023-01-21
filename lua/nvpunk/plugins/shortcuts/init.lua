@@ -6,7 +6,7 @@ local plugins = {
     'caser',
 }
 
-return require'nvpunk.internals.functools'.map(
+return require('nvpunk.internals.functools').map(
     plugins,
     function(plugin) return require(PFX .. plugin) end
 )

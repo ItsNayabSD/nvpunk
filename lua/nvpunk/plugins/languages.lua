@@ -1,14 +1,14 @@
 return {
-    {'petRUShka/vim-opencl'},
-    {'arrufat/vala.vim'},
-    {'tikhomirov/vim-glsl'},
+    { 'petRUShka/vim-opencl' },
+    { 'arrufat/vala.vim' },
+    { 'tikhomirov/vim-glsl' },
     -- XML, HTML tag autoclosing (requires treesitter)
     -- doesn't work right now
     -- use { 'windwp/nvim-ts-autotag', requires = 'nvim-treesitter/nvim-treesitter' }
     -- For automatic code formatting
-    {'sbdchd/neoformat'},
+    { 'sbdchd/neoformat' },
     -- For hugo templating
-    {'phelipetls/vim-hugo'},
+    { 'phelipetls/vim-hugo' },
 
     -- support for astro
     {
@@ -18,17 +18,17 @@ return {
             vim.g.astro_typescrypt = 'enable'
             vim.g.astro_stylus = 'disable'
         end,
-        ft = {'astro'},
+        ft = { 'astro' },
     },
 
     -- support for MDX
-    {'jxnblk/vim-mdx-js'},
+    { 'jxnblk/vim-mdx-js' },
 
     -- neovim specific lua stuff
     {
         'folke/neodev.nvim',
         config = function()
-            require'neodev'.setup{
+            require('neodev').setup {
                 library = {
                     enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
                     -- these settings will be used for your Neovim config directory

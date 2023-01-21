@@ -1,1 +1,1 @@
-require'nvpunk.theme_manager.themes.__rose_pine'('moon')
+require 'nvpunk.theme_manager.themes.__rose_pine' 'moon'

@@ -3,7 +3,7 @@ return {
     'numToStr/Comment.nvim',
     lazy = true,
     config = function()
-        require'Comment'.setup {
+        require('Comment').setup {
             padding = true,
             sticky = true,
             toggler = {
@@ -22,12 +22,14 @@ return {
                 eol = 'gcA',
             },
             mappings = {
-                basic = true, extra = true, extended = false,
+                basic = true,
+                extra = true,
+                extended = false,
             },
         }
     end,
     keys = {
-        { 'gc', mode = {'n', 'v'}, desc = 'Comment toggle linewise' },
-        { 'gb', mode = {'n', 'v'}, desc = 'Comment toggle blockwise' },
+        { 'gc', mode = { 'n', 'v' }, desc = 'Comment toggle linewise' },
+        { 'gb', mode = { 'n', 'v' }, desc = 'Comment toggle blockwise' },
     },
 }

@@ -8,15 +8,13 @@ local function this_notif(msg, type)
     vim.notify(msg, type, { title = 'nvpunk.lsp.jdtls' })
 end
 
-local function this_err(msg)
-    this_notif(msg, vim.log.levels.ERROR)
-end
+local function this_err(msg) this_notif(msg, vim.log.levels.ERROR) end
 
-local jdtls = require'jdtls'
-local jdtls_setup = require'jdtls.setup'
-local jdtls_dap = require'jdtls.dap'
+local jdtls = require 'jdtls'
+local jdtls_setup = require 'jdtls.setup'
+local jdtls_dap = require 'jdtls.dap'
 
-local data_dir = vim.fn.stdpath'data'
+local data_dir = vim.fn.stdpath 'data'
 local jdtls_install = data_dir .. '/mason/packages/jdtls'
 
 local vscode_java_test_path = data_dir .. '/vscode-java-test'
@@ -26,18 +24,16 @@ local java_debug_path = data_dir .. '/java-debug'
 local java_home = ''
 local java_exec = 'java'
 
-local Job = require'plenary.job'
+local Job = require 'plenary.job'
 
-M.has_java_debug = function()
-    return vim.fn.isdirectory(java_debug_path) ~= 0
-end
+M.has_java_debug = function() return vim.fn.isdirectory(java_debug_path) ~= 0 end
 
 M.has_vscode_java_test = function()
     return vim.fn.isdirectory(vscode_java_test_path) ~= 0
 end
 
 M.install_java_debug = function()
-    this_notif('Installing java-debug')
+    this_notif 'Installing java-debug'
 
     local function install()
         Job:new({
@@ -45,16 +41,14 @@ M.install_java_debug = function()
             args = { 'clean', 'install' },
             cwd = java_debug_path,
             env = { ['JAVA_HOME'] = java_home },
-            on_exit = function (_, ret)
+            on_exit = function(_, ret)
                 if ret == 0 then
-                    this_notif('java-debug installed')
-                    vim.schedule(function()
-                        M.setup()
-                    end)
+                    this_notif 'java-debug installed'
+                    vim.schedule(function() M.setup() end)
                 else
-                    this_err('Failed to install java-debug')
+                    this_err 'Failed to install java-debug'
                 end
-            end
+            end,
         }):start()
     end
 
@@ -64,15 +58,15 @@ M.install_java_debug = function()
             args = {
                 'clone',
                 'https://github.com/microsoft/java-debug',
-                java_debug_path
+                java_debug_path,
             },
-            on_exit = function (_, ret)
+            on_exit = function(_, ret)
                 if ret == 0 then
                     install()
                 else
-                    this_err('Failed to clone java-debug')
+                    this_err 'Failed to clone java-debug'
                 end
-            end
+            end,
         }):start()
     end
 
@@ -80,7 +74,7 @@ M.install_java_debug = function()
 end
 
 M.install_vscode_java_test = function()
-    this_notif('Installing vscode-java-test')
+    this_notif 'Installing vscode-java-test'
 
     local function build_plugin()
         Job:new({
@@ -88,16 +82,14 @@ M.install_vscode_java_test = function()
             args = { 'run', 'build-plugin' },
             cwd = vscode_java_test_path,
             env = { ['JAVA_HOME'] = java_home },
-            on_exit = function (_, ret2)
+            on_exit = function(_, ret2)
                 if ret2 == 0 then
-                    this_notif('vscode-java-test installed')
-                    vim.schedule(function()
-                        M.setup()
-                    end)
+                    this_notif 'vscode-java-test installed'
+                    vim.schedule(function() M.setup() end)
                 else
-                    this_err('Failed to build vscode-java-test')
+                    this_err 'Failed to build vscode-java-test'
                 end
-            end
+            end,
         }):start()
     end
 
@@ -107,13 +99,13 @@ M.install_vscode_java_test = function()
             args = { 'install' },
             cwd = vscode_java_test_path,
             env = { ['JAVA_HOME'] = java_home },
-            on_exit = function (_, ret1)
+            on_exit = function(_, ret1)
                 if ret1 == 0 then
                     build_plugin()
                 else
-                    this_err('Failed to get deps for vscode-java-test')
+                    this_err 'Failed to get deps for vscode-java-test'
                 end
-            end
+            end,
         }):start()
     end
 
@@ -123,15 +115,15 @@ M.install_vscode_java_test = function()
             args = {
                 'clone',
                 'https://github.com/microsoft/vscode-java-test',
-                vscode_java_test_path
+                vscode_java_test_path,
             },
-            on_exit = function (_, ret)
+            on_exit = function(_, ret)
                 if ret == 0 then
                     npm_install()
                 else
-                    this_err('Failed to clone vscode-java-test')
+                    this_err 'Failed to clone vscode-java-test'
                 end
-            end
+            end,
         }):start()
     end
 
@@ -144,28 +136,26 @@ M.remove_extra_java_tools = function(cb)
     Job:new({
         command = 'rm',
         args = { '-rf', vscode_java_test_path, java_debug_path },
-        on_exit = function(_, _)
-            vim.schedule(cb)
-        end
+        on_exit = function(_, _) vim.schedule(cb) end,
     }):start()
 end
 
 M.start_jdtls = function()
     local bundles = {
         vim.fn.glob(
-            java_debug_path ..
-            '/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar'
-        )
+            java_debug_path
+                .. '/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar'
+        ),
     }
     vim.list_extend(
         bundles,
         vim.split(vim.fn.glob(vscode_java_test_path .. '/server/*.jar'), '\n')
     )
 
-    local extendedClientCapabilities =  jdtls.extendedClientCapabilities
+    local extendedClientCapabilities = jdtls.extendedClientCapabilities
     extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
-    local workspace = vim.fn.stdpath('data') .. '/nvpunk_jdtls_workspace'
+    local workspace = vim.fn.stdpath 'data' .. '/nvpunk_jdtls_workspace'
 
     -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
     local config = {
@@ -174,7 +164,7 @@ M.start_jdtls = function()
         cmd = {
 
             java_exec, -- or '/path/to/java11_or_newer/bin/java'
-                    -- depends on if `java` is in your $PATH env variable and if it points to the right version.
+            -- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
             '-Declipse.application=org.eclipse.jdt.ls.core.id1',
             '-Dosgi.bundles.defaultStartLevel=4',
@@ -185,14 +175,21 @@ M.start_jdtls = function()
             '-Xms1g',
             '-Xmx2G',
 
-            '-jar', vim.fn.glob(jdtls_install .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
+            '-jar',
+            vim.fn.glob(
+                jdtls_install .. '/plugins/org.eclipse.equinox.launcher_*.jar'
+            ),
 
-            '-configuration', jdtls_install .. '/config_linux',
-            '-data', workspace,
+            '-configuration',
+            jdtls_install .. '/config_linux',
+            '-data',
+            workspace,
 
             '--add-modules=ALL-SYSTEM',
-            '--add-opens', 'java.base/java.util=ALL-UNNAMED',
-            '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+            '--add-opens',
+            'java.base/java.util=ALL-UNNAMED',
+            '--add-opens',
+            'java.base/java.lang=ALL-UNNAMED',
 
             -- See `data directory configuration` section in the README
         },
@@ -200,7 +197,7 @@ M.start_jdtls = function()
         -- 💀
         -- This is the default if not provided, you can remove it. Or adjust as needed.
         -- One dedicated LSP server & client will be started per unique root_dir
-        root_dir = jdtls_setup.find_root({'pom.xml', '.git', 'mvnw', 'gradlew'}),
+        root_dir = jdtls_setup.find_root { 'pom.xml', '.git', 'mvnw', 'gradlew' },
 
         -- Here you can configure eclipse.jdt.ls specific settings
         -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
@@ -229,7 +226,7 @@ M.start_jdtls = function()
         -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
         flags = { allow_incremental_sync = true },
         init_options = {
-            bundles = bundles
+            bundles = bundles,
         },
 
         on_attach = function(client, bufnr)
@@ -250,11 +247,15 @@ M.start_jdtls = function()
                     'Test Nearest Method'
                 )
             end
-            require'nvpunk.lsp.keymaps'.set_lsp_keymaps(client, bufnr, extra_keymaps)
+            require('nvpunk.lsp.keymaps').set_lsp_keymaps(
+                client,
+                bufnr,
+                extra_keymaps
+            )
             jdtls_dap.setup_dap_main_class_configs()
-            jdtls.setup_dap({hotcodereplace = 'auto'})
+            jdtls.setup_dap { hotcodereplace = 'auto' }
         end,
-        capabilities = require'nvpunk.lsp.capabilities'.capabilities,
+        capabilities = require('nvpunk.lsp.capabilities').capabilities,
     }
 
     -- This starts a new client & server,
@@ -263,12 +264,10 @@ M.start_jdtls = function()
 end
 
 M.setup = function()
-    require'nvpunk.internals.find_jdtls_java'(function(home)
+    require 'nvpunk.internals.find_jdtls_java'(function(home)
         java_exec = (home .. '/bin/java') or java_exec
         java_home = home
-        if not M.has_java_debug() then
-            return M.install_java_debug()
-        end
+        if not M.has_java_debug() then return M.install_java_debug() end
         if not M.has_vscode_java_test() then
             return M.install_vscode_java_test()
         end

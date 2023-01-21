@@ -8,10 +8,12 @@ return function(style)
     end
     vim.g.tokyonight_style = style
     vim.g.tokyonight_sidebars = {
-        'NvimTree', 'aerial', 'neo-tree'
+        'NvimTree',
+        'aerial',
+        'neo-tree',
     }
     vim.g.tokyonight_dark_sidebar = true
-    require'tokyonight'.setup {
+    require('tokyonight').setup {
         style = style,
         light_style = 'day',
         transparent = false,
@@ -30,6 +32,6 @@ return function(style)
         dim_inactive = false,
         lualine_bold = false,
     }
-    vim.cmd'colorscheme tokyonight'
-    reload'nvpunk.theme_manager.lualine'('tokyonight')
+    vim.cmd 'colorscheme tokyonight'
+    reload 'nvpunk.theme_manager.lualine' 'tokyonight'
 end

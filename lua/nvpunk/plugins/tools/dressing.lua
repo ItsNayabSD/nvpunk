@@ -2,7 +2,7 @@
 return {
     'stevearc/dressing.nvim',
     config = function()
-        require'dressing'.setup {
+        require('dressing').setup {
             input = {
                 -- Set to false to disable the vim.ui.input implementation
                 enabled = true,
@@ -18,7 +18,7 @@ return {
 
                 -- These are passed to nvim_open_win
                 anchor = 'SW',
-                border = require'nvpunk.preferences'.get_small_window_border(),
+                border = require('nvpunk.preferences').get_small_window_border(),
                 -- 'editor' and 'win' will default to being centered
                 relative = 'cursor',
 
@@ -65,7 +65,7 @@ return {
                 builtin = {
                     -- These are passed to nvim_open_win
                     anchor = 'NW',
-                    border = require'nvpunk.preferences'.get_small_window_border(),
+                    border = require('nvpunk.preferences').get_small_window_border(),
                     -- 'editor' and 'win' will default to being centered
                     relative = 'editor',
 

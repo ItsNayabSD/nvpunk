@@ -1,1 +1,1 @@
-require'nvpunk.theme_manager.themes.__nightfox'('nightfox')
+require 'nvpunk.theme_manager.themes.__nightfox' 'nightfox'

@@ -8,9 +8,7 @@ M.get_buf_size = function()
         function(buf) return buf.bufnr == cbuf end,
         vim.fn.getwininfo(vim.api.nvim_get_current_win())
     )[1]
-    if bufinfo == nil then
-        return { width = -1, height = -1 }
-    end
+    if bufinfo == nil then return { width = -1, height = -1 } end
     return { width = bufinfo.width, height = bufinfo.height }
 end
 

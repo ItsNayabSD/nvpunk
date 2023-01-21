@@ -1,8 +1,8 @@
-local Job = require'plenary.job'
+local Job = require 'plenary.job'
 local lines = {}
 local BUFNAME = 'NvpunkHealthcheck'
 
-local hls = require'nvpunk.internals.highlights'
+local hls = require 'nvpunk.internals.highlights'
 
 --- Test if a system command is callable
 ---@param cmd string
@@ -11,18 +11,18 @@ local hls = require'nvpunk.internals.highlights'
 local function test_command(cmd, on_success, on_fail)
     Job:new({
         command = 'which',
-        args = {cmd},
+        args = { cmd },
         on_exit = function(_, ret)
             if ret == 0 then
                 vim.schedule(on_success)
             else
                 vim.schedule(on_fail)
             end
-        end
+        end,
     }):start()
 end
 
-local Float = require'nvpunk.internals.float'
+local Float = require 'nvpunk.internals.float'
 
 --- Show message in healthcheck window. Upon activation it opens the given
 --- help page
@@ -38,7 +38,7 @@ local function msg(message, ok, help_page)
         cmd = function()
             Float.close_win(BUFNAME)
             vim.cmd('h ' .. help_page .. '')
-        end
+        end,
     })
     Float.draw(BUFNAME, lines)
 end
@@ -65,22 +65,50 @@ end
 
 return function()
     lines = {}
-    table.insert(lines, {message = ''})
-    table.insert(lines, {message = '                                      ', hl = hls.HC_HEADER})
-    table.insert(lines, {message = '                Nvpunk Health Check   ', hl = hls.HC_HEADER})
-    table.insert(lines, {message = '                                      ', hl = hls.HC_HEADER})
-    table.insert(lines, {message = ''})
-    table.insert(lines, {message = '        q, <esc>  -  Quit', hl = 'Comment'})
-    table.insert(lines, {message = '        <cr>      -  Open help page', hl = 'Comment'})
-    table.insert(lines, {message = ''})
-    table.insert(lines, {message = ''})
+    table.insert(lines, { message = '' })
+    table.insert(
+        lines,
+        {
+            message = '                                      ',
+            hl = hls.HC_HEADER,
+        }
+    )
+    table.insert(
+        lines,
+        {
+            message = '                Nvpunk Health Check   ',
+            hl = hls.HC_HEADER,
+        }
+    )
+    table.insert(
+        lines,
+        {
+            message = '                                      ',
+            hl = hls.HC_HEADER,
+        }
+    )
+    table.insert(lines, { message = '' })
+    table.insert(
+        lines,
+        { message = '        q, <esc>  -  Quit', hl = 'Comment' }
+    )
+    table.insert(
+        lines,
+        { message = '        <cr>      -  Open help page', hl = 'Comment' }
+    )
+    table.insert(lines, { message = '' })
+    table.insert(lines, { message = '' })
     Float.create_win(BUFNAME)
     test_and_log('git', '[git] Git version control', 'nvpunk-deps-git')
     test_and_log('npm', '[npm] Node Package Manager', 'nvpunk-deps-npm')
     test_and_log('gcc', '[gcc] GNU Compiler Collection', 'nvpunk-deps-gcc')
-    test_and_log('g++', '[gcc] GNU Compiler Collection (C++)', 'nvpunk-deps-gcc')
+    test_and_log(
+        'g++',
+        '[gcc] GNU Compiler Collection (C++)',
+        'nvpunk-deps-gcc'
+    )
     test_and_log('python3', '[python3] Python', 'nvpunk-deps-python')
-    require'nvpunk.internals.find_jdtls_java'(function(data)
+    require 'nvpunk.internals.find_jdtls_java'(function(data)
         if data == nil or data == '' then
             msg_fail('[java17] Java 17+', 'nvpunk-deps-java17')
         else

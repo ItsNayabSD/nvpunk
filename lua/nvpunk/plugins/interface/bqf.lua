@@ -18,12 +18,16 @@ return {
             -- vim.cmd(('noa lcd %s'):format(vim.fn.fnameescape(root)))
             --
             if info.quickfix == 1 then
-                items = vim.fn.getqflist({id = info.id, items = 0}).items
+                items = vim.fn.getqflist({ id = info.id, items = 0 }).items
             else
-                items = vim.fn.getloclist(info.winid, {id = info.id, items = 0}).items
+                items = vim.fn.getloclist(
+                    info.winid,
+                    { id = info.id, items = 0 }
+                ).items
             end
             local limit = 31
-            local fnameFmt1, fnameFmt2 = '%-' .. limit .. 's', '…%.' .. (limit - 1) .. 's'
+            local fnameFmt1, fnameFmt2 =
+                '%-' .. limit .. 's', '…%.' .. (limit - 1) .. 's'
             local validFmt = '%s │%5d:%-3d│%s %s'
             for i = info.start_idx, info.end_idx do
                 local e = items[i]
@@ -46,7 +50,8 @@ return {
                     end
                     local lnum = e.lnum > 99999 and -1 or e.lnum
                     local col = e.col > 999 and -1 or e.col
-                    local qtype = e.type == '' and '' or ' ' .. e.type:sub(1, 1):upper()
+                    local qtype = e.type == '' and ''
+                        or ' ' .. e.type:sub(1, 1):upper()
                     str = validFmt:format(fname, lnum, col, qtype, e.text)
                 else
                     str = e.text
@@ -60,7 +65,7 @@ return {
     end,
     config = function()
         -- use mostly the same shortcuts used for the file explorer
-        require'bqf'.setup {
+        require('bqf').setup {
             auto_enable = true,
             func_map = {
                 tab = 't',
@@ -69,5 +74,5 @@ return {
             },
         }
     end,
-    ft = {'qf'},
+    ft = { 'qf' },
 }

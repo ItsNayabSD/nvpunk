@@ -6,15 +6,11 @@ local M = {}
 ---@param err? string
 ---@param context? string
 M.call = function(func, args, err, context)
-    if err == nil then
-        err = 'Failed to call function'
-    end
-    if context == nil then
-        context = 'nvpunk.try.call'
-    end
+    if err == nil then err = 'Failed to call function' end
+    if context == nil then context = 'nvpunk.try.call' end
     local ok, res = pcall(func, unpack(args))
     if not ok then
-        vim.notify(err, vim.log.levels.ERROR, {title = context})
+        vim.notify(err, vim.log.levels.ERROR, { title = context })
     end
     return res
 end
@@ -24,7 +20,7 @@ end
 M.require = function(module)
     return M.call(
         require,
-        {module},
+        { module },
         'Failed to load module ' .. module,
         'nvpunk.try.require'
     )

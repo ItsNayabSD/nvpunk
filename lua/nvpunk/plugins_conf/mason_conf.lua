@@ -1,9 +1,9 @@
-require'mason'.setup {
+require('mason').setup {
     ui = {
         icons = {
             package_installed = '✓',
             package_pending = '…',
-            package_uninstalled = '✗'
+            package_uninstalled = '✗',
         },
         keymaps = {
             -- expand a package
@@ -25,7 +25,7 @@ require'mason'.setup {
             -- apply language filter
             apply_language_filter = '<C-f>',
         },
-        border = require'nvpunk.preferences'.get_window_border(),
+        border = require('nvpunk.preferences').get_window_border(),
     },
     max_concurrent_installers = 4,
 }

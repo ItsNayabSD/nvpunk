@@ -49,8 +49,8 @@ local builtin_themes = {
 
 local user_func_themes = {}
 
-M.available_themes = {unpack(builtin_themes)}
-for k, v in pairs(require'nvpunk.internals.user_conf'.user_themes()) do
+M.available_themes = { unpack(builtin_themes) }
+for k, v in pairs(require('nvpunk.internals.user_conf').user_themes()) do
     if type(k) == 'number' then
         table.insert(M.available_themes, v)
     elseif type(k) == 'string' and type(v) == 'function' then
@@ -66,12 +66,10 @@ end
 M.load_theme = function(theme, notify, save_pref)
     if notify == nil then notify = true end
     if save_pref == nil then save_pref = true end
-    vim.cmd'colorscheme default'
-    require'nvpunk.internals.try'.load_theme(theme, function()
+    vim.cmd 'colorscheme default'
+    require('nvpunk.internals.try').load_theme(theme, function()
         if vim.tbl_contains(builtin_themes, theme) then
-            reload(
-                'nvpunk.theme_manager.themes.' .. theme
-            )
+            reload('nvpunk.theme_manager.themes.' .. theme)
         else
             if vim.tbl_contains(vim.tbl_keys(user_func_themes), theme) then
                 user_func_themes[theme]()
@@ -81,25 +79,19 @@ M.load_theme = function(theme, notify, save_pref)
         end
         if notify then
             vim.notify('Switched to theme ' .. theme, vim.log.levels.INFO, {
-                title = 'nvpunk.theme_manager.theme_chooser'
+                title = 'nvpunk.theme_manager.theme_chooser',
             })
         end
-        if save_pref then
-            require'nvpunk.preferences'.set_theme(theme)
-        end
+        if save_pref then require('nvpunk.preferences').set_theme(theme) end
     end)
-    require'nvpunk.internals.highlights'.setup()
+    require('nvpunk.internals.highlights').setup()
 end
 
 ---@deprecated
 M.change_theme = function()
-    vim.ui.select(
-        M.available_themes,
-        {
-            prompt = 'Choose a theme:',
-        },
-        function(theme, _) M.load_theme(theme) end
-    )
+    vim.ui.select(M.available_themes, {
+        prompt = 'Choose a theme:',
+    }, function(theme, _) M.load_theme(theme) end)
 end
 
 return M

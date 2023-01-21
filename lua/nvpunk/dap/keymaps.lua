@@ -1,4 +1,4 @@
-local km = require'nvpunk.internals.keymapper'
+local km = require 'nvpunk.internals.keymapper'
 
 km.wk.register({ ['<leader>b'] = { name = ' Debug' } }, { mode = 'n' })
 km.nkeymap('<leader>bb', '<cmd>DapToggleBreakpoint<cr>', 'Toggle Breakpoint')

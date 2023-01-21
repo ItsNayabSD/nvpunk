@@ -2,7 +2,7 @@
 return {
     'akinsho/toggleterm.nvim',
     config = function()
-        require'toggleterm'.setup {
+        require('toggleterm').setup {
             -- size can be a number or function which is passed the current terminal
             size = function(term)
                 if term.direction == 'horizontal' then
@@ -28,12 +28,12 @@ return {
                 FloatBorder = { link = 'NormalFloat' },
             },
             float_opts = {
-                border = require'nvpunk.preferences'.get_window_border(),
-            }
+                border = require('nvpunk.preferences').get_window_border(),
+            },
         }
     end,
     keys = {
-        { [[<C-\>]], mode = {'i', 'n'} }
+        { [[<C-\>]], mode = { 'i', 'n' } },
     },
     cmd = {
         'ToggleTerm',

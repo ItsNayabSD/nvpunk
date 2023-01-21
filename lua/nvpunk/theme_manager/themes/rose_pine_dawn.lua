@@ -1,1 +1,1 @@
-require'nvpunk.theme_manager.themes.__rose_pine'('dawn')
+require 'nvpunk.theme_manager.themes.__rose_pine' 'dawn'

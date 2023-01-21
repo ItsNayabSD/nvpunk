@@ -1,1 +1,1 @@
-require'nvpunk.theme_manager.themes.__onedark'('dark')
+require 'nvpunk.theme_manager.themes.__onedark' 'dark'

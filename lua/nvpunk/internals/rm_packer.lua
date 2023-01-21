@@ -1,5 +1,5 @@
-local PACKER_DIR = vim.fn.stdpath'data' .. '/site/pack/packer'
-local PACKER_COMPILED = vim.fn.stdpath'config' .. '/plugin/packer_compiled.lua'
+local PACKER_DIR = vim.fn.stdpath 'data' .. '/site/pack/packer'
+local PACKER_COMPILED = vim.fn.stdpath 'config' .. '/plugin/packer_compiled.lua'
 
 return function()
     if vim.fn.isdirectory(PACKER_DIR) then
