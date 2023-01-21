@@ -12,7 +12,12 @@ vim.fn.sign_define(
 )
 vim.fn.sign_define(
     'DapStopped',
-    { text = '', texthl = 'GitSignsDelete', linehl = 'GitSignsDeleteLn', numhl = '' }
+    {
+        text = '',
+        texthl = 'GitSignsDelete',
+        linehl = 'GitSignsDeleteLn',
+        numhl = '',
+    }
 )
 
 require 'nvpunk.dap.dapui_conf'

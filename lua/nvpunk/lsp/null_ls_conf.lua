@@ -1,13 +1,18 @@
 local mason_null_ls = require 'mason-null-ls'
 local null_ls = require 'null-ls'
 
+local packages = {
+    'stylua',
+    'prettier',
+    'alex',
+}
+
+if require('nvpunk.internals.cpu').is_x86_64() then
+    table.insert(packages, 'jq')
+end
+
 mason_null_ls.setup {
-    ensure_installed = {
-        'stylua',
-        'jq',
-        'prettier',
-        'alex',
-    },
+    ensure_installed = packages,
     automatic_installation = true,
     automatic_setup = true,
 }

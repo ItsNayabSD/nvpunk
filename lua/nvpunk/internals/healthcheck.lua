@@ -66,27 +66,18 @@ end
 return function()
     lines = {}
     table.insert(lines, { message = '' })
-    table.insert(
-        lines,
-        {
-            message = '                                      ',
-            hl = hls.HC_HEADER,
-        }
-    )
-    table.insert(
-        lines,
-        {
-            message = '                Nvpunk Health Check   ',
-            hl = hls.HC_HEADER,
-        }
-    )
-    table.insert(
-        lines,
-        {
-            message = '                                      ',
-            hl = hls.HC_HEADER,
-        }
-    )
+    table.insert(lines, {
+        message = '                                      ',
+        hl = hls.HC_HEADER,
+    })
+    table.insert(lines, {
+        message = '                Nvpunk Health Check   ',
+        hl = hls.HC_HEADER,
+    })
+    table.insert(lines, {
+        message = '                                      ',
+        hl = hls.HC_HEADER,
+    })
     table.insert(lines, { message = '' })
     table.insert(
         lines,

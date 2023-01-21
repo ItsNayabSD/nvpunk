@@ -6,7 +6,9 @@ return {
         local dashboard = require 'alpha.themes.dashboard'
 
         local header =
-            require('nvpunk.internals.greeter_headers').images[require('nvpunk.preferences').get_greeter()]
+            require('nvpunk.internals.greeter_headers').images[require(
+                'nvpunk.preferences'
+            ).get_greeter()]
 
         dashboard.section.header.val = header.content
         dashboard.section.header.opts.hl = header.hl
