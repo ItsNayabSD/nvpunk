@@ -20,4 +20,5 @@ return {
             'List Notifications'
         )
     end,
+    priority = 80,
 }
