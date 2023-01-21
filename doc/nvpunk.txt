@@ -201,12 +201,11 @@ modules, used for syntax highlighting.
 
 ## python                                                 *nvpunk-deps-python*
 
-Python is required to run certain language servers, as well as for finding an
-appropriate version of Java to run the Java language server.
+Python is required to run certain language servers.
 
 ## java17+                                                *nvpunk-deps-java17*
 
-Java version 17+ is required to run jdtls, the java language server. You still
+Java version 17 is required to run jdtls, the java language server. You still
 need a version equal or greater than 17 even if your java project uses an
 older version of java.
 
