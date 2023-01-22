@@ -61,7 +61,7 @@ return {
     keys = {
         {
             '<leader>bu',
-            'lua require"dapui".toggle()<cr>',
+            '<cmd>lua require"dapui".toggle()<cr>',
             desc = ' DAP UI',
         },
     },
