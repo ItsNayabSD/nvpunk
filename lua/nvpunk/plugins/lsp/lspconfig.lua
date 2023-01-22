@@ -34,7 +34,7 @@ return {
         },
     },
     config = function()
-        require'lspconfig'
+        require 'lspconfig'
         local packages = {
             'bashls',
             'cmake',

@@ -1,25 +1,25 @@
 local Job = require 'plenary.job'
 
-
 --- Get version of given java executable
 ---@param java_exec string valid java exectuable path
 ---@return number
 local function get_version(java_exec)
     local ok, res = pcall(function()
-        local lines = vim.fn.systemlist({java_exec, '-version'})
-        lines = require'nvpunk.internals.functools'.filter(
-            lines, function(line)
+        local lines = vim.fn.systemlist { java_exec, '-version' }
+        lines = require('nvpunk.internals.functools').filter(
+            lines,
+            function(line)
                 return (
-                    string.find(line, 'version') ~= nil and
-                    string.find(line, '"') ~= nil and
-                    string.find(line, '.') ~= nil
+                    string.find(line, 'version') ~= nil
+                    and string.find(line, '"') ~= nil
+                    and string.find(line, '.') ~= nil
                 )
             end
         )
         local line = lines[1]
         if line == nil then return 0 end
         line = vim.fn.split(line, '"')[2]
-        line = vim.fn.split(line, "\\.")[1]
+        line = vim.fn.split(line, '\\.')[1]
         return tonumber(line)
     end)
     if not ok then return 0 end
@@ -52,7 +52,7 @@ return function(cb)
         vim.notify(
             'Java version 17 not found, jdtls cannot start',
             vim.log.levels.WARN,
-            {title = 'nvpunk.internals.find_jdtls_java'}
+            { title = 'nvpunk.internals.find_jdtls_java' }
         )
     end
     cb(jhome)

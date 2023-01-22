@@ -18,11 +18,13 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup 'nvpunk.plugins'
 
+local function on_plugins_loaded() require 'nvpunk.theme_manager' end
+
 if FIRST_SYNC then
     vim.api.nvim_create_autocmd({ 'User LazyDone' }, {
-        callback = function() require 'nvpunk.plugins_conf' end,
+        callback = on_plugins_loaded,
         group = vim.api.nvim_create_augroup('OnLazyDone', { clear = true }),
     })
 else
-    require 'nvpunk.plugins_conf'
+    on_plugins_loaded()
 end

@@ -43,7 +43,9 @@ return {
                 diagnostics.flake8,
                 -- null_ls.builtins.completion.spell,
             },
-            on_init = function(new_client, _) new_client.offset_encoding = 'utf-8' end,
+            on_init = function(new_client, _)
+                new_client.offset_encoding = 'utf-8'
+            end,
         }
 
         mason_null_ls.setup_handlers()

@@ -1,0 +1,38 @@
+return {
+    'mfussenegger/nvim-dap',
+    config = function() require 'dap' end,
+    lazy = true,
+    keys = {
+        { '<leader>b', desc = ' Debug' },
+        {
+            '<leader>bb',
+            'lua require"dap".toggle_breakpoint()',
+            desc = 'Toggle Breakpoint',
+        },
+        { '<leader>bc', 'lua require"dap".continue()', desc = 'Continue' },
+        { '<leader>bl', '<cmd>DapShowLog<cr>', desc = 'Show Log' },
+        {
+            '<leader>br',
+            'lua require"dap".repl.toggle()',
+            desc = 'Toggle Repl',
+        },
+        { '<leader>bO', 'lua require"dap".step_out()', desc = 'Step Out' },
+        { '<leader>bi', 'lua require"dap".step_into()', desc = 'Step Into' },
+        { '<leader>bo', 'lua require"dap".step_over()', desc = 'Step Over' },
+        { '<leader>bk', 'lua require"dap".terminate()', desc = 'Terminate' },
+    },
+    cmd = {
+        'DapInstall',
+        'DapShowLog',
+        'DapStepOut',
+        'DapContinue',
+        'DapStepInto',
+        'DapStepOver',
+        'DapTerminate',
+        'DapUninstall',
+        'DapToggleRepl',
+        'DapRestartFrame',
+        'DapLoadLaunchJSON',
+        'DapToggleBreakpoint',
+    },
+}
