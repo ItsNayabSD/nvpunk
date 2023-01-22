@@ -14,4 +14,5 @@ return {
             spelling = { enabled = true, suggestions = 20 },
         }
     end,
+    priority = 9999,
 }
