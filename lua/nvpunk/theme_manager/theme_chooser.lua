@@ -31,6 +31,7 @@ local builtin_themes = {
     'nightfox_nordfox',
     'nightfox_teraforx',
     'nord',
+    'nordic',
     'onedark_cool',
     'onedark_dark',
     'onedark_darker',

@@ -9,9 +9,7 @@ end
 M.set_keymaps = function()
     local km = require 'nvpunk.internals.keymapper'
 
-    ----------
-    ---------- Tweaks to defaults
-    ----------
+    -- Tweaks to defaults
 
     -- hold on to selection when changing indentation
     km.vkeymap('<', '<gv')
@@ -27,9 +25,7 @@ M.set_keymaps = function()
     -- pressing esc twice goes to normal mode in terminal windows
     km.tkeymap('<Esc><Esc>', '<C-\\><C-n>')
 
-    ----------
-    ---------- Terminal splitter
-    ----------
+    -- Terminal splitter
 
     km.wk.register { ['<leader>/'] = { name = ' Term Split' } }
     km.nkeymap('<leader>/s', '<cmd>vs<cr><cmd>terminal<cr>', 'ﲖ Vertical')
