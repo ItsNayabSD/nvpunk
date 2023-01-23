@@ -31,18 +31,23 @@ local function replace_missing_confs(conf)
     return conf
 end
 
+-- conf cache, avoids reading every time
+local __conf = nil
+
 --- Save conf to PREFERENCES_FILE
 ---@param conf table
 local function save_conf(conf)
     vim.fn.writefile({ vim.json.encode(conf) }, PREFERENCES_FILE)
+    __conf = nil
 end
 
 local function load_conf()
+    if __conf ~= nil then return __conf end
     if vim.fn.filereadable(PREFERENCES_FILE) == 1 then
-        local conf = vim.json.decode(
+        __conf = vim.json.decode(
             table.concat(vim.fn.readfile(PREFERENCES_FILE), '\n')
         )
-        return replace_missing_confs(conf)
+        return replace_missing_confs(__conf)
     end
     return DEFAULT_PREFERENCES
 end
@@ -86,7 +91,7 @@ M.set_navic_enabled = function(nval)
     local conf = load_conf()
     conf.navic_enabled = nval
     save_conf(conf)
-    require('nvpunk.plugins.interface.navic').config()
+    -- require('nvpunk.plugins.interface.navic').config()
 end
 
 ---@return boolean
