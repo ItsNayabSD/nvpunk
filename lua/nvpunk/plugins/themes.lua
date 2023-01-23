@@ -15,7 +15,6 @@ return require('nvpunk.internals.functools').map({
     { 'shaunsingh/moonlight.nvim' },
     { 'shaunsingh/nord.nvim' },
     { 'tanvirtin/monokai.nvim' },
-    { 'w3barsi/barstrata.nvim' },
 }, function(theme)
     theme.lazy = true
     return theme

@@ -1,7 +1,6 @@
 local M = {}
 
 local builtin_themes = {
-    'barstrata',
     'catppuccin_frappe',
     'catppuccin_latte',
     'catppuccin_macchiato',

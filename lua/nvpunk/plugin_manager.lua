@@ -16,13 +16,21 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+
 require('lazy').setup 'nvpunk.plugins'
 
-local function on_plugins_loaded() require 'nvpunk.theme_manager' end
+local function on_plugins_loaded()
+    require('nvpunk.keymaps').set_keymaps()
+end
+
+local function on_first_sync_done()
+    on_plugins_loaded()
+    require'nvpunk.theme_manager'.setup()
+end
 
 if FIRST_SYNC then
     vim.api.nvim_create_autocmd({ 'User LazyDone' }, {
-        callback = on_plugins_loaded,
+        callback = on_first_sync_done,
         group = vim.api.nvim_create_augroup('OnLazyDone', { clear = true }),
     })
 else
