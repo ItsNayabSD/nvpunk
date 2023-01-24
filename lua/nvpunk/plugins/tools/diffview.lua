@@ -2,58 +2,28 @@
 return {
     'sindrets/diffview.nvim',
     lazy = true,
-    init = function()
-        -- default conf, just keymaps
-
-        local km = require 'nvpunk.internals.keymapper'
-
-        km.wk.register { ['<leader>?'] = { name = ' Diff View' } }
-
-        km.nkeymap('<leader>?o', '<cmd>DiffviewOpen<cr>', 'DiffviewOpen')
-        km.nkeymap('<leader>?c', '<cmd>DiffviewClose<cr>', 'DiffviewClose')
-        km.nkeymap('<leader>?r', '<cmd>DiffviewRefresh<cr>', 'DiffviewRefresh')
-        km.nkeymap(
-            '<leader>?f',
-            '<cmd>DiffviewToggleFiles<cr>',
-            'DiffviewToggleFiles'
-        )
-
-        km.nkeymap(
-            '<leader>?0',
-            '<cmd>DiffviewOpen HEAD<cr>',
-            'DiffviewOpen HEAD'
-        )
-        km.nkeymap(
-            '<leader>?1',
-            '<cmd>DiffviewOpen HEAD^<cr>',
-            'DiffviewOpen HEAD^'
-        )
-        km.nkeymap(
-            '<leader>?2',
-            '<cmd>DiffviewOpen HEAD^^<cr>',
-            'DiffviewOpen HEAD^^'
-        )
-        km.nkeymap(
-            '<leader>?3',
-            '<cmd>DiffviewOpen HEAD^^^<cr>',
-            'DiffviewOpen HEAD^^^'
-        )
-        km.nkeymap(
-            '<leader>?4',
-            '<cmd>DiffviewOpen HEAD^^^^<cr>',
-            'DiffviewOpen HEAD^^^^'
-        )
-
-        km.nkeymap(
-            '<leader>?H',
-            '<cmd>h nvpunk-shortcuts-diffview<cr>',
-            'Show Shortcuts'
-        )
+    config = function()
+        require'diffview'.setup {
+            keymaps = {
+                disable_defaults = true,
+            },
+        }
     end,
-    -- config = function()
-    -- end,
-    -- keys = {
-    -- },
+    keys = {
+        { '<leader>?', desc = ' Diff View' },
+        { '<leader>?o', '<cmd>DiffviewOpen<cr>', desc = 'DiffviewOpen' },
+        { '<leader>?c', '<cmd>DiffviewClose<cr>', desc = 'DiffviewClose' },
+        { '<leader>?r', '<cmd>DiffviewRefresh<cr>', desc = 'DiffviewRefresh' },
+        { '<leader>?f', '<cmd>DiffviewToggleFiles<cr>', desc = 'DiffviewToggleFiles' },
+
+        { '<leader>?0', '<cmd>DiffviewOpen HEAD<cr>', desc = 'DiffviewOpen HEAD' },
+        { '<leader>?1', '<cmd>DiffviewOpen HEAD^<cr>', desc = 'DiffviewOpen HEAD^' },
+        { '<leader>?2', '<cmd>DiffviewOpen HEAD^^<cr>', desc = 'DiffviewOpen HEAD^^' },
+        { '<leader>?3', '<cmd>DiffviewOpen HEAD^^^<cr>', desc = 'DiffviewOpen HEAD^^^' },
+        { '<leader>?4', '<cmd>DiffviewOpen HEAD^^^^<cr>', desc = 'DiffviewOpen HEAD^^^^' },
+
+        { '<leader>?H', '<cmd>h nvpunk-shortcuts-diffview<cr>', desc = 'Show Shortcuts' },
+    },
     cmd = {
         'DiffviewLog',
         'DiffviewOpen',
