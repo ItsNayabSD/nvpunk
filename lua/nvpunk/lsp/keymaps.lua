@@ -2,6 +2,7 @@ local M = {}
 local km = require 'nvpunk.internals.keymapper'
 
 M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
+    local wk = require'which-key'
     local bm = km.create_bufkeymapper(bufnr)
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -41,7 +42,7 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
     bm.nkeymap('K', vim.lsp.buf.hover)
     bm.nkeymap('gI', vim.lsp.buf.implementation, 'Implementation')
     bm.inkeymap('<C-k>', vim.lsp.buf.signature_help)
-    km.wk.register(
+    wk.register(
         { ['<leader>w'] = { name = 'Workspace' } },
         { mode = 'n', buffer = bufnr }
     )
@@ -65,7 +66,7 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
     -- bm.nkeymap('<leader>q', vim.diagnostic.setloclist)
     bm.nkeymap('<leader>ca', vim.lsp.buf.code_action, 'Code actions')
 
-    km.wk.register(
+    wk.register(
         { ['<leader>v'] = { name = 'Diagnostics Virutal Text' } },
         { mode = 'n', buffer = bufnr }
     )

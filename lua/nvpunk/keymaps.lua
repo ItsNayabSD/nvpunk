@@ -27,7 +27,7 @@ M.set_keymaps = function()
 
     -- Terminal splitter
 
-    km.wk.register { ['<leader>/'] = { name = ' Term Split' } }
+    require'which-key'.register { ['<leader>/'] = { name = ' Term Split' } }
     km.nkeymap('<leader>/s', '<cmd>vs<cr><cmd>terminal<cr>', 'ﲖ Vertical')
     km.nkeymap('<leader>/i', '<cmd>sp<cr><cmd>terminal<cr>', 'ﲐ Horizontal')
 

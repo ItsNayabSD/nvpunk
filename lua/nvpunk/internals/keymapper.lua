@@ -1,6 +1,5 @@
 local M = {}
 
-M.wk = require 'which-key'
 local keymap_opts = { noremap = true, silent = true }
 
 --- Create keymap
