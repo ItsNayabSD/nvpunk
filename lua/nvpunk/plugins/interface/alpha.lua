@@ -34,7 +34,7 @@ return {
                 ':lua require"nvpunk.internals.telescope_pickers".live_grep()<CR>'
             ),
             button(
-                'tr',
+                'th',
                 '  Recent files',
                 ':lua require"telescope.builtin".oldfiles()<CR>'
             ),
