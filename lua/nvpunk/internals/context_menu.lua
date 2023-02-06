@@ -137,6 +137,7 @@ M.set_neotree_rclick_menu = function()
         { 'Split Horizontally            i', 'i' },
         { 'Split Vertically              s', 's' },
         { 'Open in New Tab               t', 't' },
+        { 'Open with System App  <space>xo', '<space>xo' },
         { 'Git Add               <space>ga', '<space>ga' },
         { 'Git Unstage           <space>gu', '<space>gu' },
     }, function() return vim.bo.filetype == 'neo-tree' end)
