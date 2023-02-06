@@ -1,7 +1,7 @@
 -- file explorer
 return {
     'nvim-neo-tree/neo-tree.nvim',
-    branch = 'main',
+    branch = 'v2.x',
     dependencies = {
         'MunifTanjim/nui.nvim',
         's1n7ax/nvim-window-picker',
@@ -14,10 +14,17 @@ return {
             include_current = false,
             filter_rules = {
                 bo = {
-                    filetype = require 'nvpunk.internals.nonfile_buffers',
+                    filetype = vim.tbl_filter(function(val)
+                        return not vim.tbl_contains({
+                            'alpha', 'dashboard', 'startify',
+                            'help', 'vim'
+                        }, val)
+                    end, require 'nvpunk.internals.nonfile_buffers'),
                     buftype = { 'terminal', 'quickfix' },
                 },
             },
+            other_win_hl_color = '#9141ac',
+            fg_color = '#f6f5f4',
         }
 
         vim.g.neo_tree_remove_legacy_commands = 1
@@ -130,15 +137,15 @@ return {
                     -- ['<leader>'] = {
                     --     'toggle_node', nowait = false  -- for leader key seqs
                     -- },
-                    ['<2-LeftMouse>'] = 'open',
-                    ['<cr>'] = 'open',
+                    ['<2-LeftMouse>'] = 'open_with_window_picker',
+                    ['<cr>'] = 'open_with_window_picker',
                     ['<esc>'] = 'revert_preview',
                     ['P'] = {
                         'toggle_preview',
                         config = { use_float = true },
                     },
-                    ['i'] = 'open_split',
-                    ['s'] = 'open_vsplit',
+                    ['i'] = 'split_with_window_picker',
+                    ['s'] = 'vsplit_with_window_picker',
                     ['t'] = 'open_tabnew',
                     ['w'] = 'open_with_window_picker',
                     -- ['zo'] = 'expand_node',  -- no expand node command
