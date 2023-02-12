@@ -43,9 +43,7 @@ return {
             'html',
             'jdtls',
             'jsonls',
-            'ltex',
             'pyright',
-            'rust_analyzer',
             'sumneko_lua',
             'tsserver',
             'vimls',
@@ -57,6 +55,8 @@ return {
             vim.tbl_extend('force', packages, {
                 'clangd',
                 'lemminx',
+                'ltex',
+                'rust_analyzer',
             })
         end
 
