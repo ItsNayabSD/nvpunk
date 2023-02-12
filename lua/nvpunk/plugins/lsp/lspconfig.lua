@@ -44,7 +44,7 @@ return {
             'jdtls',
             'jsonls',
             'pyright',
-            'sumneko_lua',
+            'lua_ls',
             'tsserver',
             'vimls',
             'vuels',
@@ -66,7 +66,7 @@ return {
         require('mason-lspconfig').setup_handlers {
             require('nvpunk.lsp.langs.default').setup,
             ['pyright'] = require 'nvpunk.lsp.langs.pyright',
-            ['sumneko_lua'] = require 'nvpunk.lsp.langs.sumneko_lua',
+            ['lua_ls'] = require 'nvpunk.lsp.langs.lua_ls',
             ['jdtls'] = function() end, -- dummy, runs with filetype
             ['ltex'] = require 'nvpunk.lsp.langs.ltex',
         }
