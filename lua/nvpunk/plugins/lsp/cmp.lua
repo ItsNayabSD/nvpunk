@@ -12,6 +12,8 @@ return {
             dependencies = {
                 'rafamadriz/friendly-snippets',
             },
+            version = '1.*',
+            build = 'make install_jsregexp',
         },
         'saadparwaiz1/cmp_luasnip',
         'hrsh7th/cmp-nvim-lua',
@@ -35,7 +37,7 @@ return {
         local cmp = require 'cmp'
         local luasnip = require 'luasnip'
 
-        require('luasnip/loaders/from_vscode').lazy_load()
+        require('luasnip.loaders.from_vscode').lazy_load()
 
         cmp.setup {
             snippet = {

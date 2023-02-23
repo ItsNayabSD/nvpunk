@@ -28,37 +28,66 @@ M.nvpunk_update = function()
         :start()
 end
 
-vim.api.nvim_create_user_command(
-    'NvpunkUpdate',
-    function(_) M.nvpunk_update() end,
-    { nargs = 0 }
-)
+M.nvpunk_clean = function()
+    require('plenary.job')
+        :new({
+            command = '/usr/bin/rm',
+            args = {
+                '-rf',
+                vim.fn.stdpath 'data',
+            },
+            on_exit = function(_, res)
+                if res == 0 then
+                    vim.notify(
+                        'Removed Nvpunk data, restart to rebuild data',
+                        vim.log.levels.INFO,
+                        { title = 'Nvpunk Clear Data' }
+                    )
+                else
+                    vim.notify(
+                        'Failed to remove Nvpunk data',
+                        vim.log.levels.ERROR,
+                        {
+                            title = 'Nvpunk Clear Data',
+                        }
+                    )
+                end
+            end,
+        })
+        :start()
+end
 
-vim.api.nvim_create_user_command(
+local cmd = vim.api.nvim_create_user_command
+
+cmd('NvpunkUpdate', function(_) M.nvpunk_update() end, { nargs = 0 })
+
+cmd('NvpunkClearData', function(_) M.nvpunk_clean() end, { nargs = 0 })
+
+cmd(
     'NvpunkHealthcheck',
     function(_) require 'nvpunk.internals.healthcheck'() end,
     { nargs = 0 }
 )
 
-vim.api.nvim_create_user_command(
+cmd(
     'NvpunkExplorerToggle',
     function(_) vim.cmd 'Neotree toggle' end,
     { nargs = 0 }
 )
 
-vim.api.nvim_create_user_command(
+cmd(
     'NvpunkExplorerOpen',
     function(_) vim.cmd 'Neotree reveal' end,
     { nargs = 0 }
 )
 
-vim.api.nvim_create_user_command(
+cmd(
     'NvpunkExplorerClose',
     function(_) vim.cmd 'Neotree close' end,
     { nargs = 0 }
 )
 
-vim.api.nvim_create_user_command('NvpunkNewFileDialog', function(_)
+cmd('NvpunkNewFileDialog', function(_)
     vim.ui.input({
         prompt = 'New file path',
     }, function(txt)
@@ -69,7 +98,7 @@ vim.api.nvim_create_user_command('NvpunkNewFileDialog', function(_)
     end)
 end, { nargs = 0 })
 
-vim.api.nvim_create_user_command('NvpunkReinstallJavaTools', function(_)
+cmd('NvpunkReinstallJavaTools', function(_)
     local j = require 'nvpunk.lsp.jdtls_conf'
     j.remove_extra_java_tools(function() j.setup() end)
 end, { nargs = 0 })

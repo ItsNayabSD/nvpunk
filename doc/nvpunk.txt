@@ -35,6 +35,7 @@ SHORTCUTS...................................................|nvpunk-shortcuts|
 COMMANDS.....................................................|nvpunk-commands|
 HEALTHCHECK...............................................|nvpunk-healthcheck| 
 USER CONFIGURATION........................................|nvpunk-user-config|
+TROUBLESHOOTING.......................................|nvpunk-troubleshooting|
 REFERENCES.................................................|nvpunk-references|
 
 ==============================================================================
@@ -91,8 +92,7 @@ To update the installed Tree-sitter modules you can run the following command:
 ==============================================================================
 SHORTCUTS                                                   *nvpunk-shortcuts* 
 
-Here's a non-exaustive list of shortcuts, devided into categories. You can look
-at the keybinds file(s) to browse all the shortcuts: |nvpunk-ref-keybinds|
+Here's a non-exaustive list of shortcuts, devided into categories.
 
 ## General                                          *nvpunk-shortcuts-general*
 
@@ -176,6 +176,11 @@ Open the preferences menu
 Run a health check for missing system dependencies
 >
     :NvpunkHealthcheck
+<
+
+Clear Nvpunk data, this is useful if Nvpunk breaks after an update
+>
+    :NvpunkClearData
 <
 
 ==============================================================================
@@ -281,19 +286,29 @@ requires extra configuration. Here is an example of a `themes.lua` file:
 <
 
 ==============================================================================
+TROUBLESHOOTING                                       *nvpunk-troubleshooting*
+
+Nvpunk depends on quite an extensive collection of plugins and it can break
+from time to time, particularly when updating.
+
+If Nvpunk does break after an update, the first thing you should try is
+clearing the data folder and triggering a reinstall.
+
+To clear Nvpunk's data you can run the following command:
+>
+    :NvpunkClearData
+<
+
+Once that's done you'll need to close your neovim and reopen it again. This
+will trigger a complete reinstall. Your custom configuration defined as
+described in |nvpunk-user-config| and your preferences set in the preferences
+menu will not be deleted.
+
+If this doesn't solve your problem, you might consider opening an issue on
+the Nvpunk issue tracker on GitLab (|nvpunk-ref-issuetracker|).
+
+==============================================================================
 REFERENCES                                                 *nvpunk-references*
-
-## Keybinds                                              *nvpunk-ref-keybinds*
-
-Global:
->
-    :e ~/.config/nvim/lua/nvpunk/keymaps.lua
-<
-
-LSP specific:
->
-    :e ~/.config/nvim/lua/nvpunk/lsp/keymaps.lua
-<
 
 ## Terminals                                            *nvpunk-ref-terminals*
 
@@ -309,3 +324,7 @@ https://www.nerdfonts.com/
 ## Lazy                                                      *nvpunk-ref-lazy*
 
 https://github.com/folke/lazy.nvim
+
+## Issue Tracker                                     *nvpunk-ref-issuetracker*
+
+https://gitlab.com/gabmus/nvpunk/-/issues
