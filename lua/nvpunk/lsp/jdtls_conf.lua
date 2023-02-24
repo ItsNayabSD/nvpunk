@@ -141,17 +141,17 @@ M.remove_extra_java_tools = function(cb)
 end
 
 M.start_jdtls = function()
-    local bundles = {
-        vim.fn.glob(
-            java_debug_path
-                .. '/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar'
-        ),
-    }
-    vim.list_extend(
-        bundles,
-        vim.split(vim.fn.glob(vscode_java_test_path .. '/server/*.jar'), '\n')
-    )
-    bundles = {}  -- plain disable vscode-java-test and java-debug as they're broken
+    -- local bundles = {
+    --     vim.fn.glob(
+    --         java_debug_path
+    --             .. '/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar'
+    --     ),
+    -- }
+    -- vim.list_extend(
+    --     bundles,
+    --     vim.split(vim.fn.glob(vscode_java_test_path .. '/server/*.jar'), '\n')
+    -- )
+    local bundles = {}  -- plain disable vscode-java-test and java-debug as they're broken
 
     local extendedClientCapabilities = jdtls.extendedClientCapabilities
     extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
@@ -231,30 +231,30 @@ M.start_jdtls = function()
         },
 
         on_attach = function(client, bufnr)
-            local function extra_keymaps(bm)
-                bm.nkeymap(
-                    '<leader>bjr',
-                    '<cmd>JdtRefreshDebugConfigs<cr>',
-                    'Refresh Java Debugger Conf'
-                )
-                bm.nkeymap(
-                    '<leader>bjc',
-                    '<cmd>lua require"jdtls".test_class()<cr>',
-                    'Test Class'
-                )
-                bm.nkeymap(
-                    '<leader>bjn',
-                    '<cmd>lua require"jdtls".test_nearest_method()<cr>',
-                    'Test Nearest Method'
-                )
-            end
-            require('nvpunk.lsp.keymaps').set_lsp_keymaps(
-                client,
-                bufnr,
-                extra_keymaps
-            )
-            jdtls_dap.setup_dap_main_class_configs()
-            jdtls.setup_dap { hotcodereplace = 'auto' }
+            -- local function extra_keymaps(bm)
+            --     bm.nkeymap(
+            --         '<leader>bjr',
+            --         '<cmd>JdtRefreshDebugConfigs<cr>',
+            --         'Refresh Java Debugger Conf'
+            --     )
+            --     bm.nkeymap(
+            --         '<leader>bjc',
+            --         '<cmd>lua require"jdtls".test_class()<cr>',
+            --         'Test Class'
+            --     )
+            --     bm.nkeymap(
+            --         '<leader>bjn',
+            --         '<cmd>lua require"jdtls".test_nearest_method()<cr>',
+            --         'Test Nearest Method'
+            --     )
+            -- end
+            -- require('nvpunk.lsp.keymaps').set_lsp_keymaps(
+            --     client,
+            --     bufnr,
+            --     extra_keymaps
+            -- )
+            -- jdtls_dap.setup_dap_main_class_configs()
+            -- jdtls.setup_dap { hotcodereplace = 'auto' }
         end,
         capabilities = require('nvpunk.lsp.capabilities').capabilities,
     }
