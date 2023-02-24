@@ -151,6 +151,7 @@ M.start_jdtls = function()
         bundles,
         vim.split(vim.fn.glob(vscode_java_test_path .. '/server/*.jar'), '\n')
     )
+    bundles = {}  -- plain disable vscode-java-test and java-debug as they're broken
 
     local extendedClientCapabilities = jdtls.extendedClientCapabilities
     extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
@@ -267,10 +268,10 @@ M.setup = function()
     require 'nvpunk.internals.find_jdtls_java'(function(home)
         java_exec = (home .. '/bin/java') or java_exec
         java_home = home
-        if not M.has_java_debug() then return M.install_java_debug() end
-        if not M.has_vscode_java_test() then
-            return M.install_vscode_java_test()
-        end
+        -- if not M.has_java_debug() then return M.install_java_debug() end
+        -- if not M.has_vscode_java_test() then
+        --     return M.install_vscode_java_test()
+        -- end
         M.start_jdtls()
     end)
 end
