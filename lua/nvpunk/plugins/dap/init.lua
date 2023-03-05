@@ -3,6 +3,7 @@ local plugins = {
     'dap',
     'mason_dap',
     'dap_ui',
+    'dap_virtual_text',
 }
 
 return require('nvpunk.internals.functools').map(
