@@ -27,14 +27,16 @@ M.set_keymaps = function()
 
     -- Terminal splitter
 
-    require'which-key'.register { ['<leader>/'] = { name = ' Term Split' } }
-    km.nkeymap('<leader>/s', '<cmd>vs<cr><cmd>terminal<cr>', 'ﲖ Vertical')
-    km.nkeymap('<leader>/i', '<cmd>sp<cr><cmd>terminal<cr>', 'ﲐ Horizontal')
+    require'nvpunk.internals.try'.call(function()
+        require'which-key'.register { ['<leader>/'] = { name = ' Term Split' } }
+        km.nkeymap('<leader>/s', '<cmd>vs<cr><cmd>terminal<cr>', 'ﲖ Vertical')
+        km.nkeymap('<leader>/i', '<cmd>sp<cr><cmd>terminal<cr>', 'ﲐ Horizontal')
 
-    km.nkeymap('<A-j>', 'gj')
-    km.nkeymap('<A-k>', 'gk')
-    km.nkeymap('<A-Down>', 'gj')
-    km.nkeymap('<A-Up>', 'gk')
+        km.nkeymap('<A-j>', 'gj')
+        km.nkeymap('<A-k>', 'gk')
+        km.nkeymap('<A-Down>', 'gj')
+        km.nkeymap('<A-Up>', 'gk')
+    end, {}, 'Failed to loaad which-key', 'nvpunk.keymaps')
 end
 
 return M
