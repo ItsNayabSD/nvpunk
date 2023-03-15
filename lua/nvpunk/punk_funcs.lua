@@ -1,12 +1,36 @@
 local M = {}
 
+---Git reset Nvpunk config
+---@param cb? function callback
+local function git_reset(cb)
+    require('plenary.job'):new({
+        command = 'git',
+        args = {
+            '-C',
+            vim.fn.stdpath 'config',
+            'reset',
+            '--hard',
+            after_success = function()
+                if cb ~= nil then cb() end
+            end,
+            after_failure = function()
+                vim.notify(
+                    'Failed to git reset Nvpunk config',
+                    vim.log.levels.ERROR,
+                    { title = 'Nvpunk Update' }
+                )
+            end,
+        },
+    }):start()
+end
+
 M.nvpunk_update = function()
     vim.notify('Updating Nvpunk...', vim.log.levels.INFO, {
         title = 'Nvpunk Update',
     })
-    require('plenary.job')
-        :new({
-            command = '/usr/bin/git',
+    git_reset(function()
+        require('plenary.job'):new({
+            command = 'git',
             args = {
                 '-C',
                 vim.fn.stdpath 'config',
@@ -24,37 +48,31 @@ M.nvpunk_update = function()
                     })
                 end
             end,
-        })
-        :start()
+        }):start()
+    end)
 end
 
 M.nvpunk_clean = function()
-    require('plenary.job')
-        :new({
-            command = '/usr/bin/rm',
-            args = {
-                '-rf',
-                vim.fn.stdpath 'data',
-            },
-            on_exit = function(_, res)
-                if res == 0 then
-                    vim.notify(
-                        'Removed Nvpunk data, restart to rebuild data',
-                        vim.log.levels.INFO,
-                        { title = 'Nvpunk Clear Data' }
-                    )
-                else
-                    vim.notify(
-                        'Failed to remove Nvpunk data',
-                        vim.log.levels.ERROR,
-                        {
-                            title = 'Nvpunk Clear Data',
-                        }
-                    )
-                end
-            end,
-        })
-        :start()
+    require('plenary.job'):new({
+        command = 'rm',
+        args = {
+            '-rf',
+            vim.fn.stdpath 'data',
+        },
+        on_exit = function(_, res)
+            if res == 0 then
+                vim.notify(
+                    'Removed Nvpunk data, restart to rebuild data',
+                    vim.log.levels.INFO,
+                    { title = 'Nvpunk Clear Data' }
+                )
+            else
+                vim.notify('Failed to remove Nvpunk data', vim.log.levels.ERROR, {
+                    title = 'Nvpunk Clear Data',
+                })
+            end
+        end,
+    }):start()
 end
 
 local cmd = vim.api.nvim_create_user_command
