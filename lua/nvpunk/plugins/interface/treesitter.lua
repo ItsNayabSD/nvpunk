@@ -142,15 +142,7 @@ return {
                 },
             },
             indent = {
-                -- indentation with treesitter isn't great
-                enable = false,
-                disable = {
-                    'html',
-                    'scss',
-                    'css',
-                    'yaml',
-                    'python',
-                },
+                enable = true,
             },
             autopairs = {
                 enable = true,
@@ -165,6 +157,7 @@ return {
                     'typescriptreact',
                     'svelte',
                     'vue',
+                    'astro',
                 },
             },
         }

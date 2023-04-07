@@ -79,7 +79,11 @@ return function(theme)
         },
         tabline = {},
         extensions = {
+            'aerial',
             'neo-tree',
+            'nvim-dap-ui',
+            'toggleterm',
+            'trouble',
         },
     }
 end
