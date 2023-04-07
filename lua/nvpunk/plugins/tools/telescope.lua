@@ -26,27 +26,29 @@ return {
             function()
                 require('nvpunk.internals.telescope_pickers').find_files()
             end,
-            desc = 'Open file'
+            desc = 'Open file',
         },
         {
             '<leader>tg',
-            function() require('nvpunk.internals.telescope_pickers').live_grep() end,
-            desc = 'Live grep'
+            function()
+                require('nvpunk.internals.telescope_pickers').live_grep()
+            end,
+            desc = 'Live grep',
         },
         {
             '<leader>tr',
             function() require('telescope.builtin').lsp_references() end,
-            desc = 'Browse references'
+            desc = 'Browse references',
         },
         {
             '<leader>th',
             function() require('telescope.builtin').oldfiles() end,
-            desc = 'Recent files'
+            desc = 'Recent files',
         },
         {
             '<leader>tH',
             '<cmd>h nvpunk-shortcuts-telescope<cr>',
-            desc = 'Show Shortcuts'
+            desc = 'Show Shortcuts',
         },
     },
     cmd = {

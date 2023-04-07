@@ -151,7 +151,7 @@ M.start_jdtls = function()
     --     bundles,
     --     vim.split(vim.fn.glob(vscode_java_test_path .. '/server/*.jar'), '\n')
     -- )
-    local bundles = {}  -- plain disable vscode-java-test and java-debug as they're broken
+    local bundles = {} -- plain disable vscode-java-test and java-debug as they're broken
 
     local extendedClientCapabilities = jdtls.extendedClientCapabilities
     extendedClientCapabilities.resolveAdditionalTextEditsSupport = true

@@ -73,20 +73,24 @@ return {
     end,
     lazy = true,
     cmd = {
-        'Gitsigns'
+        'Gitsigns',
     },
     keys = {
         { '<leader>g', desc = ' Git' },
-        { '<leader>gb', '<cmd>Gitsigns blame_line<cr>', desc = ' Blame line' },
+        {
+            '<leader>gb',
+            '<cmd>Gitsigns blame_line<cr>',
+            desc = ' Blame line',
+        },
         { '<leader>g]', '<cmd>Gitsigns next_hunk<cr>', desc = ' Next hunk' },
         { '<leader>g[', '<cmd>Gitsigns prev_hunk<cr>', desc = ' Prev hunk' },
         {
             '<leader>g?',
             '<cmd>Gitsigns preview_hunk<cr>',
-            desc = ' Preview changes'
+            desc = ' Preview changes',
         },
     },
     event = {
-        'BufEnter'
+        'BufEnter',
     },
 }

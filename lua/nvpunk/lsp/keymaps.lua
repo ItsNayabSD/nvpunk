@@ -2,7 +2,7 @@ local M = {}
 local km = require 'nvpunk.internals.keymapper'
 
 M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
-    local wk = require'which-key'
+    local wk = require 'which-key'
     local bm = km.create_bufkeymapper(bufnr)
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -31,9 +31,7 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
         { ['gd'] = { name = 'Definition' } },
         { mode = 'n', buffer = bufnr }
     )
-    bm.nkeymap('gdh', function()
-        vim.lsp.buf.definition()
-    end, 'Here')
+    bm.nkeymap('gdh', function() vim.lsp.buf.definition() end, 'Here')
     bm.nkeymap('gdt', function()
         vim.cmd 'tab split'
         vim.lsp.buf.definition()

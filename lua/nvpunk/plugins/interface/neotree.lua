@@ -14,12 +14,18 @@ return {
             include_current = false,
             filter_rules = {
                 bo = {
-                    filetype = vim.tbl_filter(function(val)
-                        return not vim.tbl_contains({
-                            'alpha', 'dashboard', 'startify',
-                            'help', 'vim'
-                        }, val)
-                    end, require 'nvpunk.internals.nonfile_buffers'),
+                    filetype = vim.tbl_filter(
+                        function(val)
+                            return not vim.tbl_contains({
+                                'alpha',
+                                'dashboard',
+                                'startify',
+                                'help',
+                                'vim',
+                            }, val)
+                        end,
+                        require 'nvpunk.internals.nonfile_buffers'
+                    ),
                     buftype = { 'terminal', 'quickfix' },
                 },
             },
