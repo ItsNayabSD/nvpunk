@@ -21,7 +21,6 @@ return {
                 end,
             },
         }
-        mason_dap.setup_handlers()
 
         local outFiles = require 'nvpunk.plugins.dap.typescript_out_files'
         local config = {

@@ -47,8 +47,6 @@ return {
                 new_client.offset_encoding = 'utf-8'
             end,
         }
-
-        mason_null_ls.setup_handlers()
     end,
     priority = 30,
 }
