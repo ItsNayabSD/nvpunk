@@ -42,7 +42,7 @@ M.set_keymaps = function()
         km.nkeymap('<A-k>', 'gk')
         km.nkeymap('<A-Down>', 'gj')
         km.nkeymap('<A-Up>', 'gk')
-    end, {}, 'Failed to loaad which-key', 'nvpunk.keymaps')
+    end, {}, 'Failed to load which-key', 'nvpunk.keymaps')
 end
 
 return M

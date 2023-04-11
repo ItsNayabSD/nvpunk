@@ -24,8 +24,9 @@ M.dap_signs = {
 
 M.setup = function()
     local signs = {}
-    vim.list_extend(signs, M.lsp_signs)
-    vim.list_extend(signs, M.dap_signs)
+    for _, group in ipairs { M.lsp_signs, M.dap_signs } do
+        vim.list_extend(signs, group)
+    end
     for _, sign in ipairs(signs) do
         vim.fn.sign_define(sign.name, {
             texthl = sign.texthl or sign.name,

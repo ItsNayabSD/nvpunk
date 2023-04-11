@@ -13,6 +13,7 @@ local plugins = {
     'navic',
     'neotree',
     'ufo',
+    'statuscol',
 }
 
 return require('nvpunk.internals.functools').map(

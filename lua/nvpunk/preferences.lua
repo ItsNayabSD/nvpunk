@@ -126,7 +126,7 @@ M.set_relative_numbers_enabled = function(nval)
     local conf = load_conf()
     conf.relative_numbers = nval
     save_conf(conf)
-    reload 'nvpunk.plugins_conf.numbertoggle_conf'
+    reload 'nvpunk.internals.numbertoggle_conf'
 end
 
 ---@return 'slant' | 'padded_slant' | 'thin' | 'thick'
