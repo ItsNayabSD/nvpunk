@@ -4,8 +4,12 @@ local lspconfig = require 'lspconfig'
 local default_opts = {
     on_attach = function(client, bufnr)
         require('nvpunk.lsp.keymaps').set_lsp_keymaps(client, bufnr)
-        if client.server_capabilities.documentSymbolProvider then
+        if
+            require('nvpunk.preferences').get_navic_enabled()
+            and client.server_capabilities.documentSymbolProvider
+        then
             require('nvim-navic').attach(client, bufnr)
+            vim.wo.winbar = '%{%v:lua.require\'nvim-navic\'.get_location()%}'
         end
     end,
     root_dir = vim.loop.cwd,

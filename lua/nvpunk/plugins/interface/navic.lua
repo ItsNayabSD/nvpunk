@@ -1,6 +1,8 @@
--- breadcrumbs
 return {
     'SmiteshP/nvim-navic',
+    enabled = function()
+        return require('nvpunk.preferences').get_navic_enabled()
+    end,
     config = function()
         require('nvim-navic').setup {
             icons = {
@@ -37,21 +39,5 @@ return {
             depth_limit_indicator = '…',
             safe_output = true,
         }
-        vim.api.nvim_create_autocmd(
-            { 'BufEnter', 'LspAttach', 'User LspProgressUpdate' },
-            {
-                callback = function()
-                    if
-                        require('nvpunk.preferences').get_navic_enabled()
-                        and require('nvim-navic').is_available()
-                    then
-                        vim.wo.winbar =
-                            "%{%v:lua.require'nvim-navic'.get_location()%}"
-                    else
-                        vim.wo.winbar = ''
-                    end
-                end,
-            }
-        )
     end,
 }
