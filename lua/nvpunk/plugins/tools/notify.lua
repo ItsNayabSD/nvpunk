@@ -8,7 +8,11 @@ return {
         { '<leader>n', desc = ' Notifications' },
         {
             '<leader>nd',
-            function() require('notify').dismiss() end,
+            function()
+                require('notify').dismiss {
+                    pending = true,
+                }
+            end,
             desc = 'Dismiss Notifications',
         },
         {
