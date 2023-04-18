@@ -31,6 +31,7 @@ local TARGET_VERSION = 17
 
 local function get_viable_version()
     local iter = vim.loop.fs_scandir(JVM_DIR)
+    if iter == nil then return nil end
     local item, type = vim.loop.fs_scandir_next(iter)
     while item ~= nil do
         if type == 'directory' then
@@ -46,9 +47,11 @@ end
 
 --- Find java executable for jdtls, so version 17 or later
 ---@param cb function[string]
-return function(cb)
+---@param notify? boolean
+return function(cb, notify)
     local jhome = get_viable_version()
-    if jhome == nil then
+    if notify == nil then notify = true end
+    if jhome == nil and notify then
         vim.notify(
             'Java version 17 not found, jdtls cannot start',
             vim.log.levels.WARN,

@@ -2,6 +2,7 @@ local PFX = 'nvpunk.plugins.interface.'
 local plugins = {
     'devicons',
     'whichkey',
+    'nui',
     'treesitter',
     'alpha',
     'bqf',

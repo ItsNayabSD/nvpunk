@@ -1,6 +1,4 @@
 local Job = require 'plenary.job'
-local lines = {}
-local BUFNAME = 'NvpunkHealthcheck'
 
 local hls = require 'nvpunk.internals.highlights'
 
@@ -22,89 +20,159 @@ local function test_command(cmd, on_success, on_fail)
     }):start()
 end
 
-local Float = require 'nvpunk.internals.float'
-
---- Show message in healthcheck window. Upon activation it opens the given
---- help page
+---test command and set nui text
+---@param cmd string | function
 ---@param message string
----@param ok boolean
----@param help_page string
-local function msg(message, ok, help_page)
-    local hl = hls.HC_BAD
-    if ok then hl = hls.HC_GOOD end
-    table.insert(lines, {
-        message = message,
-        hl = hl,
-        cmd = function()
-            Float.close_win(BUFNAME)
-            vim.cmd('h ' .. help_page .. '')
-        end,
-    })
-    Float.draw(BUFNAME, lines)
+---@param text NuiText
+---@param redraw function
+---@return nil
+local function test_and_set_text(cmd, message, text, redraw)
+    text:set('    …  ' .. message)
+
+    local function good()
+        text:set('      ' .. message, hls.HC_GOOD)
+        redraw()
+    end
+
+    local function bad()
+        text:set('      ' .. message, hls.HC_BAD)
+        redraw()
+    end
+
+    if type(cmd) == 'string' then
+        test_command(cmd, good, bad)
+    elseif type(cmd) == 'function' then
+        if cmd() then good() else bad() end
+    end
 end
 
----@param message string
----@param help_page string
-local function msg_success(message, help_page)
-    msg('      ' .. message, true, help_page)
-end
---
----@param message string
----@param help_page string
-local function msg_fail(message, help_page)
-    msg('      ' .. message, false, help_page)
-end
-
-local function test_and_log(cmd, message, help_page)
-    test_command(
-        cmd,
-        function() msg_success(message, help_page) end,
-        function() msg_fail(message, help_page) end
-    )
+---draws lines in window
+---@param win NuiPopup
+---@param lines NuiLine[]
+---@return nil
+local function draw_lines(win, lines)
+    for i, line in ipairs(lines) do
+        line:render(win.bufnr, win.ns_id, i)
+    end
 end
 
 return function()
-    lines = {}
-    table.insert(lines, { message = '' })
-    table.insert(lines, {
-        message = '                                      ',
-        hl = hls.HC_HEADER,
+    local NuiPopup = require'nui.popup'
+    local NuiText = require'nui.text'
+    local NuiLine = require'nui.line'
+    local event = require('nui.utils.autocmd').event
+
+    local win = NuiPopup({
+        enter = true,
+        focusable = true,
+        border = {
+            style = require('nvpunk.preferences').get_window_border()
+        },
+        position = '50%',
+        size = {
+            width = '80%',
+            height = '60%',
+        },
     })
-    table.insert(lines, {
-        message = '                Nvpunk Health Check   ',
-        hl = hls.HC_HEADER,
-    })
-    table.insert(lines, {
-        message = '                                      ',
-        hl = hls.HC_HEADER,
-    })
-    table.insert(lines, { message = '' })
-    table.insert(
-        lines,
-        { message = '        q, <esc>  -  Quit', hl = 'Comment' }
-    )
-    table.insert(
-        lines,
-        { message = '        <cr>      -  Open help page', hl = 'Comment' }
-    )
-    table.insert(lines, { message = '' })
-    table.insert(lines, { message = '' })
-    Float.create_win(BUFNAME)
-    test_and_log('git', '[git] Git version control', 'nvpunk-deps-git')
-    test_and_log('npm', '[npm] Node Package Manager', 'nvpunk-deps-npm')
-    test_and_log('gcc', '[gcc] GNU Compiler Collection', 'nvpunk-deps-gcc')
-    test_and_log(
-        'g++',
-        '[gcc] GNU Compiler Collection (C++)',
-        'nvpunk-deps-gcc'
-    )
-    test_and_log('python3', '[python3] Python', 'nvpunk-deps-python')
-    require 'nvpunk.internals.find_jdtls_java'(function(data)
-        if data == nil or data == '' then
-            msg_fail('[java17] Java 17+', 'nvpunk-deps-java17')
-        else
-            msg_success('[java17] Java 17+', 'nvpunk-deps-java17')
-        end
-    end)
-    test_and_log('rg', '[rg] Ripgrep search tool', 'nvpunk-deps-rg')
+
+    win:mount()
+
+    local heading = {
+        NuiLine(),
+        NuiLine({NuiText(string.rep(' ', 35), hls.HC_HEADER)}),
+        NuiLine({NuiText('            Nvpunk Health Check    ', hls.HC_HEADER)}),
+        NuiLine({NuiText(string.rep(' ', 35), hls.HC_HEADER)}),
+        NuiLine(),
+        NuiLine({NuiText('    q, <esc>  -  Quit', 'Comment')}),
+        NuiLine({NuiText('    <cr>      -  Open help page', 'Comment')}),
+        NuiLine(),
+    }
+
+    local sections = {
+        {
+            test = 'git',
+            text_obj = NuiText(''),
+            label = '[git] Git Version Control',
+            help = 'nvpunk-deps-git',
+        },
+        {
+            test = 'npm',
+            text_obj = NuiText(''),
+            label = '[npm] Node Package Manager',
+            help = 'nvpunk-deps-npm',
+        },
+        {
+            test = 'gcc',
+            text_obj = NuiText(''),
+            label = '[gcc] GNU Compiler Collection',
+            help = 'nvpunk-deps-gcc',
+        },
+        {
+            test = 'g++',
+            text_obj = NuiText(''),
+            label = '[gcc] GNU Compiler Collection (C++)',
+            help = 'nvpunk-deps-g++',
+        },
+        {
+            test = 'python3',
+            text_obj = NuiText(''),
+            label = '[python] Python',
+            help = 'nvpunk-deps-python',
+        },
+        {
+            test = 'rg',
+            text_obj = NuiText(''),
+            label = '[rg] Ripgrep Search Tool',
+            help = 'nvpunk-deps-rg',
+        },
+        {
+            test = function()
+                require 'nvpunk.internals.find_jdtls_java'(function(data)
+                    return not (data == nil or data == '')
+                end, false)
+            end,
+            text_obj = NuiText(''),
+            label = '[java17] Java 17+',
+            help = 'nvpunk-deps-java17',
+        },
+    }
+
+    local function get_section_line()
+        local line = vim.api.nvim__buf_stats(
+            vim.api.nvim_get_current_buf()
+        ).current_lnum - #heading
+        if line < 1 or line > #sections then return nil end
+        return line
+    end
+
+    win:on(event.BufLeave, function() win:unmount() end)
+
+    win:map('n', '<cr>', function()
+        local line = get_section_line()
+        if line == nil then return end
+        vim.cmd('h ' .. sections[line].help)
+    end, {})
+
+    win:map('n', {'q', '<esc>'}, function()
+        win:unmount()
+    end, {})
+
+
+    local lines = {}
+    vim.list_extend(lines, heading)
+    for _, section in ipairs(sections) do
+        table.insert(lines, NuiLine({section.text_obj}))
+    end
+
+    local function redraw()
+        draw_lines(win, lines)
+    end
+
+    redraw()
+
+    for _, section in ipairs(sections) do
+        test_and_set_text(
+            section.test, section.label, section.text_obj, redraw
+        )
+    end
 end
