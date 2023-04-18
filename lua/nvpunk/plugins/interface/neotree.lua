@@ -35,23 +35,6 @@ return {
 
         vim.g.neo_tree_remove_legacy_commands = 1
 
-        vim.fn.sign_define('DiagnosticSignError', {
-            text = ' ',
-            texthl = 'DiagnosticSignError',
-        })
-        vim.fn.sign_define('DiagnosticSignWarn', {
-            text = ' ',
-            texthl = 'DiagnosticSignWarn',
-        })
-        vim.fn.sign_define('DiagnosticSignInfo', {
-            text = ' ',
-            texthl = 'DiagnosticSignInfo',
-        })
-        vim.fn.sign_define('DiagnosticSignHint', {
-            text = ' ',
-            texthl = 'DiagnosticSignHint',
-        })
-
         -- shim for non existing highlight groups
         local _hl_groups = {
             { new = 'NeoTreeIndentMarker', rep = 'WinSeparator' },
@@ -69,6 +52,7 @@ return {
             { new = 'NeoTreeHiddenByName', rep = 'NvimTreeGitIgnored' },
             { new = 'NeoTreeGitIgnored', rep = 'NvimTreeGitIgnored' },
         }
+
         for _, v in ipairs(_hl_groups) do
             if vim.fn.hlexists(v.new) == 0 then
                 vim.api.nvim_set_hl(0, v.new, { link = v.rep })
@@ -121,7 +105,7 @@ return {
                     symbols = {
                         added = '',
                         modified = '',
-                        unstaged = '',
+                        unstaged = '',
                         conflict = '',
                         staged = '',
                         unmerged = '',
@@ -175,7 +159,7 @@ return {
             filesystem = {
                 filtered_items = {
                     visible = false, -- when true, they will just be displayed differently than normal items
-                    hide_dotfiles = true,
+                    hide_dotfiles = false,
                     hide_gitignored = true,
                     hide_hidden = true, -- only works on Windows for hidden files/directories
                     hide_by_name = {
@@ -257,9 +241,6 @@ return {
                 },
             },
         }
-
-        local km = require 'nvpunk.internals.keymapper'
-        km.nkeymap('ge', '<cmd>Neotree toggle<CR>', 'פּ Toggle Explorer')
     end,
     keys = {
         {

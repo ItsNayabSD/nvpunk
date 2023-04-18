@@ -1,10 +1,26 @@
 local M = {}
 
 M.lsp_signs = {
-    { name = 'DiagnosticSignError', text = '' },
-    { name = 'DiagnosticSignWarn', text = '' },
-    { name = 'DiagnosticSignInfo', text = '' },
-    { name = 'DiagnosticSignHint', text = '' },
+    {
+        name = 'DiagnosticSignError',
+        text = '',
+        texthl = 'DiagnosticSignError',
+    },
+    {
+        name = 'DiagnosticSignWarn',
+        text = '',
+        texthl = 'DiagnosticSignWarn',
+    },
+    {
+        name = 'DiagnosticSignInfo',
+        text = '',
+        texthl = 'DiagnosticSignInfo',
+    },
+    {
+        name = 'DiagnosticSignHint',
+        text = '',
+        texthl = 'DiagnosticSignHint',
+    },
 }
 
 M.dap_signs = {
