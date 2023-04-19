@@ -42,7 +42,7 @@ local function test_and_set_text(cmd, message, text, redraw)
     if type(cmd) == 'string' then
         test_command(cmd, good, bad)
     elseif type(cmd) == 'function' then
-        if cmd() then good() else bad() end
+        cmd(good, bad)
     end
 end
 
@@ -126,9 +126,10 @@ return function()
             help = 'nvpunk-deps-rg',
         },
         {
-            test = function()
+            test = function(good, bad)
                 require 'nvpunk.internals.find_jdtls_java'(function(data)
-                    return not (data == nil or data == '')
+                    if data == nil or data == '' then return bad() end
+                    return good()
                 end, false)
             end,
             text_obj = NuiText(''),
