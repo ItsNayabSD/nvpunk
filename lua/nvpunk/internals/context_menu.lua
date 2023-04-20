@@ -90,34 +90,51 @@ M.set_rclick_submenu = function(menu_name, submenu_label, items, bindif)
     )
 end
 
+M.MENU_ITEM_WIDTH = 32
+
+---create a table representing a menu item
+---@param label string
+---@param shortcut string
+---@return table[string, string]
+M.menu_item = function(label, shortcut)
+    local padding = M.MENU_ITEM_WIDTH - #label - #shortcut
+    if padding < 1 then  -- no max function in lua?
+        padding = 1
+    end
+    return {
+        label .. string.rep(' ', padding) .. shortcut,
+        shortcut
+    }
+end
+
 M.set_lsp_rclick_menu = function()
     M.set_rclick_submenu('NvpunkLspMenu', 'LSP         ', {
-        { 'Code Actions           <space>ca', '<space>ca' },
-        { 'Go to Declaration             gD', 'gD' },
-        { 'Go to Definition              gd', 'gd' },
-        { 'Go to Implementation          gI', 'gI' },
-        { 'Signature Help             <C-k>', '<C-k>' },
-        { 'Rename                 <space>rn', '<space>rn' },
-        { 'References                    gr', 'gr' },
-        { 'Expand Diagnostics      <space>e', '<space>e' },
-        { 'Auto Format             <space>f', '<space>f' },
+        M.menu_item('Code Actions', '<space>ca'),
+        M.menu_item('Go to Declaration', 'gD'),
+        M.menu_item('Go to Definition', 'gd'),
+        M.menu_item('Go to Implementation', 'gI'),
+        M.menu_item('Signature Help', '<C-k>'),
+        M.menu_item('Rename', '<space>rn'),
+        M.menu_item('References', 'gr'),
+        M.menu_item('Expand Diagnostics', '<space>e'),
+        M.menu_item('Auto Format', '<space>f'),
     }, M.buf_has_lsp)
 end
 
 M.set_java_rclick_menu = function()
     M.set_rclick_submenu('NvpunkJavaMenu', 'Java        ', {
-        { 'Test Class            <space>bjc', '<space>bjc' },
-        { 'Test Nearest Method   <space>bjn', '<space>bjn' },
-        { 'Refresh Debugger      <space>bjr', '<space>bjr' },
+        M.menu_item('Test Class', '<space>bjc'),
+        M.menu_item('Test Nearest Method', '<space>bjn'),
+        M.menu_item('Refresh Debugger', '<space>bjr'),
     }, function() return vim.bo.filetype == 'java' end)
 end
 
 M.set_dap_rclick_menu = function()
     M.set_rclick_submenu('NvpunkDapMenu', 'Debug       ', {
-        { 'Show DAP UI           <space>bu', '<space>bu' },
-        { 'Toggle Breakpoint     <space>bb', '<space>bb' },
-        { 'Continue              <space>bc', '<space>bc' },
-        { 'Terminate             <space>bk', '<space>bk' },
+        M.menu_item('Show DAP UI', '<space>bu'),
+        M.menu_item('Toggle Breakpoint', '<space>bb'),
+        M.menu_item('Continue', '<space>bc'),
+        M.menu_item('Terminate', '<space>bk'),
     }, M.buf_has_dap)
 end
 
@@ -130,33 +147,33 @@ end
 
 M.set_neotree_rclick_menu = function()
     M.set_rclick_submenu('NvpunkNeoTreeMenu', 'File        ', {
-        { 'New File              <space>fn', '<space>fn' },
-        { 'New Folder            <space>dn', '<space>dn' },
-        { 'Rename                     <F2>', '<F2>' },
-        { 'Toggle Hidden             <C-h>', '<C-h>' },
-        { 'Split Horizontally            i', 'i' },
-        { 'Split Vertically              s', 's' },
-        { 'Open in New Tab               t', 't' },
-        { 'Open with System App  <space>xo', '<space>xo' },
-        { 'Git Add               <space>ga', '<space>ga' },
-        { 'Git Unstage           <space>gu', '<space>gu' },
+        M.menu_item('New File', '<space>fn'),
+        M.menu_item('New Folder', '<space>dn'),
+        M.menu_item('Rename', '<F2>'),
+        M.menu_item('Toggle Hidden', '<C-h>'),
+        M.menu_item('Split Horizontally', 'i'),
+        M.menu_item('Split Vertically', 's'),
+        M.menu_item('Open in New Tab', 't'),
+        M.menu_item('Open with System App', '<space>xo'),
+        M.menu_item('Git Add', '<space>ga'),
+        M.menu_item('Git Unstage', '<space>gu'),
     }, function() return vim.bo.filetype == 'neo-tree' end)
 end
 
 M.set_telescope_rclick_menu = function()
     M.set_rclick_submenu('NvpunkTelescopeMenu', 'Telescope   ', {
-        { 'Find File             <space>tf', '<space>tf' },
-        { 'Live Grep             <space>tg', '<space>tg' },
-        { 'Recent Files          <space>th', '<space>th' },
+        M.menu_item('Find File', '<space>tf'),
+        M.menu_item('Live Grep', '<space>tg'),
+        M.menu_item('Recent Files', '<space>th'),
     })
 end
 
 M.set_git_rclick_menu = function()
     M.set_rclick_submenu('NvpunkGitMenu', 'Git         ', {
-        { 'Preview Changes       <space>g?', '<space>g?' },
-        { 'Prev Hunk             <space>g[', '<space>g[' },
-        { 'Next Hunk             <space>g]', '<space>g]' },
-        { 'Blame Line            <space>gb', '<space>gb' },
+        M.menu_item('Preview Changes', '<space>g?'),
+        M.menu_item('Prev Hunk', '<space>g['),
+        M.menu_item('Next Hunk', '<space>g]'),
+        M.menu_item('Blame Line', '<space>gb'),
     }, M.buf_is_file)
 end
 
