@@ -119,7 +119,6 @@ return {
                 'vala',
                 'verilog',
                 'vim',
-                'vimdoc',
                 'vue',
                 'wgsl',
                 'wgsl_bevy',
