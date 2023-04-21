@@ -2,7 +2,7 @@
 return {
     'akinsho/bufferline.nvim',
     config = function()
-        local nonfile_bufs = require 'nvpunk.internals.nonfile_buffers'
+        local nonfile = require 'nvpunk.internals.nonfile'
 
         require('bufferline').setup {
             options = {
@@ -14,8 +14,11 @@ return {
                 separator_style = require('nvpunk.preferences').get_tab_style(),
                 custom_filter = function(buf_number, _)
                     return not vim.tbl_contains(
-                        nonfile_bufs,
+                        nonfile.filetypes,
                         vim.bo[buf_number].filetype
+                    ) and not vim.tbl_contains(
+                        nonfile.buftypes,
+                        vim.bo[buf_number].buftype
                     )
                 end,
             },

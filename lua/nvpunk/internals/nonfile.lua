@@ -1,6 +1,8 @@
--- these are filetypes that are not actual files, but rather meta buffers
+local M = {}
+-- these are filetypes and buftypes that are not actual files
 -- created by plugins or by neovim itself
-return {
+
+M.filetypes =  {
     'NvimTree',
     'Nvpunk',
     'NvpunkHealthcheck',
@@ -18,8 +20,18 @@ return {
     'neogitstatus',
     'notify',
     'packer',
+    'qf',
     'spectre_panel',
     'startify',
     'toggleterm',
     'vim',
 }
+
+M.buftypes = {
+    'nofile',
+    'prompt',
+    'quickfix',
+    'terminal',
+}
+
+return M

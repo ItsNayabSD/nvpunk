@@ -8,17 +8,17 @@ return {
         local builtin = require 'statuscol.builtin'
 
         local gitsigns_click = function(args)
-            if args.button == 'l' then
-                require'gitsigns'.preview_hunk()
-            end
+            if args.button == 'l' then require('gitsigns').preview_hunk() end
         end
+
+        local nonfile = require 'nvpunk.internals.nonfile'
 
         local conf = {
             setopt = true, -- false uses only the click handlers
             thousands = false, -- thousands separator
             relculright = true,
-            ft_ignore = require 'nvpunk.internals.nonfile_buffers',
-            bt_ignore = nil,
+            ft_ignore = nonfile.filetypes,
+            bt_ignore = nonfile.buftypes,
             segments = {
                 {
                     text = { builtin.foldfunc, ' ' },
@@ -34,11 +34,21 @@ return {
                     click = 'v:lua.ScLa',
                 },
                 {
-                    sign = { name = { 'GitSign' }, maxwidth = 1, colwidth = 1, auto = false },
+                    sign = {
+                        name = { 'GitSign' },
+                        maxwidth = 1,
+                        colwidth = 1,
+                        auto = false,
+                    },
                     click = 'v:lua.ScSa',
                 },
                 {
-                    sign = { name = { 'Diagnostic' }, maxwidth = 1, colwidth = 1, auto = false },
+                    sign = {
+                        name = { 'Diagnostic' },
+                        maxwidth = 1,
+                        colwidth = 1,
+                        auto = false,
+                    },
                     click = 'v:lua.ScSa',
                 },
                 {

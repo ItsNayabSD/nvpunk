@@ -8,6 +8,8 @@ return {
     },
     lazy = true,
     config = function()
+        local nonfile = require 'nvpunk.internals.nonfile'
+
         require('window-picker').setup {
             autoselect_one = true,
             selection_chars = '1234567890-=QWERTYUIOPASDFGHJKLZXCVBNM',
@@ -24,9 +26,17 @@ return {
                                 'vim',
                             }, val)
                         end,
-                        require 'nvpunk.internals.nonfile_buffers'
+                        nonfile.filetypes
                     ),
-                    buftype = { 'terminal', 'quickfix' },
+                    buftype = vim.tbl_filter(
+                        function(val)
+                            return not vim.tbl_contains(
+                                { 'nofile', 'terminal' },
+                                val
+                            )
+                        end,
+                        nonfile.buftypes
+                    ),
                 },
             },
             other_win_hl_color = '#9141ac',
@@ -206,11 +216,11 @@ return {
                         local path = node:get_id()
                         if vim.fn.has 'linux' == 1 then
                             vim.api.nvim_command(
-                                string.format("silent !xdg-open '%s'", path)
+                                string.format('silent !xdg-open \'%s\'', path)
                             )
                         elseif vim.fn.has 'macunix' == 1 then
                             vim.api.nvim_command(
-                                string.format("silent !open '%s'", path)
+                                string.format('silent !open \'%s\'', path)
                             )
                         else
                             vim.notify 'Operation unsupported'

@@ -8,12 +8,13 @@ M.buf_has_lsp = function()
     })
 end
 
-local nonfile_bufs = require 'nvpunk.internals.nonfile_buffers'
+local nonfile = require 'nvpunk.internals.nonfile'
 
 --- Checks if current buf is a file
 ---@return boolean
 M.buf_is_file = function()
-    return not vim.tbl_contains(nonfile_bufs, vim.bo.filetype)
+    return not vim.tbl_contains(nonfile.filetypes, vim.bo.filetype)
+    and not vim.tbl_contains(nonfile.buftypes, vim.bo.buftype)
 end
 
 --- Checks if current buf has DAP support

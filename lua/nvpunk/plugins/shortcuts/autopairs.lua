@@ -4,7 +4,7 @@ return {
     config = function()
         require('nvim-autopairs').setup {
             check_ts = true,
-            disable_filetype = require 'nvpunk.internals.nonfile_buffers',
+            disable_filetype = require('nvpunk.internals.nonfile').filetypes,
         }
 
         -- If you want insert `(` after select function or method item
