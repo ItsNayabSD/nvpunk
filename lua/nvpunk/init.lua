@@ -5,4 +5,5 @@ require('nvpunk.internals.user_conf').export_user_conf_path()
 require('nvpunk.internals.signs').setup()
 require 'nvpunk.lsp.base_conf'
 require('nvpunk.keymaps').set_leader()
+require 'nvpunk.internals.nonumber_autocmd'
 require 'nvpunk.plugin_manager'
