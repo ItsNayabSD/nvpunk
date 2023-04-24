@@ -89,10 +89,12 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
     -- Set some keybinds conditional on server capabilities
     if client.server_capabilities.documentFormattingProvider then
         bm.nkeymap(
-            '<space>f',
+            '<leader>f',
             function() vim.lsp.buf.format { async = true } end,
             'Format'
         )
+    else
+        bm.nkeymap('<leader>f', '<cmd>Neoformat<cr>', 'Format')
     end
     -- TODO range_formatting is deprecated, use format with range option
     -- if client.server_capabilities.documentRangeFormattingProvider then
