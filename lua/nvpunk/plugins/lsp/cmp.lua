@@ -83,15 +83,14 @@ return {
                     end
                 end, { 'i', 's' }),
                 -- close completion menu on esc...
-                -- ['<Esc>'] = cmp.mapping(function(fallback)
-                --     -- ...if visible...
-                --     if cmp.visible() then
-                --         cmp.close()
-                --     -- ...else emit esc
-                --     else
-                --         fallback()
-                --     end
-                -- end)
+                ['<Esc>'] = cmp.mapping(function(fallback)
+                    -- ...if visible...
+                    if cmp.visible() then
+                        cmp.close()
+                    end
+                    luasnip.unlink_current()
+                    fallback()
+                end, { 'i', 's' })
             },
             sources = cmp.config.sources {
                 { name = 'nvim_lsp' },
