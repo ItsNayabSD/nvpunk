@@ -43,7 +43,8 @@ return {
             'html',
             'jdtls',
             'jsonls',
-            'pyright',
+            -- 'pyright',  -- doesn't work well with native packages
+            'pylsp',
             'lua_ls',
             'tsserver',
             'vimls',
