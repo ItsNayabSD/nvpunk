@@ -11,17 +11,18 @@ local function git_reset(cb)
                 vim.fn.stdpath 'config',
                 'reset',
                 '--hard',
-                after_success = function()
+            },
+            on_exit = function(_, res)
+                if res == 0 then
                     if cb ~= nil then cb() end
-                end,
-                after_failure = function()
+                else
                     vim.notify(
                         'Failed to git reset Nvpunk config',
                         vim.log.levels.ERROR,
                         { title = 'Nvpunk Update' }
                     )
-                end,
-            },
+                end
+            end,
         })
         :start()
 end
