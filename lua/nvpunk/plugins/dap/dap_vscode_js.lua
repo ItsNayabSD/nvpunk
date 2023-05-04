@@ -9,15 +9,16 @@ local function build(cb)
         args = {
             vim.fn.stdpath 'data',
         },
-        after_failure = function()
-            vim.notify(
-                'Failed to install nvim-dap-vscode-js',
-                vim.log.levels.ERROR,
-                { title = 'nvpunk.plugins.dap' }
-            )
-        end,
-        after_success = function()
-            if cb ~= nil then cb() end
+        on_exit = function (_, ret)
+            if ret == 0 then
+                if cb ~= nil then vim.schedule(cb) end
+            else
+                vim.notify(
+                    'Failed to install nvim-dap-vscode-js',
+                    vim.log.levels.ERROR,
+                    { title = 'nvpunk.plugins.dap' }
+                )
+            end
         end,
     }):start()
 end
