@@ -70,6 +70,7 @@ return {
             ['lua_ls'] = require 'nvpunk.lsp.langs.lua_ls',
             ['jdtls'] = function() end, -- dummy, runs with filetype
             ['ltex'] = require 'nvpunk.lsp.langs.ltex',
+            ['pylsp'] = require 'nvpunk.lsp.langs.pylsp',
         }
         require('nvpunk.lsp.langs.default').setup 'blueprint_ls'
     end,
