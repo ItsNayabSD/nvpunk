@@ -60,4 +60,10 @@ return {
     indent_mark_end = '└',
     chevron_right = '',
     chevron_down = '',
+    vertex = '󱗘',
+    cube = '',
+    desktop_dashboard = '󰧨',
+    set_square = '󱑝',
+    rocket = '',
+    image = '',
 }
