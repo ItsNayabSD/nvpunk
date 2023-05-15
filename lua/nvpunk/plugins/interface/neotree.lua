@@ -10,6 +10,8 @@ return {
     config = function()
         local nonfile = require 'nvpunk.internals.nonfile'
 
+        local icons = require 'nvpunk.internals.icons'
+
         require('window-picker').setup {
             autoselect_one = true,
             selection_chars = '1234567890-=QWERTYUIOPASDFGHJKLZXCVBNM',
@@ -85,25 +87,25 @@ return {
                     indent_size = 2,
                     padding = 1, -- padding left
                     with_markers = true, -- indent markers
-                    indent_marker = '│',
-                    last_indent_marker = '└',
+                    indent_marker = icons.indent_mark_middle,
+                    last_indent_marker = icons.indent_mark_end,
                     highlight = 'NeoTreeIndentMarker',
                     with_expanders = true, -- expander arrows for folders
-                    expander_collapsed = '',
-                    expander_expanded = '',
+                    expander_collapsed = icons.chevron_right,
+                    expander_expanded = icons.chevron_down,
                     expander_highlight = 'NeoTreeExpander',
                 },
                 icon = {
-                    folder_closed = '',
-                    folder_open = '',
-                    folder_empty = '',
+                    folder_closed = icons.folder,
+                    folder_open = icons.folder_open,
+                    folder_empty = icons.folder_empty,
                     -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
                     -- then these will never be used.
                     default = '*',
                     highlight = 'NeoTreeFileIcon',
                 },
                 modified = {
-                    symbol = '',
+                    symbol = icons.pencil,
                     highlight = 'NeoTreeModified',
                 },
                 name = {

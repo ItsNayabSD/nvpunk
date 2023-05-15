@@ -1,5 +1,7 @@
 local M = {}
 
+local icons = require 'nvpunk.internals.icons'
+
 --- Checks if current buf has LSPs attached
 ---@return boolean
 M.buf_has_lsp = function()
@@ -91,6 +93,18 @@ M.set_rclick_submenu = function(menu_name, submenu_label, items, bindif)
     )
 end
 
+---pad string with spaces
+---@param s string
+---@param width number
+---@return string
+local function pad(s, width)
+    local padding = width - #s
+    if padding < 1 then  -- no max function in lua?
+        padding = 1
+    end
+    return s .. string.rep(' ', padding)
+end
+
 M.MENU_ITEM_WIDTH = 32
 
 ---create a table representing a menu item
@@ -98,18 +112,17 @@ M.MENU_ITEM_WIDTH = 32
 ---@param shortcut string
 ---@return table[string, string]
 M.menu_item = function(label, shortcut)
-    local padding = M.MENU_ITEM_WIDTH - #label - #shortcut
-    if padding < 1 then  -- no max function in lua?
-        padding = 1
-    end
+    label = pad(label, M.MENU_ITEM_WIDTH - #shortcut)
     return {
-        label .. string.rep(' ', padding) .. shortcut,
+        label .. shortcut,
         shortcut
     }
 end
 
+M.L0_ITEM_WIDTH = 12
+
 M.set_lsp_rclick_menu = function()
-    M.set_rclick_submenu('NvpunkLspMenu', 'LSP         ', {
+    M.set_rclick_submenu('NvpunkLspMenu', pad('LSP', M.L0_ITEM_WIDTH) .. icons.double_arrow_right, {
         M.menu_item('Code Actions', '<space>ca'),
         M.menu_item('Go to Declaration', 'gD'),
         M.menu_item('Go to Definition', 'gd'),
@@ -123,7 +136,7 @@ M.set_lsp_rclick_menu = function()
 end
 
 M.set_java_rclick_menu = function()
-    M.set_rclick_submenu('NvpunkJavaMenu', 'Java        ', {
+    M.set_rclick_submenu('NvpunkJavaMenu', pad('Java', M.L0_ITEM_WIDTH) .. icons.double_arrow_right, {
         M.menu_item('Test Class', '<space>bjc'),
         M.menu_item('Test Nearest Method', '<space>bjn'),
         M.menu_item('Refresh Debugger', '<space>bjr'),
@@ -131,7 +144,7 @@ M.set_java_rclick_menu = function()
 end
 
 M.set_dap_rclick_menu = function()
-    M.set_rclick_submenu('NvpunkDapMenu', 'Debug       ', {
+    M.set_rclick_submenu('NvpunkDapMenu', pad('Debug', M.L0_ITEM_WIDTH) .. icons.double_arrow_right, {
         M.menu_item('Show DAP UI', '<space>bu'),
         M.menu_item('Toggle Breakpoint', '<space>bb'),
         M.menu_item('Continue', '<space>bc'),
@@ -147,7 +160,7 @@ end
 -- end
 
 M.set_neotree_rclick_menu = function()
-    M.set_rclick_submenu('NvpunkNeoTreeMenu', 'File        ', {
+    M.set_rclick_submenu('NvpunkNeoTreeMenu', pad('File', M.L0_ITEM_WIDTH) .. icons.double_arrow_right, {
         M.menu_item('New File', '<space>fn'),
         M.menu_item('New Folder', '<space>dn'),
         M.menu_item('Rename', '<F2>'),
@@ -162,7 +175,7 @@ M.set_neotree_rclick_menu = function()
 end
 
 M.set_telescope_rclick_menu = function()
-    M.set_rclick_submenu('NvpunkTelescopeMenu', 'Telescope   ', {
+    M.set_rclick_submenu('NvpunkTelescopeMenu', pad('Telescope', M.L0_ITEM_WIDTH) .. icons.double_arrow_right, {
         M.menu_item('Find File', '<space>tf'),
         M.menu_item('Live Grep', '<space>tg'),
         M.menu_item('Recent Files', '<space>th'),
@@ -170,7 +183,7 @@ M.set_telescope_rclick_menu = function()
 end
 
 M.set_git_rclick_menu = function()
-    M.set_rclick_submenu('NvpunkGitMenu', 'Git         ', {
+    M.set_rclick_submenu('NvpunkGitMenu', pad('Git', M.L0_ITEM_WIDTH) .. icons.double_arrow_right, {
         M.menu_item('Preview Changes', '<space>g?'),
         M.menu_item('Prev Hunk', '<space>g['),
         M.menu_item('Next Hunk', '<space>g]'),

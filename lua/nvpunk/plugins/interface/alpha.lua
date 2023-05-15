@@ -3,6 +3,7 @@ return {
     'goolord/alpha-nvim',
     branch = 'main',
     config = function()
+        local icons = require 'nvpunk.internals.icons'
         local dashboard = require 'alpha.themes.dashboard'
 
         local header =
@@ -21,44 +22,45 @@ return {
         end
 
         dashboard.section.buttons.val = {
-            button('fn', '  New file', ':NvpunkNewFileDialog<CR>'),
-            button('ge', '  Open explorer', ':NvpunkExplorerToggle<CR>'),
+            button('fn', icons.new_file .. '  New file', ':NvpunkNewFileDialog<CR>'),
+            button('ge', icons.folder .. '  Open explorer', ':NvpunkExplorerToggle<CR>'),
+            button('T', icons.shell .. '  Open terminal', ':terminal<CR>a'),
             button(
                 'tf',
-                '  Find file',
+                icons.find .. '  Find file',
                 ':lua require"nvpunk.internals.telescope_pickers".find_files()<CR>'
             ),
             button(
                 'tg',
-                '  Find word',
+                icons.find_file .. '  Find word',
                 ':lua require"nvpunk.internals.telescope_pickers".live_grep()<CR>'
             ),
             button(
                 'th',
-                '  Recent files',
+                icons.back_in_time .. '  Recent files',
                 ':lua require"telescope.builtin".oldfiles()<CR>'
             ),
             { type = 'padding', val = 1 },
-            button('M', '  Mason Package Manager', ':Mason<CR>'),
+            button('M', icons.library .. '  Mason Package Manager', ':Mason<CR>'),
             button(
                 'C',
-                '  Preferences',
+                icons.tools .. '  Preferences',
                 ':lua require"nvpunk.preferences".preferences_menu()<CR>'
             ),
-            button('cu', '  Update Plugins', ':Lazy restore<CR>'),
+            button('cu', icons.package_down .. '  Update Plugins', ':Lazy restore<CR>'),
             button(
                 'cU',
-                '  Update Nvpunk',
+                icons.guitar .. '  Update Nvpunk',
                 ':lua require"nvpunk.punk_funcs".nvpunk_update()<CR>'
             ),
             button(
                 'ch',
-                '  Health Check',
+                icons.stethoscope .. '  Health Check',
                 ':lua require"nvpunk.internals.healthcheck"()<CR>'
             ),
-            button('H', 'ﬤ  Nvpunk Documentation', ':h nvpunk<CR>'),
+            button('H', icons.help .. '  Nvpunk Documentation', ':h nvpunk<CR>'),
             { type = 'padding', val = 1 },
-            button('q', '  Quit', ':qa<CR>', 'NvpunkRed'),
+            button('q', icons.quit .. '  Quit', ':qa<CR>', 'NvpunkRed'),
         }
 
         local function get_nvpunk_version()
@@ -86,9 +88,9 @@ return {
                 .. tostring(v.patch)
         end
 
-        dashboard.section.footer.val = ' Nvpunk '
+        dashboard.section.footer.val = icons.info .. ' Nvpunk '
             .. get_nvpunk_version()
-            .. '    Neovim '
+            .. '   ' .. icons.vim .. ' Neovim '
             .. get_neovim_version()
         dashboard.section.footer.opts.hl = 'Comment'
 
@@ -107,7 +109,7 @@ return {
         require('nvpunk.internals.keymapper').nkeymap(
             '<leader>A',
             '<CMD>Alpha<CR>',
-            ' Open Greeter'
+            icons.home .. ' Open Greeter'
         )
     end,
 }

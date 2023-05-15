@@ -2,6 +2,8 @@ local Job = require 'plenary.job'
 
 local hls = require 'nvpunk.internals.highlights'
 
+local icons = require 'nvpunk.internals.icons'
+
 --- Test if a system command is callable
 ---@param cmd string
 ---@param on_success function
@@ -27,15 +29,15 @@ end
 ---@param redraw function
 ---@return nil
 local function test_and_set_text(cmd, message, text, redraw)
-    text:set('    …  ' .. message)
+    text:set('    ' .. icons.ellipsis .. '  ' .. message)
 
     local function good()
-        text:set('      ' .. message, hls.HC_GOOD)
+        text:set('    ' .. icons.tick .. '  ' .. message, hls.HC_GOOD)
         redraw()
     end
 
     local function bad()
-        text:set('      ' .. message, hls.HC_BAD)
+        text:set('    ' .. icons.x .. '  ' .. message, hls.HC_BAD)
         redraw()
     end
 

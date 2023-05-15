@@ -1,4 +1,5 @@
 -- git gutter
+local icons = require 'nvpunk.internals.icons'
 return {
     'lewis6991/gitsigns.nvim',
     config = function()
@@ -6,37 +7,37 @@ return {
             signs = {
                 add = {
                     hl = 'GitSignsAdd',
-                    text = '▌',
+                    text = icons.gutter_left,
                     numhl = 'GitSignsAddNr',
                     linehl = 'GitSignsAddLn',
                 },
                 change = {
                     hl = 'GitSignsChange',
-                    text = '▌',
+                    text = icons.gutter_left,
                     numhl = 'GitSignsChangeNr',
                     linehl = 'GitSignsChangeLn',
                 },
                 delete = {
                     hl = 'GitSignsDelete',
-                    text = '▁',
+                    text = icons.gutter_low,
                     numhl = 'GitSignsDeleteNr',
                     linehl = 'GitSignsDeleteLn',
                 },
                 topdelete = {
                     hl = 'GitSignsDelete',
-                    text = '▔',
+                    text = icons.gutter_high,
                     numhl = 'GitSignsDeleteNr',
                     linehl = 'GitSignsDeleteLn',
                 },
                 changedelete = {
                     hl = 'GitSignsChange',
-                    text = '▌',
+                    text = icons.gutter_left,
                     numhl = 'GitSignsChangeNr',
                     linehl = 'GitSignsChangeLn',
                 },
                 untracked = {
                     hl = 'GitSignsAdd',
-                    text = '▌',
+                    text = icons.gutter_left,
                     numhl = 'GitSignsAddNr',
                     linehl = 'GitSignsAddLn',
                 },
@@ -82,18 +83,18 @@ return {
         'Gitsigns',
     },
     keys = {
-        { '<leader>g', desc = ' Git' },
+        { '<leader>g', desc = icons.git .. ' Git' },
         {
             '<leader>gb',
             '<cmd>Gitsigns blame_line<cr>',
-            desc = ' Blame line',
+            desc = icons.back_in_time .. ' Blame line',
         },
-        { '<leader>g]', '<cmd>Gitsigns next_hunk<cr>', desc = ' Next hunk' },
-        { '<leader>g[', '<cmd>Gitsigns prev_hunk<cr>', desc = ' Prev hunk' },
+        { '<leader>g]', '<cmd>Gitsigns next_hunk<cr>', desc = icons.next .. ' Next hunk' },
+        { '<leader>g[', '<cmd>Gitsigns prev_hunk<cr>', desc = icons.prev .. ' Prev hunk' },
         {
             '<leader>g?',
             '<cmd>Gitsigns preview_hunk<cr>',
-            desc = ' Preview changes',
+            desc = icons.diff .. ' Preview changes',
         },
     },
     event = {

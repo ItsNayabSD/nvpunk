@@ -1,5 +1,7 @@
 local M = {}
 
+local icons = require'nvpunk.internals.icons'
+
 local PREFERENCES_FILE = vim.fn.expand(
     vim.fn.stdpath 'config' .. '/org.gabmus.nvpunk.preferences.json'
 )
@@ -227,13 +229,13 @@ end
 
 local preferences_menus = {
     {
-        label = '  Change Theme',
+        label = icons.theme .. '  Change Theme',
         func = function()
             require 'nvpunk.theme_manager.telescope_theme_chooser'()
         end,
     },
     {
-        label = 'שּ  Change Greeter Header',
+        label = icons.greet .. '  Change Greeter Header',
         func = function()
             menu(require('nvpunk.internals.greeter_headers').headers, {
                 prompt = 'Choose a header:',
@@ -245,7 +247,7 @@ local preferences_menus = {
         end,
     },
     {
-        label = '  Interface Preferences',
+        label = icons.tools .. '  Interface Preferences',
         func = function()
             local blankline_enabled = M.get_indent_blankline_enabled()
             local navic_enabled = M.get_navic_enabled()
@@ -272,13 +274,13 @@ local preferences_menus = {
                     end,
                 },
                 {
-                    label = '  '
+                    label = icons.gps .. '  '
                         .. (navic_enabled and 'Disable' or 'Enable')
                         .. ' Navic (breadcrumbs)',
                     func = function() M.set_navic_enabled(not navic_enabled) end,
                 },
                 {
-                    label = '  '
+                    label = icons.ui_column_mark .. '  '
                         .. (column_mark_enabled and 'Disable' or 'Enable')
                         .. ' Column Mark',
                     func = function()
@@ -286,7 +288,7 @@ local preferences_menus = {
                     end,
                 },
                 {
-                    label = '  '
+                    label = icons.ui_numbered_list .. '  '
                         .. (relative_numbers_enabled and 'Disable' or 'Enable')
                         .. ' Relative Numbers',
                     func = function()
@@ -296,7 +298,7 @@ local preferences_menus = {
                     end,
                 },
                 {
-                    label = '  '
+                    label = icons.ui_folding .. '  '
                         .. (folding_guide_enabled and 'Disable' or 'Enable')
                         .. ' Folding Guide',
                     func = function()
@@ -304,7 +306,7 @@ local preferences_menus = {
                     end,
                 },
                 {
-                    label = '裡 Tab Style',
+                    label = icons.ui_tab .. ' Tab Style',
                     func = function()
                         menu({
                             { label = 'Slant', value = 'slant' },
@@ -320,7 +322,7 @@ local preferences_menus = {
                     end,
                 },
                 {
-                    label = '  Statusline Style',
+                    label = icons.shell .. '  Statusline Style',
                     func = function()
                         menu(
                             {
@@ -344,7 +346,7 @@ local preferences_menus = {
                     end,
                 },
                 {
-                    label = '  Window Borders',
+                    label = icons.ui_win_border .. '  Window Borders',
                     func = function()
                         menu(
                             BORDER_SELECT_OPTS,
@@ -357,7 +359,7 @@ local preferences_menus = {
                     end,
                 },
                 {
-                    label = '  Floating Window Borders',
+                    label = icons.ui_multi_win .. '  Floating Window Borders',
                     func = function()
                         menu(
                             BORDER_SELECT_OPTS,
@@ -372,7 +374,7 @@ local preferences_menus = {
                     end,
                 },
                 {
-                    label = '  Popup Borders',
+                    label = icons.ui_unordered_list .. '  Popup Borders',
                     func = function()
                         menu(BORDER_SELECT_OPTS, {
                             prompt = 'Popup Borders:',
@@ -389,7 +391,7 @@ local preferences_menus = {
         end,
     },
     {
-        label = '  Open Config',
+        label = icons.cog .. '  Open Config',
         func = function()
             vim.cmd('cd ' .. vim.fn.stdpath 'config')
             vim.cmd 'NvpunkExplorerOpen'
