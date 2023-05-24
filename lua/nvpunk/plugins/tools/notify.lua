@@ -11,6 +11,7 @@ return {
             function()
                 require('notify').dismiss {
                     pending = true,
+                    silent = true,
                 }
             end,
             desc = 'Dismiss Notifications',
