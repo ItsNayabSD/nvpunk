@@ -6,15 +6,15 @@ local Job = require 'plenary.job'
 local function get_version(java_exec)
     local ok, res = pcall(function()
         local lines = vim.fn.systemlist { java_exec, '-version' }
-        lines = require('nvpunk.internals.functools').filter(
-            lines,
+        lines = vim.tbl_filter(
             function(line)
                 return (
                     string.find(line, 'version') ~= nil
                     and string.find(line, '"') ~= nil
                     and string.find(line, '.') ~= nil
                 )
-            end
+            end,
+            lines
         )
         local line = lines[1]
         if line == nil then return 0 end

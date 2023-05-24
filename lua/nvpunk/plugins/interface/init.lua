@@ -17,7 +17,7 @@ local plugins = {
     'statuscol',
 }
 
-return require('nvpunk.internals.functools').map(
-    plugins,
-    function(plugin) return require(PFX .. plugin) end
+return vim.tbl_map(
+    function(plugin) return require(PFX .. plugin) end,
+    plugins
 )

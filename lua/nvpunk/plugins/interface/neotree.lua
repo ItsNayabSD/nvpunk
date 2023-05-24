@@ -1,4 +1,6 @@
 -- file explorer
+local icons = require 'nvpunk.internals.icons'
+
 return {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v2.x',
@@ -9,8 +11,6 @@ return {
     lazy = true,
     config = function()
         local nonfile = require 'nvpunk.internals.nonfile'
-
-        local icons = require 'nvpunk.internals.icons'
 
         require('window-picker').setup {
             autoselect_one = true,
@@ -115,16 +115,16 @@ return {
                 },
                 git_status = {
                     symbols = {
-                        added = '',
-                        modified = '',
-                        unstaged = '',
-                        conflict = '',
-                        staged = '',
-                        unmerged = '',
-                        renamed = '',
-                        deleted = '',
-                        untracked = '',
-                        ignored = '◌',
+                        added = icons.git_added,
+                        modified = icons.git_changed,
+                        unstaged = icons.dot,
+                        conflict = icons.git_merge,
+                        staged = icons.git_staged,
+                        unmerged = icons.git_unmerged,
+                        renamed = icons.git_renamed,
+                        deleted = icons.git_deleted,
+                        untracked = icons.git_untracked,
+                        ignored = icons.ignored,
                     },
                 },
             },
@@ -259,7 +259,7 @@ return {
             'ge',
             '<cmd>Neotree toggle<cr>',
             mode = 'n',
-            desc = 'פּ Toggle Explorer',
+            desc = icons.filetree .. ' Toggle Explorer',
         },
     },
     cmd = {
