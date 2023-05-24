@@ -79,6 +79,18 @@ return {
             sort_case_insensitive = true,
             sort_function = nil, -- can use custom
             use_default_mappings = false,
+            sources = {
+                'filesystem',
+                'buffers',
+                'git_status',
+                -- 'diagnostics'
+            },
+            source_selector = {
+                winbar = true,
+                statusline = false, -- toggle to show selector on statusline
+                content_layout = 'center',
+                tabs_layout = 'equal',
+            },
             default_component_configs = {
                 container = {
                     enable_character_fade = true,
@@ -130,7 +142,7 @@ return {
             },
             window = {
                 position = 'left',
-                width = '30',
+                width = '40',
                 mapping_options = {
                     noremap = true,
                     nowait = true,
