@@ -9,7 +9,6 @@ return {
         local packages = {
             'stylua',
             'prettier',
-            'alex',
         }
 
         if require('nvpunk.internals.cpu').is_x86_64() then

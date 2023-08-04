@@ -48,15 +48,12 @@ return {
             'lua_ls',
             'tsserver',
             'vimls',
-            'vuels',
             'yamlls',
         }
 
         if require('nvpunk.internals.cpu').is_x86_64() then
             vim.tbl_extend('force', packages, {
                 'clangd',
-                'lemminx',
-                'ltex',
                 'rust_analyzer',
             })
         end
