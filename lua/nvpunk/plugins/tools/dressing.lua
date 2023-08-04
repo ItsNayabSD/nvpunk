@@ -17,7 +17,7 @@ return {
                 insert_only = true,
 
                 -- These are passed to nvim_open_win
-                anchor = 'SW',
+                override = 'SW',
                 border = require('nvpunk.preferences').get_small_window_border(),
                 -- 'editor' and 'win' will default to being centered
                 relative = 'cursor',
@@ -64,7 +64,7 @@ return {
                 -- Options for built-in selector
                 builtin = {
                     -- These are passed to nvim_open_win
-                    anchor = 'NW',
+                    override = 'NW',
                     border = require('nvpunk.preferences').get_small_window_border(),
                     -- 'editor' and 'win' will default to being centered
                     relative = 'editor',

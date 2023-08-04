@@ -41,8 +41,20 @@ return {
                     ),
                 },
             },
-            other_win_hl_color = '#9141ac',
-            fg_color = '#f6f5f4',
+            highlights = {
+                statusline = {
+                    focused = {
+                        fg = '#ededed',
+                        bg = '#9141ac',
+                        bold = true,
+                    },
+                    unfocused = {
+                        fg = '#ededed',
+                        bg = '#9141ac',
+                        bold = true,
+                    },
+                },
+            },
         }
 
         vim.g.neo_tree_remove_legacy_commands = 1
