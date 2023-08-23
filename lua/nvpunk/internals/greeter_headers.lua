@@ -327,6 +327,22 @@ M.images = {
         },
         hl = 'Typedef',
     },
+    keygen_church = {
+        content = {
+            '   ▓  ▓  ▓   ',
+            '   ▒  ▒  ▒   ',
+            '▓  ░░░▒░░░  ▓',
+            '▒     ▒     ▒',
+            '░░░░▒▒▒▒▒░░░░',
+            '      ▒      ',
+            '  ▓▒░░▒░░▒▓  ',
+            '     ▒ ▒     ',
+            '    ▒   ▒    ',
+            '    ▒   ▒    ',
+            '     ▒▒▒     ',
+        },
+        hl = 'NvpunkRed'
+    }
 }
 
 M.headers = vim.tbl_keys(M.images)
