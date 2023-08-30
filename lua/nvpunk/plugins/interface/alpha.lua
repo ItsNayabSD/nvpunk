@@ -54,6 +54,11 @@ return {
                 ':lua require"nvpunk.punk_funcs".nvpunk_update()<CR>'
             ),
             button(
+                'uT',
+                icons.tree .. '  Update TreeSitter',
+                ':TSUpdate<CR>'
+            ),
+            button(
                 'ch',
                 icons.stethoscope .. '  Health Check',
                 ':lua require"nvpunk.internals.healthcheck"()<CR>'

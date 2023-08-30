@@ -68,4 +68,5 @@ return {
     set_square = '󱑝',
     rocket = '',
     image = '',
+    tree = '󰔱',
 }
