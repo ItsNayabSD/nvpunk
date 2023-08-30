@@ -59,6 +59,11 @@ return {
                 ':TSUpdate<CR>'
             ),
             button(
+                'nI',
+                icons.cog .. '  Installers',
+                ':lua require"nvpunk.internals.installers.installers_menu".installers_menu()<CR>'
+            ),
+            button(
                 'ch',
                 icons.stethoscope .. '  Health Check',
                 ':lua require"nvpunk.internals.healthcheck"()<CR>'

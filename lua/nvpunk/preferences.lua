@@ -1,6 +1,6 @@
 local M = {}
 
-local icons = require'nvpunk.internals.icons'
+local icons = require 'nvpunk.internals.icons'
 
 local PREFERENCES_FILE = vim.fn.expand(
     vim.fn.stdpath 'config' .. '/org.gabmus.nvpunk.preferences.json'
@@ -10,14 +10,14 @@ local DEFAULT_PREFERENCES = {
     theme = 'onedark_warmer',
     greeter = 'punk',
     indent_blankline_enabled = true,
-    tab_style = 'slant', -- 'slant' | 'padded_slant' | 'thin' | 'thick'
+    tab_style = 'slant',        -- 'slant' | 'padded_slant' | 'thin' | 'thick'
     navic_enabled = true,
     statusline_style = 'plain', -- 'powerline' | 'plain' | 'plain_separators'
     -- | 'slant_low' | 'slant_high' | 'round'
     -- | 'pixel'
-    window_border = 'solid', -- 'solid' | 'none' | 'single' | 'rounded' | 'double'
+    window_border = 'solid',         -- 'solid' | 'none' | 'single' | 'rounded' | 'double'
     small_window_border = 'rounded', -- 'solid' | 'none' | 'single' | 'rounded' | 'double'
-    popup_border = 'none', -- 'solid' | 'none' | 'single' | 'rounded' | 'double'
+    popup_border = 'none',           -- 'solid' | 'none' | 'single' | 'rounded' | 'double'
     column_mark_enabled = true,
     folding_guide_enabled = true,
     relative_numbers = true,
@@ -211,27 +211,23 @@ M.set_popup_border = function(border)
 end
 
 local BORDER_SELECT_OPTS = {
-    { label = 'Padded', value = 'solid' },
-    { label = 'None', value = 'none' },
+    { label = 'Padded',        value = 'solid' },
+    { label = 'None',          value = 'none' },
     { label = 'Single Stroke', value = 'single' },
     { label = 'Double Stroke', value = 'double' },
-    { label = 'Rounded', value = 'rounded' },
+    { label = 'Rounded',       value = 'rounded' },
 }
 
-local function select_format_get_label(item) return item.label end
+local select_format_get_label = require('nvpunk.internals.menu').format_get_label
+-- local function select_format_get_label(item) return item.label end
 
-local function menu(items, opts, on_choice)
-    vim.ui.select(items, opts, function(item, index)
-        if item == nil then return end
-        on_choice(item, index)
-    end)
-end
+local menu = require('nvpunk.internals.menu').menu
 
 local preferences_menus = {
     {
         label = icons.theme .. '  Change Theme',
         func = function()
-            require 'nvpunk.theme_manager.telescope_theme_chooser'()
+            require 'nvpunk.theme_manager.telescope_theme_chooser' ()
         end,
     },
     {
@@ -309,10 +305,10 @@ local preferences_menus = {
                     label = icons.ui_tab .. ' Tab Style',
                     func = function()
                         menu({
-                            { label = 'Slant', value = 'slant' },
+                            { label = 'Slant',        value = 'slant' },
                             { label = 'Padded Slant', value = 'padded_slant' },
-                            { label = 'Thin', value = 'thin' },
-                            { label = 'Thick', value = 'thick' },
+                            { label = 'Thin',         value = 'thin' },
+                            { label = 'Thick',        value = 'thick' },
                         }, {
                             prompt = 'Tab Style:',
                             format_item = select_format_get_label,
@@ -327,15 +323,15 @@ local preferences_menus = {
                         menu(
                             {
                                 { label = 'Powerline', value = 'powerline' },
-                                { label = 'Plain', value = 'plain' },
+                                { label = 'Plain',     value = 'plain' },
                                 {
                                     label = 'Plain with Separators',
                                     value = 'plain_separators',
                                 },
-                                { label = 'Slant Low', value = 'slant_low' },
+                                { label = 'Slant Low',  value = 'slant_low' },
                                 { label = 'Slant High', value = 'slant_high' },
-                                { label = 'Round', value = 'round' },
-                                { label = 'Pixel', value = 'pixel' },
+                                { label = 'Round',      value = 'round' },
+                                { label = 'Pixel',      value = 'pixel' },
                             },
                             {
                                 prompt = 'Statusline Style:',

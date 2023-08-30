@@ -1,26 +1,15 @@
 --- Build vscode js debug from git
 --- @param cb? function callback function
 local function build(cb)
-    local Job = require 'plenary.job'
-
-    Job:new({
-        command = vim.fn.stdpath 'config'
-            .. '/scripts/install_vscode_js_debug.sh',
-        args = {
-            vim.fn.stdpath 'data',
-        },
-        on_exit = function (_, ret)
-            if ret == 0 then
-                if cb ~= nil then vim.schedule(cb) end
+    require('nvpunk.internals.installers.i_vscode_js_debug')(function(success)
+        if cb ~= nil then
+            if success then
+                cb()
             else
-                vim.notify(
-                    'Failed to install nvim-dap-vscode-js',
-                    vim.log.levels.ERROR,
-                    { title = 'nvpunk.plugins.dap' }
-                )
+                vim.print('Failed to install vscode_js_debug')
             end
-        end,
-    }):start()
+        end
+    end)
 end
 
 return {
