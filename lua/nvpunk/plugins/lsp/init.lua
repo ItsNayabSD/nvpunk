@@ -7,7 +7,6 @@ local plugins = {
     'lsp_colors',
     'lspkind',
     'mason',
-    'null_ls',
     'nvim_jdtls',
     'signature',
     'trouble',

@@ -4,8 +4,6 @@ return {
     dependencies = {
         -- bridge mason and lspconfig
         { 'williamboman/mason-lspconfig.nvim' },
-        -- bridge mason and null-ls
-        { 'jay-babu/mason-null-ls.nvim' },
     },
     config = function()
         require('mason').setup {
