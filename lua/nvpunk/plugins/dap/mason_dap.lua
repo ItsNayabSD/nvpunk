@@ -3,7 +3,13 @@ return {
     config = function()
         local dap = require 'dap'
         local mason_dap = require 'mason-nvim-dap'
-        local outFiles = require 'nvpunk.plugins.dap.typescript_out_files'
+        local outFiles = {
+            '${workspaceFolder}/dist/**/*.js',
+            '${workspaceFolder}/build/**/*.js',
+            '${workspaceFolder}/lib/**/*.js',
+            '${workspaceFolder}/public/**/*.js',
+            '${workspaceFolder}/out/**/*.js',
+        }
         mason_dap.setup {
             ensure_installed = {
                 'node2',
@@ -22,7 +28,6 @@ return {
             },
         }
 
-        local outFiles = require 'nvpunk.plugins.dap.typescript_out_files'
         local config = {
             {
                 type = 'pwa-node',
