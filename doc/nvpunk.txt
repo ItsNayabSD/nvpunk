@@ -118,8 +118,8 @@ Here's a non-exaustive list of shortcuts, devided into categories.
 
 ## Terminal                                        *nvpunk-shortcuts-terminal*
 
-- `<space>/h`     Open horizontal terminal
-- `<space>/v`     Open vertical terminal
+- `<space>/i`     Open vertical terminal
+- `<space>/s`     Open horizontal terminal
 - `<C-\>`         Toggle floating terminal
 - `<Esc><Esc>`    Get out of terminal mode
 

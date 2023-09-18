@@ -69,4 +69,6 @@ return {
     rocket = '',
     image = '',
     tree = '󰔱',
+    vsplit = '󰤻',
+    hsplit = '󰤼',
 }

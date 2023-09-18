@@ -31,11 +31,12 @@ M.set_keymaps = function()
         require('which-key').register {
             ['<leader>/'] = { name = ' Term Split' },
         }
-        km.nkeymap('<leader>/s', '<cmd>vs<cr><cmd>terminal<cr>', 'ﲖ Vertical')
+        km.nkeymap('<leader>/s', '<cmd>vs<cr><cmd>terminal<cr>',
+            require('nvpunk.internals.icons').hsplit .. ' Horizontal')
         km.nkeymap(
             '<leader>/i',
             '<cmd>sp<cr><cmd>terminal<cr>',
-            'ﲐ Horizontal'
+            require('nvpunk.internals.icons').vsplit .. ' Vertical'
         )
 
         km.nkeymap('<A-j>', 'gj')
