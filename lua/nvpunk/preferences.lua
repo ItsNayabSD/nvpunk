@@ -259,12 +259,12 @@ local preferences_menus = {
                         if blankline_enabled then
                             M.set_indent_blankline_enabled(false)
                             vim.schedule(
-                                function() vim.cmd 'IndentBlanklineDisable!' end
+                                function() vim.cmd 'IBLDisable' end
                             )
                         else
                             M.set_indent_blankline_enabled(true)
                             vim.schedule(
-                                function() vim.cmd 'IndentBlanklineEnable!' end
+                                function() vim.cmd 'IBLEnable' end
                             )
                         end
                     end,
