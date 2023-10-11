@@ -19,7 +19,8 @@ require('lazy').setup 'nvpunk.plugins'
 
 local function on_plugins_loaded() require 'nvpunk.on_plugins_loaded' end
 
-vim.api.nvim_create_autocmd({ 'User VeryLazy' }, {
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'VeryLazy',
     callback = on_plugins_loaded,
     group = vim.api.nvim_create_augroup('OnLazyDone', { clear = true }),
 })

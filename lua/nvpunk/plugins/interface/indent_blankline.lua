@@ -9,8 +9,6 @@ return {
 
         require('ibl').setup {
             enabled = require('nvpunk.preferences').get_indent_blankline_enabled(),
-            show_current_context = true,
-            show_current_context_start = true,
             indent = {
                 char = "│"
             },
