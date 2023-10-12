@@ -14,7 +14,7 @@ return {
         local nonfile = require 'nvpunk.internals.nonfile'
 
         local conf = {
-            setopt = true, -- false uses only the click handlers
+            setopt = true,     -- false uses only the click handlers
             thousands = false, -- thousands separator
             relculright = true,
             ft_ignore = nonfile.filetypes,
@@ -35,7 +35,7 @@ return {
                 },
                 {
                     sign = {
-                        name = { 'GitSign' },
+                        namespace = { 'gitsigns' },
                         maxwidth = 1,
                         colwidth = 1,
                         auto = false,
@@ -51,6 +51,7 @@ return {
                     },
                     click = 'v:lua.ScSa',
                 },
+                { text = { ' ' } },
                 {
                     text = { '▏' },
                     hl = 'WinSeparator',
