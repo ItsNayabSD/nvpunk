@@ -24,6 +24,8 @@ local builtin_themes = {
     'monokai_ristretto',
     'monokai_spectrum',
     'moonlight',
+    'nightcity_afterlife',
+    'nightcity_kabuki',
     'nightfox_carbonfox',
     'nightfox_dawnfox',
     'nightfox_dayfox',

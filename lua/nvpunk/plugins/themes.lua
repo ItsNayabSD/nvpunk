@@ -18,4 +18,5 @@ end, {
     { 'shaunsingh/moonlight.nvim' },
     { 'shaunsingh/nord.nvim' },
     { 'loctvl842/monokai-pro.nvim' },
+    { 'cryptomilk/nightcity.nvim', branch = 'main' }
 })
