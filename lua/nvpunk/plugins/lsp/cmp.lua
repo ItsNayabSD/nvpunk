@@ -45,6 +45,9 @@ return {
                     require('luasnip').lsp_expand(args.body)
                 end,
             },
+            view = {
+                entries = { name = 'custom', selection_order = 'near_cursor' },
+            },
             mapping = cmp.mapping.preset.insert {
                 -- enter accepts the current selection
                 -- `select=false`: only accept if there is a selection
@@ -85,12 +88,10 @@ return {
                 -- close completion menu on esc...
                 ['<Esc>'] = cmp.mapping(function(fallback)
                     -- ...if visible...
-                    if cmp.visible() then
-                        cmp.close()
-                    end
+                    if cmp.visible() then cmp.close() end
                     luasnip.unlink_current()
                     fallback()
-                end, { 'i', 's' })
+                end, { 'i', 's' }),
             },
             sources = cmp.config.sources {
                 { name = 'nvim_lsp' },
@@ -108,6 +109,9 @@ return {
                     mode = 'symbol_text',
                     preset = 'codicons',
                     maxwidth = 50,
+                    ellipsis_char = '…',
+
+                    fixed_width = false,
                 },
             },
             -- don't sort double underscore things first
@@ -127,6 +131,7 @@ return {
                 completion = cmp.config.window.bordered {
                     border = require('nvpunk.preferences').get_popup_border(),
                     winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
+                    zindex = 2001,
                 },
                 documentation = cmp.config.window.bordered {
                     border = require('nvpunk.preferences').get_small_window_border(),
