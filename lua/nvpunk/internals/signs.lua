@@ -1,38 +1,40 @@
 local M = {}
 
+local icons = require 'nvpunk.internals.icons'
+
 M.lsp_signs = {
     {
         name = 'DiagnosticSignError',
-        text = '',
+        text = icons.diag_error,
         texthl = 'DiagnosticSignError',
     },
     {
         name = 'DiagnosticSignWarn',
-        text = '',
+        text = icons.diag_warn,
         texthl = 'DiagnosticSignWarn',
     },
     {
         name = 'DiagnosticSignInfo',
-        text = '',
+        text = icons.diag_info,
         texthl = 'DiagnosticSignInfo',
     },
     {
         name = 'DiagnosticSignHint',
-        text = '',
+        text = icons.diag_hint,
         texthl = 'DiagnosticSignHint',
     },
 }
 
 M.dap_signs = {
-    { name = 'DapBreakpoint', text = '', texthl = 'DiagnosticSignError' },
+    { name = 'DapBreakpoint', text = icons.debug_breakpoint, texthl = 'DiagnosticSignError' },
     {
         name = 'DapBreakpointRejected',
-        text = '',
+        text = icons.debug_rejected,
         texthl = 'DiagnosticSignWarn',
     },
     {
         name = 'DapStopped',
-        text = '',
+        text = icons.debug_stopped,
         texthl = 'GitSignsDelete',
         linehl = 'GitSignsDeleteLn',
     },
