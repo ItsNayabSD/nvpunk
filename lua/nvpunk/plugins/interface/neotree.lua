@@ -3,7 +3,7 @@ local icons = require 'nvpunk.internals.icons'
 
 return {
     'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v2.x',
+    branch = 'main',
     dependencies = {
         'MunifTanjim/nui.nvim',
         's1n7ax/nvim-window-picker',
@@ -216,7 +216,7 @@ return {
                         -- '.null-ls_*',
                     },
                 },
-                follow_current_file = true,
+                follow_current_file = { enabled = true },
                 group_empty_dirs = false,
                 hijack_netrw_behavior = 'open_default',
                 use_libuv_file_watcher = true,
@@ -255,7 +255,7 @@ return {
                 },
             },
             buffers = {
-                follow_current_file = true, -- This will find and focus the file in the active buffer every
+                follow_current_file = { enabled = true }, -- This will find and focus the file in the active buffer every
                 -- time the current file is changed while the tree is open.
                 group_empty_dirs = false, -- when true, empty folders will be grouped together
                 show_unloaded = true,
