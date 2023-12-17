@@ -1,13 +1,15 @@
+local icons = require 'nvpunk.internals.icons'
+
 local filename_widget = {
     'filename',
     file_status = true,
     newfile_staus = true,
     path = 0,
     symbols = {
-        modified = ' ',
-        readonly = ' ',
+        modified = ' ' .. icons.pencil,
+        readonly = ' ' .. icons.lock,
         unnamed = '[No Name]',
-        newfile = ' ',
+        newfile = ' ' .. icons.badge_new,
     },
 }
 
@@ -16,9 +18,9 @@ local diagnostics_widget = {
     sources = { 'nvim_diagnostic' },
     sections = { 'error', 'warn', 'info', 'hint' },
     symbols = {
-        error = ' ',
-        warn = ' ',
-        info = ' ',
+        error = icons.diag_error .. ' ',
+        warn = icons.diag_warn .. ' ',
+        info = icons.diag_info .. ' ',
     },
 }
 

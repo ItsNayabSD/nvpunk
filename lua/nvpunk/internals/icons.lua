@@ -36,6 +36,8 @@ return {
     diff = '',
     ellipsis = '…',
     pencil = '󰏫',
+    lock = '',
+    badge_new = '󰎔',
     git = '',
     git_added = '',
     git_changed = '',
