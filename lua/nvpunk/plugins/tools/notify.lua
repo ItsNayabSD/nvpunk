@@ -1,3 +1,4 @@
+local icons = require 'nvpunk.internals.icons'
 -- pretty notifications
 return {
     'rcarriga/nvim-notify',
@@ -5,7 +6,7 @@ return {
     lazy = false,
     priority = 80,
     keys = {
-        { '<leader>n', desc = ' Notifications' },
+        { '<leader>n', desc = icons.notifications .. ' Notifications' },
         {
             '<leader>nd',
             function()

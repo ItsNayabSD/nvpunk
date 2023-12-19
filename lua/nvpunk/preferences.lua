@@ -252,7 +252,7 @@ local preferences_menus = {
             local relative_numbers_enabled = M.get_relative_numbers_enabled()
             menu({
                 {
-                    label = '  '
+                    label = icons.indent .. '  '
                         .. (blankline_enabled and 'Disable' or 'Enable')
                         .. ' Indent Blankline',
                     func = function()

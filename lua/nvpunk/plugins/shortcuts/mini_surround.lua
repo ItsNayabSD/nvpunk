@@ -1,3 +1,4 @@
+local icons = require 'nvpunk.internals.icons'
 -- for surrounding text with delimiters such as brackets and quotes
 return {
     'echasnovski/mini.surround',
@@ -20,8 +21,8 @@ return {
         }
     end,
     keys = {
-        { 'S', mode = 'v', desc = ' Surround' },
-        { '<leader>S', mode = { 'n', 'v' }, desc = ' Surround' },
+        { 'S', mode = 'v', desc = icons.curlybraces .. ' Surround' },
+        { '<leader>S', mode = { 'n', 'v' }, desc = icons.curlybraces .. ' Surround' },
         { '<leader>Sd', mode = { 'n', 'v' }, desc = 'Delete' },
         { '<leader>Sf', mode = { 'n', 'v' }, desc = 'Find Forward' },
         { '<leader>SF', mode = { 'n', 'v' }, desc = 'Find Back' },

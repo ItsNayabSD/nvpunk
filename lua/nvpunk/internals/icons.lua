@@ -97,4 +97,6 @@ return {
     event = '',
     operator = '',
     big_t = '󰊄',
+    notifications = '󰂚',
+    indent = '󰉶'
 }
