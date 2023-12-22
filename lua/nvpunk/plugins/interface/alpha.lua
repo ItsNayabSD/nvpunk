@@ -47,10 +47,9 @@ return {
                 icons.tools .. '  Preferences',
                 ':lua require"nvpunk.preferences".preferences_menu()<CR>'
             ),
-            button('cu', icons.package_down .. '  Update Plugins', ':Lazy restore<CR>'),
             button(
                 'cU',
-                icons.guitar .. '  Update Nvpunk',
+                icons.package_down .. '  Update Nvpunk',
                 ':lua require"nvpunk.punk_funcs".nvpunk_update()<CR>'
             ),
             button(
