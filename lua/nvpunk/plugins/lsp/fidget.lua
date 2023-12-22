@@ -3,14 +3,14 @@ return {
     'j-hui/fidget.nvim',
     branch = 'main',
     config = function()
+        local icons = require 'nvpunk.internals.icons'
         require('fidget').setup {
-            text = {
-                spinner = 'dots',
-            },
-            align = {
-                bottom = true,
-                right = true,
-            },
+            progress = {
+                display = {
+                    render_limit = 8,
+                    done_icon = icons.tick
+                }
+            }
         }
     end,
 }
