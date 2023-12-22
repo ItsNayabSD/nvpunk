@@ -36,17 +36,10 @@ return {
     config = function()
         require 'lspconfig'
         local packages = {
-            'bashls',
-            'cmake',
-            'cssls',
             'emmet_ls',
             'html',
-            'jdtls',
-            'jsonls',
             'lua_ls',
-            'tsserver',
             'vimls',
-            'yamlls',
         }
 
         if require('nvpunk.internals.cpu').is_x86_64() then
