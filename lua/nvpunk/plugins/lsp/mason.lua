@@ -6,12 +6,13 @@ return {
         { 'williamboman/mason-lspconfig.nvim' },
     },
     config = function()
+        local icons = require 'nvpunk.internals.icons'
         require('mason').setup {
             ui = {
                 icons = {
-                    package_installed = '✓',
-                    package_pending = '…',
-                    package_uninstalled = '✗',
+                    package_installed = icons.tick,
+                    package_pending = icons.ellipsis,
+                    package_uninstalled = icons.x,
                 },
                 keymaps = {
                     -- expand a package
