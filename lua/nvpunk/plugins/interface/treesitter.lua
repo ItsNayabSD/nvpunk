@@ -18,23 +18,9 @@ return {
         end
         require('nvim-treesitter.configs').setup {
             ensure_installed = {
-                'bash',
-                'css',
-                'html',
                 'ini',
-                'javascript',
-                'jsdoc',
-                'json',
-                'json5',
                 'lua',
-                'markdown',
-                'markdown_inline',
-                'python',
-                'rust',
-                'scss',
-                'todotxt',
                 'toml',
-                'typescript',
                 'vim',
                 'yaml',
             },
