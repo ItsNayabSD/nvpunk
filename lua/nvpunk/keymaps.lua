@@ -25,25 +25,25 @@ M.set_keymaps = function()
     -- pressing esc twice goes to normal mode in terminal windows
     km.tkeymap('<Esc><Esc>', '<C-\\><C-n>')
 
-    -- Terminal splitter
+    -- wrapped text movement
+    km.nkeymap('<A-j>', 'gj')
+    km.nkeymap('<A-k>', 'gk')
+    km.nkeymap('<A-Down>', 'gj')
+    km.nkeymap('<A-Up>', 'gk')
 
-    require('nvpunk.internals.try').call(function()
+    -- Terminal splitter
+    km.nkeymap('<leader>/s', '<cmd>vs<cr><cmd>terminal<cr>',
+        require('nvpunk.internals.icons').hsplit .. ' Horizontal')
+    km.nkeymap(
+        '<leader>/i',
+        '<cmd>sp<cr><cmd>terminal<cr>',
+        require('nvpunk.internals.icons').vsplit .. ' Vertical'
+    )
+    pcall(function()
         require('which-key').register {
             ['<leader>/'] = { name = ' Term Split' },
         }
-        km.nkeymap('<leader>/s', '<cmd>vs<cr><cmd>terminal<cr>',
-            require('nvpunk.internals.icons').hsplit .. ' Horizontal')
-        km.nkeymap(
-            '<leader>/i',
-            '<cmd>sp<cr><cmd>terminal<cr>',
-            require('nvpunk.internals.icons').vsplit .. ' Vertical'
-        )
-
-        km.nkeymap('<A-j>', 'gj')
-        km.nkeymap('<A-k>', 'gk')
-        km.nkeymap('<A-Down>', 'gj')
-        km.nkeymap('<A-Up>', 'gk')
-    end, {}, 'Failed to load which-key', 'nvpunk.keymaps')
+    end)
 end
 
 return M
