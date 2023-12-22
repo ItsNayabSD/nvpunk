@@ -1,7 +1,7 @@
 -- show language server starting progress in the lower right corner
 return {
     'j-hui/fidget.nvim',
-    branch = 'legacy',
+    branch = 'main',
     config = function()
         require('fidget').setup {
             text = {
