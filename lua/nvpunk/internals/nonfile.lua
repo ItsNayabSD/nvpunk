@@ -18,6 +18,7 @@ M.filetypes =  {
     'dapui_stacks',
     'dapui_watches',
     'dashboard',
+    'fidget',
     'help',
     'lazy',
     'lir',
