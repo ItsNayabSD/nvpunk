@@ -1,8 +1,8 @@
 local PFX = 'nvpunk.plugins.shortcuts.'
 local plugins = {
     'comment',
-    'autopairs',
     'mini_surround',
+    'mini_pairs',
     'caser',
 }
 
