@@ -18,4 +18,14 @@ return {
 
     -- support for MDX
     { 'jxnblk/vim-mdx-js' },
+
+    {
+        'saecki/crates.nvim',
+        lazy = true,
+        event = { "BufRead Cargo.toml" },
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require('crates').setup()
+        end,
+    }
 }
