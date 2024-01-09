@@ -26,3 +26,19 @@ vim.lsp.handlers['textDocument/signatureHelp'] =
     vim.lsp.with(vim.lsp.handlers.signature_help, {
         border = require('nvpunk.preferences').get_small_window_border(),
     })
+
+vim.g.rustaceanvim = {
+    tools = {},
+    server = {
+        on_attach = function(client, bufnr)
+            require('nvpunk.lsp.keymaps').set_lsp_keymaps(client, bufnr)
+        end,
+        settings = {
+            ['rust-analyzer'] = {
+                telemetry = { enable = false },
+                offset_encoding = 'utf-8',
+            }
+        }
+    },
+    dap = {},
+}

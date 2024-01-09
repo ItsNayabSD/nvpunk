@@ -8,7 +8,7 @@ return {
             progress = {
                 display = {
                     render_limit = 8,
-                    done_icon = icons.tick
+                    done_icon = icons.tick,
                 }
             }
         }

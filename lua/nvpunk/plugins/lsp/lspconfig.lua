@@ -45,7 +45,6 @@ return {
         if require('nvpunk.internals.cpu').is_x86_64() then
             vim.tbl_extend('force', packages, {
                 'clangd',
-                'rust_analyzer',
             })
         end
 
@@ -57,6 +56,7 @@ return {
             ['pyright'] = require 'nvpunk.lsp.langs.pyright',
             ['lua_ls'] = require 'nvpunk.lsp.langs.lua_ls',
             ['jdtls'] = function() end, -- dummy, runs with filetype
+            ['rust_analyzer'] = function() end, -- dummy, use rustacean
             ['ltex'] = require 'nvpunk.lsp.langs.ltex',
             ['pylsp'] = require 'nvpunk.lsp.langs.pylsp',
         }

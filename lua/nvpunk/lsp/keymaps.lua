@@ -96,10 +96,6 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
     else
         bm.nkeymap('<leader>f', '<cmd>Neoformat<cr>', 'Format')
     end
-    -- TODO range_formatting is deprecated, use format with range option
-    -- if client.server_capabilities.documentRangeFormattingProvider then
-    --     bm.xkeymap('<space>f', vim.lsp.buf.range_formatting, 'Format range')
-    -- end
 
     if extra_keymaps ~= nil then extra_keymaps(bm) end
 end
