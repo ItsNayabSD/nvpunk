@@ -4,6 +4,7 @@ nvpunk-contents	nvpunk.txt	/*nvpunk-contents*
 nvpunk-deps-gcc	nvpunk.txt	/*nvpunk-deps-gcc*
 nvpunk-deps-git	nvpunk.txt	/*nvpunk-deps-git*
 nvpunk-deps-java17	nvpunk.txt	/*nvpunk-deps-java17*
+nvpunk-deps-lldb	nvpunk.txt	/*nvpunk-deps-lldb*
 nvpunk-deps-npm	nvpunk.txt	/*nvpunk-deps-npm*
 nvpunk-deps-python	nvpunk.txt	/*nvpunk-deps-python*
 nvpunk-deps-rg	nvpunk.txt	/*nvpunk-deps-rg*

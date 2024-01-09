@@ -220,6 +220,12 @@ Ripgrep is a line-oriented search tool that recursively searches the current
 directory for a regex pattern. Ripgrep is used by the Telescope live grep
 functionality and it's therefore a requirement for Nvpunk.
 
+## lldb                                                     *nvpunk-deps-lldb*
+
+LLDB is a debugger that's part of LLVM. It's used for debugging a number of
+languages including rust. While not strictly required you will need to install
+it to use the debugging features for many languages.
+
 ==============================================================================
 USER CONFIGURATION                                        *nvpunk-user-config*
 
