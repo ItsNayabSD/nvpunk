@@ -42,6 +42,7 @@ M.set_keymaps = function()
     pcall(function()
         require('which-key').register {
             ['<leader>/'] = { name = ' Term Split' },
+            ['<leader>W'] = { name = 'Whitespace' },
         }
     end)
 end
