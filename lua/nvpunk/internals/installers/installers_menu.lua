@@ -11,6 +11,9 @@ local installers_menus = {
             vim.notify('Installing VSCode JS Debug...', vim.log.levels.INFO, {
                 title = notif_ctx
             })
+            vim.notify('DO NOT CLOSE NEOVIM!', vim.log.levels.ERROR, {
+                title = notif_ctx
+            })
             require('nvpunk.internals.installers.i_vscode_js_debug')(function(success)
                 if success then
                     vim.notify('VSCode JS Debug Installed', vim.log.levels.INFO, {
