@@ -15,7 +15,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup 'nvpunk.plugins'
+require('lazy').setup('nvpunk.plugins', {
+    change_detection = {
+        enabled = false,
+    }
+})
 
 local function on_plugins_loaded() require 'nvpunk.on_plugins_loaded' end
 
