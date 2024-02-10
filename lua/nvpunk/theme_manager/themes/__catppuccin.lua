@@ -38,7 +38,6 @@ return function(style)
             lsp_trouble = true,
             cmp = true,
             lsp_saga = true,
-            gitgutter = true,
             gitsigns = true,
             telescope = true,
             nvimtree = true,
