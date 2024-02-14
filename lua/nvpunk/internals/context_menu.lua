@@ -191,6 +191,15 @@ M.set_git_rclick_menu = function()
     }, M.buf_is_file)
 end
 
+M.set_view_rclick_menu = function()
+    M.set_rclick_submenu('NvpunkViewMenu', pad('View', M.L0_ITEM_WIDTH) .. icons.double_arrow_right, {
+        M.menu_item('Code Outline', 'go'),
+        M.menu_item('Split Term Vertical', '<space>/i'),
+        M.menu_item('Split Term Horizontal', '<space>/s'),
+        M.menu_item('Floating Term', '<C-\\>'),
+    })
+end
+
 M.setup_rclick_menu_autocommands = function()
     vim.api.nvim_create_autocmd({ 'BufEnter', 'LspAttach' }, {
         callback = function()
@@ -201,6 +210,7 @@ M.setup_rclick_menu_autocommands = function()
             M.set_neotree_rclick_menu()
             M.set_telescope_rclick_menu()
             M.set_git_rclick_menu()
+            M.set_view_rclick_menu()
         end,
     })
 end
