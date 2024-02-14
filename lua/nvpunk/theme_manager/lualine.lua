@@ -6,11 +6,19 @@ local filename_widget = {
     newfile_staus = true,
     path = 0,
     symbols = {
-        modified = ' ' .. icons.pencil,
-        readonly = ' ' .. icons.lock,
+        modified = icons.pencil,
+        readonly = icons.lock,
         unnamed = '[No Name]',
-        newfile = ' ' .. icons.badge_new,
+        newfile = icons.badge_new,
     },
+    on_click = function()
+        local p = vim.fn.expand('%')
+        if p == nil or p == '' then
+            return
+        end
+        vim.fn.setreg('+"', p)
+        vim.notify('Copied file path to system clipboard')
+    end
 }
 
 local diagnostics_widget = {
@@ -22,6 +30,40 @@ local diagnostics_widget = {
         warn = icons.diag_warn .. ' ',
         info = icons.diag_info .. ' ',
     },
+    on_click = function(_num, btn, _mods)
+        if btn == 'l' then
+            vim.diagnostic.goto_next()
+        elseif btn == 'r' then
+            vim.diagnostic.goto_prev()
+        end
+    end
+}
+
+local vsplit_widget = {
+    function()
+        return icons.win_hsplit
+    end,
+    on_click = function()
+        vim.cmd 'vs'
+    end
+}
+
+local hsplit_widget = {
+    function()
+        return icons.win_vsplit
+    end,
+    on_click = function()
+        vim.cmd 'sp'
+    end
+}
+
+local term_widget = {
+    function()
+        return icons.shell
+    end,
+    on_click = function()
+        vim.cmd 'ToggleTerm'
+    end
 }
 
 local styles = {
@@ -67,15 +109,15 @@ return function(theme)
             lualine_a = { 'mode' },
             lualine_b = { 'branch' },
             lualine_c = { filename_widget, diagnostics_widget },
-            lualine_x = { 'encoding', 'fileformat', 'filetype' },
-            lualine_y = { 'progress' },
-            lualine_z = { 'location' },
+            lualine_x = { 'progress', 'location' },
+            lualine_y = { 'encoding', 'fileformat', 'filetype' },
+            lualine_z = { vsplit_widget, hsplit_widget, term_widget },
         },
         inactive_sections = {
             lualine_a = {},
             lualine_b = {},
             lualine_c = { filename_widget, diagnostics_widget },
-            lualine_x = { 'location' },
+            lualine_x = { 'filetype' },
             lualine_y = {},
             lualine_z = {},
         },

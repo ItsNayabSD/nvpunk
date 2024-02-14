@@ -73,6 +73,8 @@ return {
     tree = '󰔱',
     vsplit = '󰤻',
     hsplit = '󰤼',
+    win_vsplit = '',
+    win_hsplit = '',
     file = '󰈙',
     puzzle = '',
     curlybraces = '',
