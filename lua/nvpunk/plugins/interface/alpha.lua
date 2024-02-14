@@ -113,7 +113,10 @@ return {
         }
 
         dashboard.section.buttons.opts.spacing = 0
-        require('alpha').setup(dashboard.opts)
+        dashboard.config.opts.keymap = {
+            press = {'<CR>', '<2-LeftMouse>'}
+        }
+        require('alpha').setup(dashboard.config)
 
         require('nvpunk.internals.keymapper').nkeymap(
             '<leader>A',
