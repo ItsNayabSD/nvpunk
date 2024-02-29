@@ -24,134 +24,35 @@ local java_debug_path = data_dir .. '/java-debug'
 local java_home = ''
 local java_exec = 'java'
 
-local Job = require 'plenary.job'
-
-M.has_java_debug = function() return vim.fn.isdirectory(java_debug_path) ~= 0 end
+M.has_java_debug = function()
+    return vim.fn.filereadable(vim.fn.glob(
+        java_debug_path
+        .. '/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar'
+    )) ~= 0
+end
 
 M.has_vscode_java_test = function()
-    return vim.fn.isdirectory(vscode_java_test_path) ~= 0
+    return vim.fn.filereadable(vim.fn.glob(
+        vscode_java_test_path
+        .. '/server/com.microsoft.java.test.plugin-*.jar'
+    )) ~= 0
 end
 
-M.install_java_debug = function()
-    this_notif 'Installing java-debug'
-
-    local function install()
-        Job:new({
-            command = java_debug_path .. '/mvnw',
-            args = { 'clean', 'install' },
-            cwd = java_debug_path,
-            env = { ['JAVA_HOME'] = java_home },
-            on_exit = function(_, ret)
-                if ret == 0 then
-                    this_notif 'java-debug installed'
-                    vim.schedule(function() M.setup() end)
-                else
-                    this_err 'Failed to install java-debug'
-                end
-            end,
-        }):start()
-    end
-
-    local function clone()
-        Job:new({
-            command = 'git',
-            args = {
-                'clone',
-                'https://github.com/microsoft/java-debug',
-                java_debug_path,
-            },
-            on_exit = function(_, ret)
-                if ret == 0 then
-                    install()
-                else
-                    this_err 'Failed to clone java-debug'
-                end
-            end,
-        }):start()
-    end
-
-    clone()
-end
-
-M.install_vscode_java_test = function()
-    this_notif 'Installing vscode-java-test'
-
-    local function build_plugin()
-        Job:new({
-            command = 'npm',
-            args = { 'run', 'build-plugin' },
-            cwd = vscode_java_test_path,
-            env = { ['JAVA_HOME'] = java_home },
-            on_exit = function(_, ret2)
-                if ret2 == 0 then
-                    this_notif 'vscode-java-test installed'
-                    vim.schedule(function() M.setup() end)
-                else
-                    this_err 'Failed to build vscode-java-test'
-                end
-            end,
-        }):start()
-    end
-
-    local function npm_install()
-        Job:new({
-            command = 'npm',
-            args = { 'install' },
-            cwd = vscode_java_test_path,
-            env = { ['JAVA_HOME'] = java_home },
-            on_exit = function(_, ret1)
-                if ret1 == 0 then
-                    build_plugin()
-                else
-                    this_err 'Failed to get deps for vscode-java-test'
-                end
-            end,
-        }):start()
-    end
-
-    local function clone()
-        Job:new({
-            command = 'git',
-            args = {
-                'clone',
-                'https://github.com/microsoft/vscode-java-test',
-                vscode_java_test_path,
-            },
-            on_exit = function(_, ret)
-                if ret == 0 then
-                    npm_install()
-                else
-                    this_err 'Failed to clone vscode-java-test'
-                end
-            end,
-        }):start()
-    end
-
-    clone()
-end
-
---- Remove vscode java test and java debug
----@param cb function
-M.remove_extra_java_tools = function(cb)
-    Job:new({
-        command = 'rm',
-        args = { '-rf', vscode_java_test_path, java_debug_path },
-        on_exit = function(_, _) vim.schedule(cb) end,
-    }):start()
-end
 
 M.start_jdtls = function()
-    -- local bundles = {
-    --     vim.fn.glob(
-    --         java_debug_path
-    --             .. '/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar'
-    --     ),
-    -- }
-    -- vim.list_extend(
-    --     bundles,
-    --     vim.split(vim.fn.glob(vscode_java_test_path .. '/server/*.jar'), '\n')
-    -- )
-    local bundles = {} -- plain disable vscode-java-test and java-debug as they're broken
+    local bundles = {}
+    if M.has_java_debug() then
+        table.insert(bundles, vim.fn.glob(
+            java_debug_path
+            .. '/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar'
+        ))
+    end
+    if M.has_vscode_java_test() then
+        vim.list_extend(
+            bundles,
+            vim.split(vim.fn.glob(vscode_java_test_path .. '/server/*.jar'), '\n')
+        )
+    end
 
     local extendedClientCapabilities = jdtls.extendedClientCapabilities
     extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
@@ -231,30 +132,32 @@ M.start_jdtls = function()
         },
 
         on_attach = function(client, bufnr)
-            -- local function extra_keymaps(bm)
-            --     bm.nkeymap(
-            --         '<leader>bjr',
-            --         '<cmd>JdtRefreshDebugConfigs<cr>',
-            --         'Refresh Java Debugger Conf'
-            --     )
-            --     bm.nkeymap(
-            --         '<leader>bjc',
-            --         '<cmd>lua require"jdtls".test_class()<cr>',
-            --         'Test Class'
-            --     )
-            --     bm.nkeymap(
-            --         '<leader>bjn',
-            --         '<cmd>lua require"jdtls".test_nearest_method()<cr>',
-            --         'Test Nearest Method'
-            --     )
-            -- end
-            -- require('nvpunk.lsp.keymaps').set_lsp_keymaps(
-            --     client,
-            --     bufnr,
-            --     extra_keymaps
-            -- )
-            -- jdtls_dap.setup_dap_main_class_configs()
-            -- jdtls.setup_dap { hotcodereplace = 'auto' }
+            local function extra_keymaps(bm)
+                bm.nkeymap(
+                    '<leader>bjr',
+                    '<cmd>JdtRefreshDebugConfigs<cr>',
+                    'Refresh Java Debugger Conf'
+                )
+                bm.nkeymap(
+                    '<leader>bjc',
+                    '<cmd>lua require"jdtls".test_class()<cr>',
+                    'Test Class'
+                )
+                bm.nkeymap(
+                    '<leader>bjn',
+                    '<cmd>lua require"jdtls".test_nearest_method()<cr>',
+                    'Test Nearest Method'
+                )
+            end
+            require('nvpunk.lsp.keymaps').set_lsp_keymaps(
+                client,
+                bufnr,
+                extra_keymaps
+            )
+            if M.has_java_debug() then
+                jdtls_dap.setup_dap_main_class_configs()
+                jdtls.setup_dap { hotcodereplace = 'auto' }
+            end
         end,
         capabilities = require('nvpunk.lsp.capabilities').capabilities,
     }
@@ -265,13 +168,9 @@ M.start_jdtls = function()
 end
 
 M.setup = function()
-    require 'nvpunk.internals.find_jdtls_java'(function(home)
+    require 'nvpunk.internals.find_jdtls_java' (function(home)
         java_exec = (home .. '/bin/java') or java_exec
         java_home = home
-        -- if not M.has_java_debug() then return M.install_java_debug() end
-        -- if not M.has_vscode_java_test() then
-        --     return M.install_vscode_java_test()
-        -- end
         M.start_jdtls()
     end)
 end

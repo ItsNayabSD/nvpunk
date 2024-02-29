@@ -53,7 +53,7 @@ return function(cb, notify)
     if notify == nil then notify = true end
     if jhome == nil and notify then
         vim.notify(
-            'Java version 17 not found, jdtls cannot start',
+            'Java version 17 not found',
             vim.log.levels.WARN,
             { title = 'nvpunk.internals.find_jdtls_java' }
         )

@@ -10,7 +10,7 @@ CLONEPATH="$DATAPATH/vscode-js-debug"
 EXECPATH="$CLONEPATH/out/src/vsDebugServer.js"
 
 if [ "$NVPUNK_REINSTALL" == "1" ]; then
-    rm -rf $CLONEPATH
+    rm -rf "$CLONEPATH"
 fi
 
 if [ -f "$EXECPATH" ]; then exit 0; fi
