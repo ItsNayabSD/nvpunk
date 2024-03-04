@@ -10,6 +10,7 @@ return function(style, light)
     end
     t.setup {
         background = style,
+        dim_inactive_windows = false,
     }
     vim.cmd 'colorscheme everforest'
     reload 'nvpunk.theme_manager.lualine' 'auto'

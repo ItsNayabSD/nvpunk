@@ -98,12 +98,14 @@ local styles = {
 }
 
 return function(theme)
-    local style = styles[require('nvpunk.preferences').get_statusline_style()]
+    local preferences = require('nvpunk.preferences')
+    local style = styles[preferences.get_statusline_style()]
     require('lualine').setup {
         options = {
             theme = theme,
             section_separators = style.section_separators,
             component_separators = style.component_separators,
+            globalstatus = preferences.get_global_statusbar(),
         },
         sections = {
             lualine_a = { 'mode' },

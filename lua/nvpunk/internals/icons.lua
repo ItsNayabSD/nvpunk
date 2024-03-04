@@ -100,5 +100,6 @@ return {
     operator = '',
     big_t = '󰊄',
     notifications = '󰂚',
-    indent = '󰉶'
+    indent = '󰉶',
+    globe = '',
 }

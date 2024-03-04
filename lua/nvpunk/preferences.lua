@@ -21,6 +21,7 @@ local DEFAULT_PREFERENCES = {
     column_mark_enabled = true,
     folding_guide_enabled = true,
     relative_numbers = true,
+    global_statusbar = true,
 }
 
 --- Make sure that conf has all keys
@@ -210,6 +211,18 @@ M.set_popup_border = function(border)
     save_conf(conf)
 end
 
+---@return boolean
+M.get_global_statusbar = function()
+    return load_conf().global_statusbar
+end
+
+---@param val boolean
+M.set_global_statusbar = function(val)
+    local conf = load_conf()
+    conf.global_statusbar = val
+    save_conf(conf)
+end
+
 local BORDER_SELECT_OPTS = {
     { label = 'Padded',        value = 'solid' },
     { label = 'None',          value = 'none' },
@@ -250,6 +263,7 @@ local preferences_menus = {
             local column_mark_enabled = M.get_column_mark_enabled()
             local folding_guide_enabled = M.get_folding_guide_enabled()
             local relative_numbers_enabled = M.get_relative_numbers_enabled()
+            local global_statusbar = M.get_global_statusbar()
             menu({
                 {
                     label = icons.indent .. '  '
@@ -339,6 +353,15 @@ local preferences_menus = {
                             },
                             function(item, _) M.set_statusline_style(item.value) end
                         )
+                    end,
+                },
+                {
+                    label = icons.globe .. '  '
+                        .. (global_statusbar and 'Disable' or 'Enable')
+                        .. ' Global Statusbar',
+                    func = function()
+                        M.set_global_statusbar(not global_statusbar)
+                        reload('nvpunk.theme_manager.themes.' .. M.get_theme())
                     end,
                 },
                 {
