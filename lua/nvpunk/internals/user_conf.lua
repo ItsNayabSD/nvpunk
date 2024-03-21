@@ -6,6 +6,8 @@ local USER_CONF_INIT = USER_CONF_DIR .. '/lua/user/init.lua'
 local USER_CONF_PLUGINS = USER_CONF_DIR .. '/lua/user/plugins.lua'
 local USER_CONF_THEMES = USER_CONF_DIR .. '/lua/user/themes.lua'
 
+M.SNIPPETS_DIR = USER_CONF_DIR .. '/snippets'
+
 M.export_user_conf_path = function()
     package.path = USER_CONF_DIR .. '/lua/?.lua;' .. package.path
 end

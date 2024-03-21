@@ -4,7 +4,7 @@
 *nvpunk*
 
                                  NVPUNK MANUAL
-                                 
+
 
                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⡴⠊⠀⠀⠀
                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠁⠀⣀⣀⣀⣀⣤⣤⣤⣤⣤⣤⡆⠀⢠⠃⢠⠀⠀⠀⣀⡀⢠⣤⣤⠀⢀⣠⣴⡾⠟⠉⠀⠀⠀⠀⠀
@@ -33,7 +33,7 @@ LANGUAGE SERVER...................................................|nvpunk-lsp|
 TREESITTER.................................................|nvpunk-treesitter|
 SHORTCUTS...................................................|nvpunk-shortcuts|
 COMMANDS.....................................................|nvpunk-commands|
-HEALTHCHECK...............................................|nvpunk-healthcheck| 
+HEALTHCHECK...............................................|nvpunk-healthcheck|
 USER CONFIGURATION........................................|nvpunk-user-config|
 TROUBLESHOOTING.......................................|nvpunk-troubleshooting|
 REFERENCES.................................................|nvpunk-references|
@@ -161,7 +161,7 @@ Here's a non-exaustive list of shortcuts, devided into categories.
 - `dp`   diff put
 
 ==============================================================================
-COMMANDS                                                     *nvpunk-commands* 
+COMMANDS                                                     *nvpunk-commands*
 
 Update Nvpunk and its plugins
 >
@@ -184,7 +184,7 @@ Clear Nvpunk data, this is useful if Nvpunk breaks after an update
 <
 
 ==============================================================================
-HEALTHCHECK                                               *nvpunk-healthcheck* 
+HEALTHCHECK                                               *nvpunk-healthcheck*
 
 Nvpunk's built-in health check will look for external dependencies and report
 if they're missing.
@@ -290,6 +290,52 @@ requires extra configuration. Here is an example of a `themes.lua` file:
         end,
     }
 <
+
+## Snippets                                                  *nvpunk-snippets*
+
+You can add your own snippets in vscode style format.
+
+Create `~/.config/nvpunk/snippets/package.json`, and define your snippet files
+similarly to this
+
+>
+    {
+        "name": "nvpunk-user-snippets",
+        "contributes": {
+            "snippets": [
+                {
+                    "language": [
+                        "typescript"
+                    ],
+                    "path": "./typescript.json"
+                }
+            ]
+        }
+    }
+<
+
+Then in the `~/.config/nvpunk/snippets` folder create the files you referenced
+in the package.json you just created, and add your vscode style snippets, here
+is an example `typescript.json`:
+
+>
+    {
+        "My function template": {
+            "prefix": ["mfn", "myfun"],
+            "body": [
+                "async function ${1:name}(opts: MyFunOpts): Promise<MyFunResult> {",
+                "    ${0:body}",
+                "}"
+            ],
+            "description": "Quickly write a function signature I use often"
+        },
+    }
+<
+
+To define snippets for all languages use language "all".
+
+For more information reference the luasnip documentation:
+https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#vs-code
 
 ==============================================================================
 TROUBLESHOOTING                                       *nvpunk-troubleshooting*

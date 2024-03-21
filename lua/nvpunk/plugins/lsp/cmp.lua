@@ -37,7 +37,14 @@ return {
         local cmp = require 'cmp'
         local luasnip = require 'luasnip'
 
-        require('luasnip.loaders.from_vscode').lazy_load()
+        local snip_loader = require('luasnip.loaders.from_vscode')
+        snip_loader.lazy_load()
+        snip_loader.lazy_load({
+            paths = {
+                vim.fn.stdpath('config') .. '/snippets',
+                require('nvpunk.internals.user_conf').SNIPPETS_DIR
+            }
+        })
 
         cmp.setup {
             snippet = {

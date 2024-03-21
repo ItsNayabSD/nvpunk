@@ -1,0 +1,13 @@
+{
+    "name": "nvpunk-snippets",
+    "contributes": {
+        "snippets": [
+            {
+                "language": [
+                    "json"
+                ],
+                "path": "./json.json"
+            }
+        ]
+    }
+}

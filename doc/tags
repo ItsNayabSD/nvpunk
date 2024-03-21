@@ -25,6 +25,7 @@ nvpunk-shortcuts-git	nvpunk.txt	/*nvpunk-shortcuts-git*
 nvpunk-shortcuts-telescope	nvpunk.txt	/*nvpunk-shortcuts-telescope*
 nvpunk-shortcuts-telescope-prompt	nvpunk.txt	/*nvpunk-shortcuts-telescope-prompt*
 nvpunk-shortcuts-terminal	nvpunk.txt	/*nvpunk-shortcuts-terminal*
+nvpunk-snippets	nvpunk.txt	/*nvpunk-snippets*
 nvpunk-treesitter	nvpunk.txt	/*nvpunk-treesitter*
 nvpunk-troubleshooting	nvpunk.txt	/*nvpunk-troubleshooting*
 nvpunk-user-config	nvpunk.txt	/*nvpunk-user-config*
