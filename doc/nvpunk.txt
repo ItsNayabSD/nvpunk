@@ -328,7 +328,7 @@ is an example `typescript.json`:
                 "}"
             ],
             "description": "Quickly write a function signature I use often"
-        },
+        }
     }
 <
 
