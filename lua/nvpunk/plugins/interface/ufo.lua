@@ -1,3 +1,5 @@
+local icons = require 'nvpunk.internals.icons'
+
 -- pretty and better folding
 return {
     'kevinhwang91/nvim-ufo',
@@ -19,8 +21,8 @@ return {
         km.nkeymap('zM', function() require('ufo').closeAllFolds() end)
 
         vim.opt.fillchars = {
-            foldopen = '',
-            foldclose = '',
+            foldopen = icons.chevron_down,
+            foldclose = icons.chevron_right,
         }
     end,
     config = function()
@@ -33,7 +35,7 @@ return {
                 truncate
             )
                 local newVirtText = {}
-                local suffix = ('     %d '):format(endLnum - lnum)
+                local suffix = ('    ' .. icons.fold_marker .. ' %d '):format(endLnum - lnum)
                 local sufWidth = vim.fn.strdisplaywidth(suffix)
                 local targetWidth = width - sufWidth
                 local curWidth = 0

@@ -56,7 +56,7 @@ return {
     ui_numbered_list = '',
     ui_unordered_list = '',
     ui_folding = '',
-    ui_tab = '裡',
+    ui_tab = '󰌒',
     ui_win_border = '',
     ui_multi_win = '',
     shell = '',
@@ -102,4 +102,5 @@ return {
     notifications = '󰂚',
     indent = '󰉶',
     globe = '',
+    fold_marker = '󰁂',
 }
