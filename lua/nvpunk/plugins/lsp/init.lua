@@ -10,6 +10,7 @@ local plugins = {
     'nvim_jdtls',
     'signature',
     'trouble',
+    'workspace_diagnostics',
 }
 
 return vim.tbl_map(
