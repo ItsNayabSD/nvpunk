@@ -99,7 +99,7 @@ return {
 
         dashboard.section.footer.val = icons.info .. ' Nvpunk '
             .. get_nvpunk_version()
-            .. '   ' .. icons.vim .. ' Neovim '
+            .. '   ' .. icons.neovim .. ' Neovim '
             .. get_neovim_version()
         dashboard.section.footer.opts.hl = 'Comment'
 

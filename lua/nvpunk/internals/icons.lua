@@ -27,6 +27,7 @@ return {
     help = '',
     quit = '󰗼',
     vim = '',
+    neovim = '',
     home = '󰋜',
     gutter_left = '▌',
     gutter_low = '▁',
