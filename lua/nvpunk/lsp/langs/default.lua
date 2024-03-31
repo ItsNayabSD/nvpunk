@@ -17,7 +17,6 @@ local default_opts = {
     settings = {
         telemetry = { enable = false },
     },
-    offset_encoding = 'utf-8',
 }
 M.default_opts = default_opts
 M.add_to_default = function(opts)
