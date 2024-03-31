@@ -172,7 +172,7 @@ M.setup = function()
         java_exec = (home .. '/bin/java') or java_exec
         java_home = home
         M.start_jdtls()
-    end)
+    end, true)
 end
 
 return M
