@@ -13,6 +13,7 @@ local plugins = {
     'lualine',
     'navic',
     'neotree',
+    'noice',
     'ufo',
     'statuscol',
 }

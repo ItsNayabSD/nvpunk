@@ -12,13 +12,11 @@ local filename_widget = {
         newfile = icons.badge_new,
     },
     on_click = function()
-        local p = vim.fn.expand('%')
-        if p == nil or p == '' then
-            return
-        end
+        local p = vim.fn.expand '%'
+        if p == nil or p == '' then return end
         vim.fn.setreg('+"', p)
-        vim.notify('Copied file path to system clipboard')
-    end
+        vim.notify 'Copied file path to system clipboard'
+    end,
 }
 
 local diagnostics_widget = {
@@ -36,35 +34,41 @@ local diagnostics_widget = {
         elseif btn == 'r' then
             vim.diagnostic.goto_prev()
         end
-    end
+    end,
 }
 
-local vsplit_widget = {
-    function()
-        return icons.win_hsplit
-    end,
-    on_click = function()
-        vim.cmd 'vs'
-    end
-}
+-- local vsplit_widget = {
+--     function() return icons.win_hsplit end,
+--     on_click = function() vim.cmd 'vs' end,
+-- }
+--
+-- local hsplit_widget = {
+--     function() return icons.win_vsplit end,
+--     on_click = function() vim.cmd 'sp' end,
+-- }
+--
+-- local term_widget = {
+--     function() return icons.shell end,
+--     on_click = function() vim.cmd 'ToggleTerm' end,
+-- }
 
-local hsplit_widget = {
-    function()
-        return icons.win_vsplit
-    end,
-    on_click = function()
-        vim.cmd 'sp'
-    end
-}
-
-local term_widget = {
-    function()
-        return icons.shell
-    end,
-    on_click = function()
-        vim.cmd 'ToggleTerm'
-    end
-}
+-------- part of noice, disabled
+-- local macro_widget = {
+--     require('noice').api.status.mode.get,
+--     cond = require('noice').api.status.mode.has,
+-- }
+--
+-- local search_widget = {
+--     require('noice').api.status.search.get,
+--     cond = require('noice').api.status.search.has,
+--     on_click = function(_num, btn, _mods)
+--         if btn == 'l' then
+--             vim.cmd 'norm n'
+--         elseif btn == 'r' then
+--             vim.cmd 'norm N'
+--         end
+--     end
+-- }
 
 local styles = {
     powerline = {
@@ -97,8 +101,51 @@ local styles = {
     },
 }
 
+local navic_widget = {
+    'navic',
+    navic_opts = {
+        icons = {
+            File = icons.file .. ' ',
+            Module = icons.puzzle .. ' ',
+            Namespace = icons.curlybraces .. ' ',
+            Package = icons.package .. ' ',
+            Class = icons.struct .. ' ',
+            Method = icons.method .. ' ',
+            Property = icons.property .. ' ',
+            Field = icons.field .. ' ',
+            Constructor = icons.crane .. ' ',
+            Enum = icons.enum .. ' ',
+            Interface = icons.interface .. ' ',
+            Function = icons.function_ .. ' ',
+            Variable = icons.variable .. ' ',
+            Constant = icons.constant .. ' ',
+            String = icons.string .. ' ',
+            Number = icons.number .. ' ',
+            Boolean = icons.boolean .. ' ',
+            Array = icons.array .. ' ',
+            Object = icons.curlybraces .. ' ',
+            Key = icons.key .. ' ',
+            Null = icons.null .. ' ',
+            EnumMember = icons.enum_member .. ' ',
+            Struct = icons.struct .. ' ',
+            Event = icons.event .. ' ',
+            Operator = icons.operator .. ' ',
+            TypeParameter = icons.big_t .. ' ',
+        },
+        highlight = true,
+        separator = ' ',
+        depth_limit = 0,
+        depth_limit_indicator = '…',
+        safe_output = true,
+    }
+}
+
+local file_icon_widget = { 'filetype', icon_only = true, icon = { align = 'right' } }
+
+local nonfile = require('nvpunk.internals.nonfile')
+
 return function(theme)
-    local preferences = require('nvpunk.preferences')
+    local preferences = require 'nvpunk.preferences'
     local style = styles[preferences.get_statusline_style()]
     require('lualine').setup {
         options = {
@@ -106,14 +153,23 @@ return function(theme)
             section_separators = style.section_separators,
             component_separators = style.component_separators,
             globalstatus = preferences.get_global_statusbar(),
+            disabled_filetypes = {
+                winbar = nonfile.filetypes
+            }
         },
         sections = {
-            lualine_a = { 'mode' },
+            lualine_a = {
+                'mode',
+                -- macro_widget
+            },
             lualine_b = { 'branch' },
             lualine_c = { filename_widget, diagnostics_widget },
-            lualine_x = { 'progress', 'location' },
-            lualine_y = { 'encoding', 'fileformat', 'filetype' },
-            lualine_z = { vsplit_widget, hsplit_widget, term_widget },
+            lualine_x = {
+                -- search_widget,
+                'encoding'
+            },
+            lualine_y = { 'fileformat', 'filetype' },
+            lualine_z = { 'progress' },
         },
         inactive_sections = {
             lualine_a = {},
@@ -122,6 +178,18 @@ return function(theme)
             lualine_x = { 'filetype' },
             lualine_y = {},
             lualine_z = {},
+        },
+        winbar = {
+            lualine_a = { filename_widget },
+            lualine_b = { file_icon_widget },
+            lualine_c = { navic_widget },
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = {},
+        },
+        inactive_winbar = {
+            lualine_b = { filename_widget },
+            lualine_c = { file_icon_widget },
         },
         tabline = {},
         extensions = {

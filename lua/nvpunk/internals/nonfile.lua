@@ -25,6 +25,7 @@ M.filetypes =  {
     'neo-tree',
     'neo-tree-popup',
     'neogitstatus',
+    'noice',
     'notify',
     'packer',
     'qf',
