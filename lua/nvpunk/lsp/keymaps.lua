@@ -62,6 +62,13 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
         function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
         'List folders'
     )
+    bm.nkeymap(
+        '<leader>wd',
+        function()
+            require('workspace-diagnostics').populate_workspace_diagnostics(client, bufnr)
+        end,
+        'Load all workspace diagnostics'
+    )
     -- bm.nkeymap('<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Open definition')
     bm.nkeymap('<leader>rn', vim.lsp.buf.rename, 'Rename')
     bm.nkeymap('gr', vim.lsp.buf.references, 'References')

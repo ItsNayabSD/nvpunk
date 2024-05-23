@@ -11,7 +11,6 @@ local default_opts = {
             require('nvim-navic').attach(client, bufnr)
             vim.wo.winbar = '%{%v:lua.require\'nvim-navic\'.get_location()%}'
         end
-        -- require('workspace-diagnostics').populate_workspace_diagnostics(client, bufnr)
     end,
     root_dir = vim.loop.cwd,
     capabilities = require('nvpunk.lsp.capabilities').capabilities,
