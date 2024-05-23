@@ -164,6 +164,9 @@ return {
                     --     'toggle_node', nowait = false  -- for leader key seqs
                     -- },
                     ['<2-LeftMouse>'] = 'open_with_window_picker',
+                    -- avoids going to visual mode past doubleclicking
+                    ['<3-LeftMouse>'] = function() end,
+                    ['<4-LeftMouse>'] = 'open_with_window_picker',
                     ['<cr>'] = 'open_with_window_picker',
                     ['<esc>'] = 'revert_preview',
                     ['P'] = {
