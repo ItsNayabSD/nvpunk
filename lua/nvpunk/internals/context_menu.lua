@@ -152,13 +152,6 @@ M.set_dap_rclick_menu = function()
     }, M.buf_has_dap)
 end
 
--- M.set_nvimtree_rclick_menu = function()
---     M.set_rclick_submenu('NvpunkFileTreeMenu', 'File        ', {
---         {'New File              <space>fn',   '<space>fn'},
---         {'Rename                     <F2>',   '<F2>'},
---     }, function() return vim.bo.filetype == 'NvimTree' end)
--- end
-
 M.set_neotree_rclick_menu = function()
     M.set_rclick_submenu('NvpunkNeoTreeMenu', pad('File', M.L0_ITEM_WIDTH) .. icons.double_arrow_right, {
         M.menu_item('New File', '<space>fn'),
