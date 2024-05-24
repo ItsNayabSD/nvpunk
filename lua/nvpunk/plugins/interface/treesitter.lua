@@ -43,22 +43,6 @@ return {
             indent = {
                 enable = true,
             },
-            autopairs = {
-                enable = true,
-            },
-            autotag = { -- this is a plugin: nvim-ts-autotag
-                enable = true,
-                filetypes = {
-                    'html',
-                    'xml',
-                    'javascript',
-                    'javascriptreact',
-                    'typescriptreact',
-                    'svelte',
-                    'vue',
-                    'astro',
-                },
-            },
         }
     end,
 }
