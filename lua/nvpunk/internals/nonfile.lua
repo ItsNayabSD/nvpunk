@@ -9,6 +9,7 @@ M.filetypes =  {
     'Outline',
     'TelescopePrompt',
     'Trouble',
+    'trouble',
     'aerial',
     'alpha',
     'dap-repl',

@@ -88,6 +88,8 @@ end
 
 local cmd = vim.api.nvim_create_user_command
 
+cmd('NvpunkCheckUpdates', function(_) require('nvpunk.internals.check_updates')() end, { nargs = 0 })
+
 cmd('NvpunkUpdate', function(_) M.nvpunk_update() end, { nargs = 0 })
 
 cmd('NvpunkClearData', function(_) M.nvpunk_clean() end, { nargs = 0 })
