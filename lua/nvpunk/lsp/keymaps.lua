@@ -1,10 +1,10 @@
 local M = {}
 local km = require 'nvpunk.internals.keymapper'
+local icons = require 'nvpunk.internals.icons'
 
 M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
     local wk = require 'which-key'
     local bm = km.create_bufkeymapper(bufnr)
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
     -- Set autocommands conditional on server_capabilities
     if client.server_capabilities.documentHighlightProvider then
@@ -22,7 +22,9 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
         })
     end
 
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', {
+        buf = bufnr,
+    })
 
     -- Mappings
 
@@ -65,7 +67,10 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
     bm.nkeymap(
         '<leader>wd',
         function()
-            require('workspace-diagnostics').populate_workspace_diagnostics(client, bufnr)
+            require('workspace-diagnostics').populate_workspace_diagnostics(
+                client,
+                bufnr
+            )
         end,
         'Load all workspace diagnostics'
     )
@@ -98,11 +103,16 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
         bm.nkeymap(
             '<leader>f',
             function() vim.lsp.buf.format { async = true } end,
-            'Format'
+            icons.sparkle .. ' Format'
         )
     else
-        bm.nkeymap('<leader>f', '<cmd>Neoformat<cr>', 'Format')
+        bm.nkeymap(
+            '<leader>f',
+            '<cmd>Neoformat<cr>',
+            icons.sparkle .. ' Format'
+        )
     end
+    bm.nkeymap('<leader>F', '<cmd>Neoformat<cr>', icons.sparkle .. ' Neoformat')
 
     if extra_keymaps ~= nil then extra_keymaps(bm) end
 end

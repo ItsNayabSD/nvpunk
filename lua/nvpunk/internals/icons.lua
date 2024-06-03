@@ -104,4 +104,5 @@ return {
     indent = '󰉶',
     globe = '',
     fold_marker = '󰁂',
+    sparkle = '',
 }
