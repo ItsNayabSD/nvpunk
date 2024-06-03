@@ -185,6 +185,7 @@ return {
                     ['<leader>dn'] = 'add_directory',
                     ['<leader>rmrf'] = 'delete',
                     ['<F2>'] = 'rename',
+                    ['<leader>rn'] = 'rename',
                     ['<leader>fyy'] = 'copy_to_clipboard',
                     ['<leader>fdd'] = 'cut_to_clipboard',
                     ['<leader>fp'] = 'paste_from_clipboard',
