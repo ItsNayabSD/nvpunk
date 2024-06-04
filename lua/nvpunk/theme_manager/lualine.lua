@@ -101,44 +101,51 @@ local styles = {
     },
 }
 
-local navic_widget = {
-    'navic',
-    navic_opts = {
-        icons = {
-            File = icons.file .. ' ',
-            Module = icons.puzzle .. ' ',
-            Namespace = icons.curlybraces .. ' ',
-            Package = icons.package .. ' ',
-            Class = icons.struct .. ' ',
-            Method = icons.method .. ' ',
-            Property = icons.property .. ' ',
-            Field = icons.field .. ' ',
-            Constructor = icons.crane .. ' ',
-            Enum = icons.enum .. ' ',
-            Interface = icons.interface .. ' ',
-            Function = icons.function_ .. ' ',
-            Variable = icons.variable .. ' ',
-            Constant = icons.constant .. ' ',
-            String = icons.string .. ' ',
-            Number = icons.number .. ' ',
-            Boolean = icons.boolean .. ' ',
-            Array = icons.array .. ' ',
-            Object = icons.curlybraces .. ' ',
-            Key = icons.key .. ' ',
-            Null = icons.null .. ' ',
-            EnumMember = icons.enum_member .. ' ',
-            Struct = icons.struct .. ' ',
-            Event = icons.event .. ' ',
-            Operator = icons.operator .. ' ',
-            TypeParameter = icons.big_t .. ' ',
+local function navic_widget(style)
+    return {
+        'navic',
+        color_correction = 'static',
+        padding = {
+            left = 1,
+            right = 0,
         },
-        highlight = true,
-        separator = ' ',
-        depth_limit = 0,
-        depth_limit_indicator = '…',
-        safe_output = true,
+        navic_opts = {
+            icons = {
+                File = icons.file .. ' ',
+                Module = icons.puzzle .. ' ',
+                Namespace = icons.curlybraces .. ' ',
+                Package = icons.package .. ' ',
+                Class = icons.struct .. ' ',
+                Method = icons.method .. ' ',
+                Property = icons.property .. ' ',
+                Field = icons.field .. ' ',
+                Constructor = icons.crane .. ' ',
+                Enum = icons.enum .. ' ',
+                Interface = icons.interface .. ' ',
+                Function = icons.function_ .. ' ',
+                Variable = icons.variable .. ' ',
+                Constant = icons.constant .. ' ',
+                String = icons.string .. ' ',
+                Number = icons.number .. ' ',
+                Boolean = icons.boolean .. ' ',
+                Array = icons.array .. ' ',
+                Object = icons.curlybraces .. ' ',
+                Key = icons.key .. ' ',
+                Null = icons.null .. ' ',
+                EnumMember = icons.enum_member .. ' ',
+                Struct = icons.struct .. ' ',
+                Event = icons.event .. ' ',
+                Operator = icons.operator .. ' ',
+                TypeParameter = icons.big_t .. ' ',
+            },
+            highlight = true,
+            separator = ' ' .. style.component_separators.left .. ' ',
+            depth_limit = 0,
+            depth_limit_indicator = '…',
+            safe_output = true,
+        }
     }
-}
+end
 
 local file_icon_widget = { 'filetype', icon_only = true, icon = { align = 'right' } }
 
@@ -159,6 +166,7 @@ return function(theme)
         },
         sections = {
             lualine_a = {
+                '"' .. icons.neovim .. '"',
                 'mode',
                 -- macro_widget
             },
@@ -182,8 +190,8 @@ return function(theme)
         winbar = {
             lualine_a = { filename_widget },
             lualine_b = { file_icon_widget },
-            lualine_c = { navic_widget },
-            lualine_x = {},
+            lualine_c = { navic_widget(style) },
+            lualine_x = { '" "' },
             lualine_y = {},
             lualine_z = {},
         },

@@ -25,11 +25,11 @@ return function()
     if vim.fn.buflisted(bufnr) ~= 1 then
         vim.cmd(
             'tabedit '
-                .. vim.fn.stdpath 'config'
-                .. '/lua/nvpunk/theme_manager/telescope_theme_chooser.lua'
+            .. vim.fn.stdpath 'config'
+            .. '/lua/nvpunk/theme_manager/telescope_theme_chooser.lua'
         )
         bufnr = vim.api.nvim_get_current_buf()
-        vim.api.nvim_buf_set_option(bufnr, 'modifiable', false)
+        vim.api.nvim_set_option_value('modifiable', false, { buf = bufnr })
         p = vim.api.nvim_buf_get_name(bufnr)
         demo_win = vim.api.nvim_get_current_win()
         close_demo_win = true
