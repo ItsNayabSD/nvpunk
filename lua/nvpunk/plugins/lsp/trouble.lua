@@ -17,10 +17,10 @@ return {
             },
             modes = {
                 diagnostics = {
-                    position = 'bottom'
-                }
+                    position = 'bottom',
+                },
             },
-            open_no_results = true
+            open_no_results = true,
         }
     end,
     keys = {

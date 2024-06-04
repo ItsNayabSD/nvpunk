@@ -26,6 +26,6 @@ return function(style)
         -- Plugin integrations. Use `default = false` to disable all integrations.
         plugins = { default = true },
     }
-    vim.cmd('colorscheme nightcity')
+    vim.cmd 'colorscheme nightcity'
     reload 'nvpunk.theme_manager.lualine' 'auto'
 end

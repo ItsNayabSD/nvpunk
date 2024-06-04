@@ -2,7 +2,7 @@ local M = {}
 -- these are filetypes and buftypes that are not actual files
 -- created by plugins or by neovim itself
 
-M.filetypes =  {
+M.filetypes = {
     'NvimTree',
     'Nvpunk',
     'NvpunkHealthcheck',

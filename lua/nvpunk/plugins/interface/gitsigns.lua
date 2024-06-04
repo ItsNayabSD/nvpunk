@@ -89,8 +89,16 @@ return {
             '<cmd>Gitsigns blame_line<cr>',
             desc = icons.back_in_time .. ' Blame line',
         },
-        { '<leader>g]', '<cmd>Gitsigns next_hunk<cr>', desc = icons.next .. ' Next hunk' },
-        { '<leader>g[', '<cmd>Gitsigns prev_hunk<cr>', desc = icons.prev .. ' Prev hunk' },
+        {
+            '<leader>g]',
+            '<cmd>Gitsigns next_hunk<cr>',
+            desc = icons.next .. ' Next hunk',
+        },
+        {
+            '<leader>g[',
+            '<cmd>Gitsigns prev_hunk<cr>',
+            desc = icons.prev .. ' Prev hunk',
+        },
         {
             '<leader>g?',
             '<cmd>Gitsigns preview_hunk<cr>',

@@ -78,9 +78,13 @@ local installers_menus = {
         label = 'Vscode Java Test',
         func = function()
             require 'nvpunk.internals.find_jdtls_java'(function(home)
-                vim.notify('Installing Vscode Java Test...', vim.log.levels.INFO, {
-                    title = notif_ctx,
-                })
+                vim.notify(
+                    'Installing Vscode Java Test...',
+                    vim.log.levels.INFO,
+                    {
+                        title = notif_ctx,
+                    }
+                )
                 vim.notify('DO NOT CLOSE NEOVIM!', vim.log.levels.ERROR, {
                     title = notif_ctx,
                 })

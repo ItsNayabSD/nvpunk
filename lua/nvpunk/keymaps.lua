@@ -32,19 +32,24 @@ M.set_keymaps = function()
     km.nkeymap('<A-Up>', 'gk')
 
     -- Terminal splitter
-    km.nkeymap('<leader>/s', '<cmd>vs<cr><cmd>terminal<cr>',
-        require('nvpunk.internals.icons').hsplit .. ' Horizontal')
+    km.nkeymap(
+        '<leader>/s',
+        '<cmd>vs<cr><cmd>terminal<cr>',
+        require('nvpunk.internals.icons').hsplit .. ' Horizontal'
+    )
     km.nkeymap(
         '<leader>/i',
         '<cmd>sp<cr><cmd>terminal<cr>',
         require('nvpunk.internals.icons').vsplit .. ' Vertical'
     )
-    pcall(function()
-        require('which-key').register {
-            ['<leader>/'] = { name = ' Term Split' },
-            ['<leader>W'] = { name = 'Whitespace' },
-        }
-    end)
+    pcall(
+        function()
+            require('which-key').register {
+                ['<leader>/'] = { name = ' Term Split' },
+                ['<leader>W'] = { name = 'Whitespace' },
+            }
+        end
+    )
 end
 
 return M

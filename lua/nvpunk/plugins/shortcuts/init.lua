@@ -8,7 +8,4 @@ local plugins = {
     'nvim_ts_autotag',
 }
 
-return vim.tbl_map(
-    function(plugin) return require(PFX .. plugin) end,
-    plugins
-)
+return vim.tbl_map(function(plugin) return require(PFX .. plugin) end, plugins)

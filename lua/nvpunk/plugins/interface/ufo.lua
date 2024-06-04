@@ -10,7 +10,7 @@ return {
         -- blocked by: https://github.com/neovim/neovim/pull/17446
         -- vim.o.fillchars = [[eob: , fold: , foldopen:, foldsep: , foldclose:]]
         vim.o.foldcolumn = require('nvpunk.preferences').get_folding_guide_enabled()
-            and '1'
+                and '1'
             or '0'
         vim.o.foldlevel = 99
         vim.o.foldlevelstart = 99
@@ -35,7 +35,9 @@ return {
                 truncate
             )
                 local newVirtText = {}
-                local suffix = ('    ' .. icons.fold_marker .. ' %d '):format(endLnum - lnum)
+                local suffix = ('    ' .. icons.fold_marker .. ' %d '):format(
+                    endLnum - lnum
+                )
                 local sufWidth = vim.fn.strdisplaywidth(suffix)
                 local targetWidth = width - sufWidth
                 local curWidth = 0

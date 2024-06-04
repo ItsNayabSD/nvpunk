@@ -8,17 +8,13 @@ return {
         'echasnovski/mini.trailspace',
         event = 'BufEnter',
         version = false,
-        config = function()
-            require('mini.trailspace').setup()
-        end,
+        config = function() require('mini.trailspace').setup() end,
         keys = {
             {
                 '<space>Wt',
-                function()
-                    require('mini.trailspace').trim()
-                end,
-                desc = 'Trim all whitespace'
+                function() require('mini.trailspace').trim() end,
+                desc = 'Trim all whitespace',
             },
-        }
-    }
+        },
+    },
 }

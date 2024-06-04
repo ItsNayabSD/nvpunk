@@ -2,7 +2,7 @@
 return {
     'nvim-treesitter/nvim-treesitter',
     build = function()
-        require('nvim-treesitter.install').compilers = { "clang", "gcc" }
+        require('nvim-treesitter.install').compilers = { 'clang', 'gcc' }
         require('nvim-treesitter.install').update { with_sync = true }
     end,
     config = function()
@@ -25,7 +25,7 @@ return {
                 'yaml',
             },
             auto_install = true,
-            sync_install = false,  -- don't peg slow systems?
+            sync_install = false, -- don't peg slow systems?
             highlight = {
                 enable = true,
                 use_languagetree = true,

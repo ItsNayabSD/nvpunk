@@ -9,7 +9,7 @@ local default_opts = {
             and client.server_capabilities.documentSymbolProvider
         then
             require('nvim-navic').attach(client, bufnr)
-            vim.wo.winbar = '%{%v:lua.require\'nvim-navic\'.get_location()%}'
+            vim.wo.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
         end
     end,
     root_dir = vim.loop.cwd,

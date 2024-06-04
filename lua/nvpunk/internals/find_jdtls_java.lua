@@ -58,7 +58,5 @@ return function(cb, notify)
             { title = 'nvpunk.internals.find_jdtls_java' }
         )
     end
-    if jhome then
-        cb(jhome)
-    end
+    if jhome then cb(jhome) end
 end

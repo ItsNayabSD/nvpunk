@@ -10,12 +10,12 @@ return {
         require('ibl').setup {
             enabled = require('nvpunk.preferences').get_indent_blankline_enabled(),
             indent = {
-                char = "│"
+                char = '│',
             },
             exclude = {
                 filetypes = nonfile.filetypes,
                 buftypes = nonfile.buftypes,
-            }
+            },
         }
     end,
 }

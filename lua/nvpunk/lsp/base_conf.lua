@@ -36,8 +36,8 @@ vim.g.rustaceanvim = {
         settings = {
             ['rust-analyzer'] = {
                 telemetry = { enable = false },
-            }
-        }
+            },
+        },
     },
     dap = {},
 }

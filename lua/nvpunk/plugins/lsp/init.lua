@@ -13,7 +13,4 @@ local plugins = {
     'workspace_diagnostics',
 }
 
-return vim.tbl_map(
-    function(plugin) return require(PFX .. plugin) end,
-    plugins
-)
+return vim.tbl_map(function(plugin) return require(PFX .. plugin) end, plugins)

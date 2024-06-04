@@ -9,8 +9,8 @@ return {
                 display = {
                     render_limit = 8,
                     done_icon = icons.tick,
-                }
-            }
+                },
+            },
         }
     end,
 }

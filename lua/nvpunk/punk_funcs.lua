@@ -47,9 +47,13 @@ M.nvpunk_update = function()
                         })
                         vim.schedule(function() require('lazy').restore() end)
                     else
-                        vim.notify('Nvpunk update failed', vim.log.levels.ERROR, {
-                            title = 'Nvpunk Update',
-                        })
+                        vim.notify(
+                            'Nvpunk update failed',
+                            vim.log.levels.ERROR,
+                            {
+                                title = 'Nvpunk Update',
+                            }
+                        )
                     end
                 end,
             })
@@ -88,7 +92,11 @@ end
 
 local cmd = vim.api.nvim_create_user_command
 
-cmd('NvpunkCheckUpdates', function(_) require('nvpunk.internals.check_updates')() end, { nargs = 0 })
+cmd(
+    'NvpunkCheckUpdates',
+    function(_) require 'nvpunk.internals.check_updates'() end,
+    { nargs = 0 }
+)
 
 cmd('NvpunkUpdate', function(_) M.nvpunk_update() end, { nargs = 0 })
 

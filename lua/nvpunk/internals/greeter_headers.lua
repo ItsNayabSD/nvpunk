@@ -341,8 +341,8 @@ M.images = {
             '    ▒   ▒    ',
             '     ▒▒▒     ',
         },
-        hl = 'NvpunkRed'
-    }
+        hl = 'NvpunkRed',
+    },
 }
 
 M.headers = vim.tbl_keys(M.images)

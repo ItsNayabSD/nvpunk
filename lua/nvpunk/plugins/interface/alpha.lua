@@ -22,8 +22,16 @@ return {
         end
 
         dashboard.section.buttons.val = {
-            button('fn', icons.new_file .. '  New file', ':NvpunkNewFileDialog<CR>'),
-            button('ge', icons.folder .. '  Open explorer', ':NvpunkExplorerToggle<CR>'),
+            button(
+                'fn',
+                icons.new_file .. '  New file',
+                ':NvpunkNewFileDialog<CR>'
+            ),
+            button(
+                'ge',
+                icons.folder .. '  Open explorer',
+                ':NvpunkExplorerToggle<CR>'
+            ),
             button('T', icons.shell .. '  Open terminal', ':terminal<CR>a'),
             button(
                 'tf',
@@ -41,7 +49,11 @@ return {
                 ':lua require"telescope.builtin".oldfiles()<CR>'
             ),
             { type = 'padding', val = 1 },
-            button('M', icons.library .. '  Mason Package Manager', ':Mason<CR>'),
+            button(
+                'M',
+                icons.library .. '  Mason Package Manager',
+                ':Mason<CR>'
+            ),
             button(
                 'C',
                 icons.tools .. '  Preferences',
@@ -52,11 +64,7 @@ return {
                 icons.package_down .. '  Update Nvpunk',
                 ':lua require"nvpunk.punk_funcs".nvpunk_update()<CR>'
             ),
-            button(
-                'uT',
-                icons.tree .. '  Update TreeSitter',
-                ':TSUpdate<CR>'
-            ),
+            button('uT', icons.tree .. '  Update TreeSitter', ':TSUpdate<CR>'),
             button(
                 'nI',
                 icons.cog .. '  Installers',
@@ -67,7 +75,11 @@ return {
                 icons.stethoscope .. '  Health Check',
                 ':lua require"nvpunk.internals.healthcheck"()<CR>'
             ),
-            button('H', icons.help .. '  Nvpunk Documentation', ':h nvpunk<CR>'),
+            button(
+                'H',
+                icons.help .. '  Nvpunk Documentation',
+                ':h nvpunk<CR>'
+            ),
             { type = 'padding', val = 1 },
             button('q', icons.quit .. '  Quit', ':qa<CR>', 'NvpunkRed'),
         }
@@ -97,9 +109,12 @@ return {
                 .. tostring(v.patch)
         end
 
-        dashboard.section.footer.val = icons.info .. ' Nvpunk '
+        dashboard.section.footer.val = icons.info
+            .. ' Nvpunk '
             .. get_nvpunk_version()
-            .. '   ' .. icons.neovim .. ' Neovim '
+            .. '   '
+            .. icons.neovim
+            .. ' Neovim '
             .. get_neovim_version()
         dashboard.section.footer.opts.hl = 'Comment'
 
@@ -114,7 +129,7 @@ return {
 
         dashboard.section.buttons.opts.spacing = 0
         dashboard.config.opts.keymap = {
-            press = {'<CR>', '<2-LeftMouse>'}
+            press = { '<CR>', '<2-LeftMouse>' },
         }
         require('alpha').setup(dashboard.config)
 

@@ -143,13 +143,14 @@ local function navic_widget(style)
             depth_limit = 0,
             depth_limit_indicator = '…',
             safe_output = true,
-        }
+        },
     }
 end
 
-local file_icon_widget = { 'filetype', icon_only = true, icon = { align = 'right' } }
+local file_icon_widget =
+    { 'filetype', icon_only = true, icon = { align = 'right' } }
 
-local nonfile = require('nvpunk.internals.nonfile')
+local nonfile = require 'nvpunk.internals.nonfile'
 
 return function(theme)
     local preferences = require 'nvpunk.preferences'
@@ -161,8 +162,8 @@ return function(theme)
             component_separators = style.component_separators,
             globalstatus = preferences.get_global_statusbar(),
             disabled_filetypes = {
-                winbar = nonfile.filetypes
-            }
+                winbar = nonfile.filetypes,
+            },
         },
         sections = {
             lualine_a = {
@@ -174,7 +175,7 @@ return function(theme)
             lualine_c = { filename_widget, diagnostics_widget },
             lualine_x = {
                 -- search_widget,
-                'encoding'
+                'encoding',
             },
             lualine_y = { 'fileformat', 'filetype' },
             lualine_z = { 'progress' },

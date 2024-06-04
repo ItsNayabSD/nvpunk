@@ -26,7 +26,11 @@ M.lsp_signs = {
 }
 
 M.dap_signs = {
-    { name = 'DapBreakpoint', text = icons.debug_breakpoint, texthl = 'DiagnosticSignError' },
+    {
+        name = 'DapBreakpoint',
+        text = icons.debug_breakpoint,
+        texthl = 'DiagnosticSignError',
+    },
     {
         name = 'DapBreakpointRejected',
         text = icons.debug_rejected,

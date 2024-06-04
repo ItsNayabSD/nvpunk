@@ -10,14 +10,14 @@ local DEFAULT_PREFERENCES = {
     theme = 'onedark_warmer',
     greeter = 'punk',
     indent_blankline_enabled = true,
-    tab_style = 'slant',        -- 'slant' | 'padded_slant' | 'thin' | 'thick'
+    tab_style = 'slant', -- 'slant' | 'padded_slant' | 'thin' | 'thick'
     navic_enabled = true,
     statusline_style = 'plain', -- 'powerline' | 'plain' | 'plain_separators'
     -- | 'slant_low' | 'slant_high' | 'round'
     -- | 'pixel'
-    window_border = 'solid',         -- 'solid' | 'none' | 'single' | 'rounded' | 'double'
+    window_border = 'solid', -- 'solid' | 'none' | 'single' | 'rounded' | 'double'
     small_window_border = 'rounded', -- 'solid' | 'none' | 'single' | 'rounded' | 'double'
-    popup_border = 'none',           -- 'solid' | 'none' | 'single' | 'rounded' | 'double'
+    popup_border = 'none', -- 'solid' | 'none' | 'single' | 'rounded' | 'double'
     column_mark_enabled = true,
     folding_guide_enabled = true,
     relative_numbers = true,
@@ -212,9 +212,7 @@ M.set_popup_border = function(border)
 end
 
 ---@return boolean
-M.get_global_statusbar = function()
-    return load_conf().global_statusbar
-end
+M.get_global_statusbar = function() return load_conf().global_statusbar end
 
 ---@param val boolean
 M.set_global_statusbar = function(val)
@@ -224,14 +222,15 @@ M.set_global_statusbar = function(val)
 end
 
 local BORDER_SELECT_OPTS = {
-    { label = 'Padded',        value = 'solid' },
-    { label = 'None',          value = 'none' },
+    { label = 'Padded', value = 'solid' },
+    { label = 'None', value = 'none' },
     { label = 'Single Stroke', value = 'single' },
     { label = 'Double Stroke', value = 'double' },
-    { label = 'Rounded',       value = 'rounded' },
+    { label = 'Rounded', value = 'rounded' },
 }
 
-local select_format_get_label = require('nvpunk.internals.menu').format_get_label
+local select_format_get_label =
+    require('nvpunk.internals.menu').format_get_label
 -- local function select_format_get_label(item) return item.label end
 
 local menu = require('nvpunk.internals.menu').menu
@@ -240,7 +239,7 @@ local preferences_menus = {
     {
         label = icons.theme .. '  Change Theme',
         func = function()
-            require 'nvpunk.theme_manager.telescope_theme_chooser' ()
+            require 'nvpunk.theme_manager.telescope_theme_chooser'()
         end,
     },
     {
@@ -266,31 +265,30 @@ local preferences_menus = {
             local global_statusbar = M.get_global_statusbar()
             menu({
                 {
-                    label = icons.indent .. '  '
+                    label = icons.indent
+                        .. '  '
                         .. (blankline_enabled and 'Disable' or 'Enable')
                         .. ' Indent Blankline',
                     func = function()
                         if blankline_enabled then
                             M.set_indent_blankline_enabled(false)
-                            vim.schedule(
-                                function() vim.cmd 'IBLDisable' end
-                            )
+                            vim.schedule(function() vim.cmd 'IBLDisable' end)
                         else
                             M.set_indent_blankline_enabled(true)
-                            vim.schedule(
-                                function() vim.cmd 'IBLEnable' end
-                            )
+                            vim.schedule(function() vim.cmd 'IBLEnable' end)
                         end
                     end,
                 },
                 {
-                    label = icons.gps .. '  '
+                    label = icons.gps
+                        .. '  '
                         .. (navic_enabled and 'Disable' or 'Enable')
                         .. ' Navic (breadcrumbs)',
                     func = function() M.set_navic_enabled(not navic_enabled) end,
                 },
                 {
-                    label = icons.ui_column_mark .. '  '
+                    label = icons.ui_column_mark
+                        .. '  '
                         .. (column_mark_enabled and 'Disable' or 'Enable')
                         .. ' Column Mark',
                     func = function()
@@ -298,7 +296,8 @@ local preferences_menus = {
                     end,
                 },
                 {
-                    label = icons.ui_numbered_list .. '  '
+                    label = icons.ui_numbered_list
+                        .. '  '
                         .. (relative_numbers_enabled and 'Disable' or 'Enable')
                         .. ' Relative Numbers',
                     func = function()
@@ -308,7 +307,8 @@ local preferences_menus = {
                     end,
                 },
                 {
-                    label = icons.ui_folding .. '  '
+                    label = icons.ui_folding
+                        .. '  '
                         .. (folding_guide_enabled and 'Disable' or 'Enable')
                         .. ' Folding Guide',
                     func = function()
@@ -319,10 +319,10 @@ local preferences_menus = {
                     label = icons.ui_tab .. ' Tab Style',
                     func = function()
                         menu({
-                            { label = 'Slant',        value = 'slant' },
+                            { label = 'Slant', value = 'slant' },
                             { label = 'Padded Slant', value = 'padded_slant' },
-                            { label = 'Thin',         value = 'thin' },
-                            { label = 'Thick',        value = 'thick' },
+                            { label = 'Thin', value = 'thin' },
+                            { label = 'Thick', value = 'thick' },
                         }, {
                             prompt = 'Tab Style:',
                             format_item = select_format_get_label,
@@ -337,15 +337,15 @@ local preferences_menus = {
                         menu(
                             {
                                 { label = 'Powerline', value = 'powerline' },
-                                { label = 'Plain',     value = 'plain' },
+                                { label = 'Plain', value = 'plain' },
                                 {
                                     label = 'Plain with Separators',
                                     value = 'plain_separators',
                                 },
-                                { label = 'Slant Low',  value = 'slant_low' },
+                                { label = 'Slant Low', value = 'slant_low' },
                                 { label = 'Slant High', value = 'slant_high' },
-                                { label = 'Round',      value = 'round' },
-                                { label = 'Pixel',      value = 'pixel' },
+                                { label = 'Round', value = 'round' },
+                                { label = 'Pixel', value = 'pixel' },
                             },
                             {
                                 prompt = 'Statusline Style:',
@@ -356,7 +356,8 @@ local preferences_menus = {
                     end,
                 },
                 {
-                    label = icons.globe .. '  '
+                    label = icons.globe
+                        .. '  '
                         .. (global_statusbar and 'Disable' or 'Enable')
                         .. ' Global Statusbar',
                     func = function()

@@ -25,32 +25,41 @@ local java_home = ''
 local java_exec = 'java'
 
 M.has_java_debug = function()
-    return vim.fn.filereadable(vim.fn.glob(
-        java_debug_path
-        .. '/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar'
-    )) ~= 0
+    return vim.fn.filereadable(
+        vim.fn.glob(
+            java_debug_path
+                .. '/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar'
+        )
+    ) ~= 0
 end
 
 M.has_vscode_java_test = function()
-    return vim.fn.filereadable(vim.fn.glob(
-        vscode_java_test_path
-        .. '/server/com.microsoft.java.test.plugin-*.jar'
-    )) ~= 0
+    return vim.fn.filereadable(
+        vim.fn.glob(
+            vscode_java_test_path
+                .. '/server/com.microsoft.java.test.plugin-*.jar'
+        )
+    ) ~= 0
 end
-
 
 M.start_jdtls = function()
     local bundles = {}
     if M.has_java_debug() then
-        table.insert(bundles, vim.fn.glob(
-            java_debug_path
-            .. '/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar'
-        ))
+        table.insert(
+            bundles,
+            vim.fn.glob(
+                java_debug_path
+                    .. '/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar'
+            )
+        )
     end
     if M.has_vscode_java_test() then
         vim.list_extend(
             bundles,
-            vim.split(vim.fn.glob(vscode_java_test_path .. '/server/*.jar'), '\n')
+            vim.split(
+                vim.fn.glob(vscode_java_test_path .. '/server/*.jar'),
+                '\n'
+            )
         )
     end
 
@@ -168,7 +177,7 @@ M.start_jdtls = function()
 end
 
 M.setup = function()
-    require 'nvpunk.internals.find_jdtls_java' (function(home)
+    require 'nvpunk.internals.find_jdtls_java'(function(home)
         java_exec = (home .. '/bin/java') or java_exec
         java_home = home
         M.start_jdtls()

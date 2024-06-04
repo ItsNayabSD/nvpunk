@@ -42,7 +42,7 @@ local vim_opts = {
     timeoutlen = 500,
     -- hidden = true,  -- allow hidden buffers (mostly for toggleterm)
     mousescroll = 'ver:3,hor:6',
-    guicursor="n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,i-v-c-ci-cr-sm-o:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
+    guicursor = 'n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,i-v-c-ci-cr-sm-o:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175',
 }
 
 -- unsure what it does, docs:

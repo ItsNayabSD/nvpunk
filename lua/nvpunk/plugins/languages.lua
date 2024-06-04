@@ -22,15 +22,13 @@ return {
     {
         'saecki/crates.nvim',
         lazy = true,
-        event = { "BufRead Cargo.toml" },
+        event = { 'BufRead Cargo.toml' },
         dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            require('crates').setup()
-        end,
+        config = function() require('crates').setup() end,
     },
     {
         'mrcjkb/rustaceanvim',
         version = '^4', -- Recommended
         ft = { 'rust' },
-    }
+    },
 }

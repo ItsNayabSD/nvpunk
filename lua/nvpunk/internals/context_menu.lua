@@ -16,7 +16,7 @@ local nonfile = require 'nvpunk.internals.nonfile'
 ---@return boolean
 M.buf_is_file = function()
     return not vim.tbl_contains(nonfile.filetypes, vim.bo.filetype)
-    and not vim.tbl_contains(nonfile.buftypes, vim.bo.buftype)
+        and not vim.tbl_contains(nonfile.buftypes, vim.bo.buftype)
 end
 
 --- Checks if current buf has DAP support
@@ -99,7 +99,7 @@ end
 ---@return string
 local function pad(s, width)
     local padding = width - #s
-    if padding < 1 then  -- no max function in lua?
+    if padding < 1 then -- no max function in lua?
         padding = 1
     end
     return s .. string.rep(' ', padding)
@@ -115,82 +115,115 @@ M.menu_item = function(label, shortcut)
     label = pad(label, M.MENU_ITEM_WIDTH - #shortcut)
     return {
         label .. shortcut,
-        shortcut
+        shortcut,
     }
 end
 
 M.L0_ITEM_WIDTH = 12
 
 M.set_lsp_rclick_menu = function()
-    M.set_rclick_submenu('NvpunkLspMenu', pad('LSP', M.L0_ITEM_WIDTH) .. icons.double_arrow_right, {
-        M.menu_item('Code Actions', '<space>ca'),
-        M.menu_item('Go to Declaration', 'gD'),
-        M.menu_item('Go to Definition', 'gd'),
-        M.menu_item('Go to Implementation', 'gI'),
-        M.menu_item('Signature Help', '<C-k>'),
-        M.menu_item('Rename', '<space>rn'),
-        M.menu_item('References', 'gr'),
-        M.menu_item('Expand Diagnostics', '<space>e'),
-        M.menu_item('Auto Format', '<space>f'),
-    }, M.buf_has_lsp)
+    M.set_rclick_submenu(
+        'NvpunkLspMenu',
+        pad('LSP', M.L0_ITEM_WIDTH) .. icons.double_arrow_right,
+        {
+            M.menu_item('Code Actions', '<space>ca'),
+            M.menu_item('Go to Declaration', 'gD'),
+            M.menu_item('Go to Definition', 'gd'),
+            M.menu_item('Go to Implementation', 'gI'),
+            M.menu_item('Signature Help', '<C-k>'),
+            M.menu_item('Rename', '<space>rn'),
+            M.menu_item('References', 'gr'),
+            M.menu_item('Expand Diagnostics', '<space>e'),
+            M.menu_item('Auto Format', '<space>f'),
+        },
+        M.buf_has_lsp
+    )
 end
 
 M.set_java_rclick_menu = function()
-    M.set_rclick_submenu('NvpunkJavaMenu', pad('Java', M.L0_ITEM_WIDTH) .. icons.double_arrow_right, {
-        M.menu_item('Test Class', '<space>bjc'),
-        M.menu_item('Test Nearest Method', '<space>bjn'),
-        M.menu_item('Refresh Debugger', '<space>bjr'),
-    }, function() return vim.bo.filetype == 'java' end)
+    M.set_rclick_submenu(
+        'NvpunkJavaMenu',
+        pad('Java', M.L0_ITEM_WIDTH) .. icons.double_arrow_right,
+        {
+            M.menu_item('Test Class', '<space>bjc'),
+            M.menu_item('Test Nearest Method', '<space>bjn'),
+            M.menu_item('Refresh Debugger', '<space>bjr'),
+        },
+        function() return vim.bo.filetype == 'java' end
+    )
 end
 
 M.set_dap_rclick_menu = function()
-    M.set_rclick_submenu('NvpunkDapMenu', pad('Debug', M.L0_ITEM_WIDTH) .. icons.double_arrow_right, {
-        M.menu_item('Show DAP UI', '<space>bu'),
-        M.menu_item('Toggle Breakpoint', '<space>bb'),
-        M.menu_item('Continue', '<space>bc'),
-        M.menu_item('Terminate', '<space>bk'),
-    }, M.buf_has_dap)
+    M.set_rclick_submenu(
+        'NvpunkDapMenu',
+        pad('Debug', M.L0_ITEM_WIDTH) .. icons.double_arrow_right,
+        {
+            M.menu_item('Show DAP UI', '<space>bu'),
+            M.menu_item('Toggle Breakpoint', '<space>bb'),
+            M.menu_item('Continue', '<space>bc'),
+            M.menu_item('Terminate', '<space>bk'),
+        },
+        M.buf_has_dap
+    )
 end
 
 M.set_neotree_rclick_menu = function()
-    M.set_rclick_submenu('NvpunkNeoTreeMenu', pad('File', M.L0_ITEM_WIDTH) .. icons.double_arrow_right, {
-        M.menu_item('New File', '<space>fn'),
-        M.menu_item('New Folder', '<space>dn'),
-        M.menu_item('Rename', '<F2>'),
-        M.menu_item('Toggle Hidden', '<C-h>'),
-        M.menu_item('Split Vertically', 'i'),
-        M.menu_item('Split Horizontally', 's'),
-        M.menu_item('Open in New Tab', 't'),
-        M.menu_item('Open with System App', '<space>xo'),
-        M.menu_item('Git Add', '<space>ga'),
-        M.menu_item('Git Unstage', '<space>gu'),
-    }, function() return vim.bo.filetype == 'neo-tree' end)
+    M.set_rclick_submenu(
+        'NvpunkNeoTreeMenu',
+        pad('File', M.L0_ITEM_WIDTH) .. icons.double_arrow_right,
+        {
+            M.menu_item('New File', '<space>fn'),
+            M.menu_item('New Folder', '<space>dn'),
+            M.menu_item('Rename', '<F2>'),
+            M.menu_item('Toggle Hidden', '<C-h>'),
+            M.menu_item('Split Vertically', 'i'),
+            M.menu_item('Split Horizontally', 's'),
+            M.menu_item('Open in New Tab', 't'),
+            M.menu_item('Open with System App', '<space>xo'),
+            M.menu_item('Git Add', '<space>ga'),
+            M.menu_item('Git Unstage', '<space>gu'),
+        },
+        function() return vim.bo.filetype == 'neo-tree' end
+    )
 end
 
 M.set_telescope_rclick_menu = function()
-    M.set_rclick_submenu('NvpunkTelescopeMenu', pad('Telescope', M.L0_ITEM_WIDTH) .. icons.double_arrow_right, {
-        M.menu_item('Find File', '<space>tf'),
-        M.menu_item('Live Grep', '<space>tg'),
-        M.menu_item('Recent Files', '<space>th'),
-    })
+    M.set_rclick_submenu(
+        'NvpunkTelescopeMenu',
+        pad('Telescope', M.L0_ITEM_WIDTH) .. icons.double_arrow_right,
+        {
+            M.menu_item('Find File', '<space>tf'),
+            M.menu_item('Live Grep', '<space>tg'),
+            M.menu_item('Recent Files', '<space>th'),
+        }
+    )
 end
 
 M.set_git_rclick_menu = function()
-    M.set_rclick_submenu('NvpunkGitMenu', pad('Git', M.L0_ITEM_WIDTH) .. icons.double_arrow_right, {
-        M.menu_item('Preview Changes', '<space>g?'),
-        M.menu_item('Prev Hunk', '<space>g['),
-        M.menu_item('Next Hunk', '<space>g]'),
-        M.menu_item('Blame Line', '<space>gb'),
-    }, M.buf_is_file)
+    M.set_rclick_submenu(
+        'NvpunkGitMenu',
+        pad('Git', M.L0_ITEM_WIDTH) .. icons.double_arrow_right,
+        {
+            M.menu_item('Preview Changes', '<space>g?'),
+            M.menu_item('Prev Hunk', '<space>g['),
+            M.menu_item('Next Hunk', '<space>g]'),
+            M.menu_item('Blame Line', '<space>gb'),
+        },
+        M.buf_is_file
+    )
 end
 
 M.set_view_rclick_menu = function()
-    M.set_rclick_submenu('NvpunkViewMenu', pad('View', M.L0_ITEM_WIDTH) .. icons.double_arrow_right, {
-        M.menu_item('Code Outline', 'go'),
-        M.menu_item('Split Term Vertical', '<space>/i'),
-        M.menu_item('Split Term Horizontal', '<space>/s'),
-        M.menu_item('Floating Term', '<C-\\>'),
-    })
+    M.set_rclick_submenu(
+        'NvpunkViewMenu',
+        pad('View', M.L0_ITEM_WIDTH) .. icons.double_arrow_right,
+        {
+            M.menu_item('Code Outline', 'go'),
+            M.menu_item('Split Term Vertical', '<space>/i'),
+            M.menu_item('Split Term Horizontal', '<space>/s'),
+            M.menu_item('Floating Term', '<C-\\>'),
+        }
+    )
 end
 
 M.setup_rclick_menu_autocommands = function()

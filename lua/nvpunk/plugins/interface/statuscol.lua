@@ -14,7 +14,7 @@ return {
         local nonfile = require 'nvpunk.internals.nonfile'
 
         local conf = {
-            setopt = true,     -- false uses only the click handlers
+            setopt = true, -- false uses only the click handlers
             thousands = false, -- thousands separator
             relculright = true,
             ft_ignore = nonfile.filetypes,

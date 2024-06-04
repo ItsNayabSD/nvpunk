@@ -246,11 +246,11 @@ return {
                         local path = node:get_id()
                         if vim.fn.has 'linux' == 1 then
                             vim.api.nvim_command(
-                                string.format('silent !xdg-open \'%s\'', path)
+                                string.format("silent !xdg-open '%s'", path)
                             )
                         elseif vim.fn.has 'macunix' == 1 then
                             vim.api.nvim_command(
-                                string.format('silent !open \'%s\'', path)
+                                string.format("silent !open '%s'", path)
                             )
                         else
                             vim.notify 'Operation unsupported'
