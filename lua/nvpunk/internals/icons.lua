@@ -7,6 +7,8 @@ return {
     info = '󰋽',
     diag_hint = '󰌵',
     diag_warn = '',
+    bug = '',
+    java = '',
     debug_breakpoint = '',
     debug_rejected = '󰅘',
     debug_stopped = '',
@@ -105,4 +107,9 @@ return {
     globe = '',
     fold_marker = '󰁂',
     sparkle = '',
+    npm = '',
+    python = '',
+    c_language = '',
+    cpp_language = '',
+    search = '',
 }

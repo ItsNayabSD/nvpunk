@@ -94,11 +94,13 @@ return function()
         {
             test = 'git',
             text_obj = NuiText '',
+            icon = icons.git,
             label = '[git] Git Version Control',
             help = 'nvpunk-deps-git',
         },
         {
             test = 'npm',
+            icon = icons.npm,
             text_obj = NuiText '',
             label = '[npm] Node Package Manager',
             help = 'nvpunk-deps-npm',
@@ -106,29 +108,34 @@ return function()
         {
             test = 'gcc',
             text_obj = NuiText '',
+            icon = icons.c_language,
             label = '[gcc] GNU Compiler Collection',
             help = 'nvpunk-deps-gcc',
         },
         {
             test = 'g++',
+            icon = icons.cpp_language,
             text_obj = NuiText '',
             label = '[gcc] GNU Compiler Collection (C++)',
             help = 'nvpunk-deps-g++',
         },
         {
             test = 'python3',
+            icon = icons.python,
             text_obj = NuiText '',
             label = '[python] Python',
             help = 'nvpunk-deps-python',
         },
         {
             test = 'rg',
+            icon = icons.search,
             text_obj = NuiText '',
             label = '[rg] Ripgrep Search Tool',
             help = 'nvpunk-deps-rg',
         },
         {
             test = 'lldb',
+            icon = icons.bug,
             text_obj = NuiText '',
             label = '[lldb] LLVM debugger',
             help = 'nvpunk-deps-lldb',
@@ -140,6 +147,7 @@ return function()
                     return good()
                 end, false)
             end,
+            icon = icons.java,
             text_obj = NuiText '',
             label = '[java17] Java 17+',
             help = 'nvpunk-deps-java17',
@@ -174,6 +182,11 @@ return function()
     redraw()
 
     for _, section in ipairs(sections) do
-        test_and_set_text(section.test, section.label, section.text_obj, redraw)
+        test_and_set_text(
+            section.test,
+            section.icon .. ' ' .. section.label,
+            section.text_obj,
+            redraw
+        )
     end
 end
