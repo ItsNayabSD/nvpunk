@@ -4,6 +4,12 @@ local augroup_name = 'numbertoggle'
 -- code from
 -- https://github.com/sitiom/nvim-numbertoggle/blob/main/plugin/numbertoggle.lua
 
+local function enable_relativenumber()
+    if vim.o.nu and vim.api.nvim_get_mode().mode ~= 'i' then
+        vim.opt.relativenumber = true
+    end
+end
+
 M.create = function()
     M.delete()
     local augroup = vim.api.nvim_create_augroup(augroup_name, {})
@@ -12,11 +18,7 @@ M.create = function()
         {
             pattern = '*',
             group = augroup,
-            callback = function()
-                if vim.o.nu and vim.api.nvim_get_mode().mode ~= 'i' then
-                    vim.opt.relativenumber = true
-                end
-            end,
+            callback = enable_relativenumber,
         }
     )
 
@@ -33,6 +35,15 @@ M.create = function()
             end,
         }
     )
+
+    if
+        not vim.tbl_contains(
+            require('nvpunk.internals.nonfile').filetypes,
+            vim.bo.filetype
+        )
+    then
+        enable_relativenumber()
+    end
 end
 
 M.delete = function()
