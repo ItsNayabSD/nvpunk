@@ -380,3 +380,6 @@ https://github.com/folke/lazy.nvim
 ## Issue Tracker                                     *nvpunk-ref-issuetracker*
 
 https://gitlab.com/gabmus/nvpunk/-/issues
+
+------------------------------------------------------------------------------
+vim:tw=78:ts=4:ft=help:norl:
