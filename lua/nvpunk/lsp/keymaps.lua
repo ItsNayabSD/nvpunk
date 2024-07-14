@@ -29,10 +29,14 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
     -- Mappings
 
     bm.nkeymap('gD', vim.lsp.buf.declaration, 'Declaration')
-    wk.register(
-        { ['gd'] = { name = 'Definition' } },
-        { mode = 'n', buffer = bufnr }
-    )
+    wk.add {
+        {
+            'gd',
+            group = 'Definition',
+            mode = 'n',
+            buffer = bufnr,
+        },
+    }
     bm.nkeymap('gdh', function() vim.lsp.buf.definition() end, 'Here')
     bm.nkeymap('gdt', function()
         vim.cmd 'tab split'
@@ -49,10 +53,14 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
     bm.nkeymap('K', vim.lsp.buf.hover)
     bm.nkeymap('gI', vim.lsp.buf.implementation, 'Implementation')
     bm.inkeymap('<C-k>', vim.lsp.buf.signature_help)
-    wk.register(
-        { ['<leader>w'] = { name = 'Workspace' } },
-        { mode = 'n', buffer = bufnr }
-    )
+    wk.add {
+        {
+            '<leader>w',
+            group = 'Workspace',
+            mode = 'n',
+            buffer = bufnr,
+        },
+    }
     bm.nkeymap('<leader>wa', vim.lsp.buf.add_workspace_folder, 'Add folder')
     bm.nkeymap(
         '<leader>wr',
@@ -83,10 +91,14 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
     -- bm.nkeymap('<leader>q', vim.diagnostic.setloclist)
     bm.nkeymap('<leader>ca', vim.lsp.buf.code_action, 'Code actions')
 
-    wk.register(
-        { ['<leader>v'] = { name = 'Diagnostics Virutal Text' } },
-        { mode = 'n', buffer = bufnr }
-    )
+    wk.add {
+        {
+            '<leader>v',
+            group = 'Diagnostics Virutal Text',
+            mode = 'n',
+            buffer = bufnr,
+        },
+    }
     bm.nkeymap(
         '<leader>vd',
         function() vim.diagnostic.config { virtual_text = false } end,

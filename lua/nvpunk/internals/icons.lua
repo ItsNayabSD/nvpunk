@@ -112,4 +112,6 @@ return {
     c_language = '',
     cpp_language = '',
     search = '',
+    telescope = '',
+    telescope_caret = '',
 }

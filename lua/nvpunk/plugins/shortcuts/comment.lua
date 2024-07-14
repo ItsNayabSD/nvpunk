@@ -2,6 +2,12 @@
 return {
     'numToStr/Comment.nvim',
     lazy = true,
+    init = function()
+        require('which-key').add {
+            { 'gc', mode = { 'n' }, group = 'Comment line' },
+            { 'gb', mode = { 'n' }, group = 'Comment block' },
+        }
+    end,
     config = function()
         require('Comment').setup {
             padding = true,
@@ -29,7 +35,7 @@ return {
         }
     end,
     keys = {
-        { 'gc', mode = { 'n', 'v' }, desc = 'Comment toggle linewise' },
-        { 'gb', mode = { 'n', 'v' }, desc = 'Comment toggle blockwise' },
+        { 'gc', mode = { 'v' }, desc = 'Comment toggle linewise' },
+        { 'gb', mode = { 'v' }, desc = 'Comment toggle blockwise' },
     },
 }

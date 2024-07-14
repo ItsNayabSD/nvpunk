@@ -1,7 +1,13 @@
 -- nice diffview
+local icons = require 'nvpunk.internals.icons'
 return {
     'sindrets/diffview.nvim',
     lazy = true,
+    init = function()
+        require('which-key').add {
+            { '<leader>?', mode = 'n', group = 'Diff View', icon = icons.diff },
+        }
+    end,
     config = function()
         local actions = require 'diffview.actions'
         require('diffview').setup {
@@ -211,7 +217,6 @@ return {
         }
     end,
     keys = {
-        { '<leader>?', desc = ' Diff View' },
         { '<leader>?o', '<cmd>DiffviewOpen<cr>', desc = 'DiffviewOpen' },
         { '<leader>?c', '<cmd>DiffviewClose<cr>', desc = 'DiffviewClose' },
         { '<leader>?r', '<cmd>DiffviewRefresh<cr>', desc = 'DiffviewRefresh' },

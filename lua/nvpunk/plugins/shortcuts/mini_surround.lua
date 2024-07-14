@@ -1,8 +1,19 @@
 local icons = require 'nvpunk.internals.icons'
+local sel_modes = { 'v', 's', 'x' }
 -- for surrounding text with delimiters such as brackets and quotes
 return {
     'echasnovski/mini.surround',
     lazy = true,
+    init = function()
+        require('which-key').add {
+            {
+                '<leader>S',
+                mode = { 'n' },
+                group = 'Surround',
+                icon = icons.curlybraces,
+            },
+        }
+    end,
     config = function()
         require('mini.surround').setup {
             custom_surroundings = nil,
@@ -21,17 +32,16 @@ return {
         }
     end,
     keys = {
-        { 'S', mode = 'v', desc = icons.curlybraces .. ' Surround' },
         {
-            '<leader>S',
-            mode = { 'n', 'v' },
+            'S',
+            mode = sel_modes,
             desc = icons.curlybraces .. ' Surround',
         },
-        { '<leader>Sd', mode = { 'n', 'v' }, desc = 'Delete' },
-        { '<leader>Sf', mode = { 'n', 'v' }, desc = 'Find Forward' },
-        { '<leader>SF', mode = { 'n', 'v' }, desc = 'Find Back' },
-        { '<leader>Sh', mode = { 'n', 'v' }, desc = 'Highlight' },
-        { '<leader>Sc', mode = { 'n', 'v' }, desc = 'Replace' },
-        { '<leader>Sn', mode = { 'n', 'v' }, desc = 'Update 20 lines' },
+        { '<leader>Sd', mode = sel_modes, desc = 'Delete' },
+        { '<leader>Sf', mode = sel_modes, desc = 'Find Forward' },
+        { '<leader>SF', mode = sel_modes, desc = 'Find Back' },
+        { '<leader>Sh', mode = sel_modes, desc = 'Highlight' },
+        { '<leader>Sc', mode = sel_modes, desc = 'Replace' },
+        { '<leader>Sn', mode = sel_modes, desc = 'Update 20 lines' },
     },
 }

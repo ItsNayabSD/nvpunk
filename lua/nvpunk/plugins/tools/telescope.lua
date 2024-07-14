@@ -1,15 +1,21 @@
 -- Telescope: modular, powerful, extensible fuzzy finder
+local icons = require 'nvpunk.internals.icons'
 return {
     'nvim-telescope/telescope.nvim',
     lazy = true,
+    init = function()
+        require('which-key').add {
+            { '<leader>t', group = 'Telescope', icon = icons.telescope },
+        }
+    end,
     config = function()
         local telescope = require 'telescope'
         -- local actions = require'telescope.actions'
 
         telescope.setup {
             defaults = {
-                prompt_prefix = ' ',
-                selection_caret = ' ',
+                prompt_prefix = icons.telescope .. ' ',
+                selection_caret = icons.telescope_caret .. ' ',
                 path_display = { 'smart' },
             },
             extensions = {
@@ -20,7 +26,6 @@ return {
         }
     end,
     keys = {
-        { '<leader>t', desc = ' Telescope' },
         {
             '<leader>tf',
             function()

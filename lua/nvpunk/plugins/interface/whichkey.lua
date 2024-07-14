@@ -1,6 +1,9 @@
 -- show which key does what in long key combos
 return {
     'folke/which-key.nvim',
+    dependencies = {
+        { 'echasnovski/mini.icons', version = false },
+    },
     config = function()
         require('which-key').setup {
             icons = {
