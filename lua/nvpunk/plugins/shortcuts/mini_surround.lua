@@ -1,5 +1,5 @@
 local icons = require 'nvpunk.internals.icons'
-local sel_modes = { 'v', 's', 'x' }
+local modes = { 'n', 'v', 's', 'x' }
 -- for surrounding text with delimiters such as brackets and quotes
 return {
     'echasnovski/mini.surround',
@@ -34,14 +34,14 @@ return {
     keys = {
         {
             'S',
-            mode = sel_modes,
+            mode = { 'v', 's', 'x' },
             desc = icons.curlybraces .. ' Surround',
         },
-        { '<leader>Sd', mode = sel_modes, desc = 'Delete' },
-        { '<leader>Sf', mode = sel_modes, desc = 'Find Forward' },
-        { '<leader>SF', mode = sel_modes, desc = 'Find Back' },
-        { '<leader>Sh', mode = sel_modes, desc = 'Highlight' },
-        { '<leader>Sc', mode = sel_modes, desc = 'Replace' },
-        { '<leader>Sn', mode = sel_modes, desc = 'Update 20 lines' },
+        { '<leader>Sd', mode = modes, desc = 'Delete' },
+        { '<leader>Sf', mode = modes, desc = 'Find Forward' },
+        { '<leader>SF', mode = modes, desc = 'Find Back' },
+        { '<leader>Sh', mode = modes, desc = 'Highlight' },
+        { '<leader>Sc', mode = modes, desc = 'Replace' },
+        { '<leader>Sn', mode = modes, desc = 'Update 20 lines' },
     },
 }
