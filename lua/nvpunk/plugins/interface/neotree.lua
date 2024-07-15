@@ -282,12 +282,13 @@ return {
             },
         }
     end,
+    -- which-key group defined in ftplugin/neo-tree.lua
     keys = {
         {
             'ge',
             '<cmd>Neotree toggle<cr>',
             mode = 'n',
-            desc = icons.filetree .. ' Toggle Explorer',
+            desc = 'Toggle Explorer',
         },
     },
     cmd = {

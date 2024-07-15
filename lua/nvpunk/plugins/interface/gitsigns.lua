@@ -2,6 +2,13 @@
 local icons = require 'nvpunk.internals.icons'
 return {
     'lewis6991/gitsigns.nvim',
+    init = function()
+        require('which-key').add {
+            {
+                { '<leader>g', group = 'Git', icon = icons.git },
+            },
+        }
+    end,
     config = function()
         require('gitsigns').setup {
             signs = {
@@ -59,7 +66,6 @@ return {
         'Gitsigns',
     },
     keys = {
-        { '<leader>g', desc = icons.git .. ' Git' },
         {
             '<leader>gb',
             '<cmd>Gitsigns blame_line<cr>',

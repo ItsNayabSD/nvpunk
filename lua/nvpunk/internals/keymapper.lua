@@ -3,51 +3,72 @@ local M = {}
 local keymap_opts = { noremap = true, silent = true }
 
 --- Create keymap
----@param mode 'v' | 'x' | 'i' | 'n' | 't' | ''
+---@param mode 'v' | 'x' | 'i' | 'n' | 't' | 's' | ''
 ---@param kb string
 ---@param cmd function | string
 ---@param desc? string
-M.keymap = function(mode, kb, cmd, desc)
-    local opts = keymap_opts
-    if desc ~= nil then opts.desc = desc end
-    vim.keymap.set(mode, kb, cmd, opts)
+---@param icon? string
+M.keymap = function(mode, kb, cmd, desc, icon)
+    if icon ~= nil then
+        require('which-key').add {
+            {
+                kb,
+                cmd,
+                mode = mode,
+                desc = desc,
+                icon = icon,
+                noremap = keymap_opts.noremap,
+                silent = keymap_opts.silent,
+            },
+        }
+    else
+        local opts = keymap_opts
+        if desc ~= nil then opts.desc = desc end
+        vim.keymap.set(mode, kb, cmd, opts)
+    end
 end
 
 --- Create visual mode keymap
 ---@param kb string
 ---@param cmd function | string
 ---@param desc? string
-M.vkeymap = function(kb, cmd, desc) M.keymap('v', kb, cmd, desc) end
+---@param icon? string
+M.vkeymap = function(kb, cmd, desc, icon) M.keymap('v', kb, cmd, desc, icon) end
 
 --- Create visual/select mode mode keymap
 ---@param kb string
 ---@param cmd function | string
 ---@param desc? string
-M.xkeymap = function(kb, cmd, desc) M.keymap('x', kb, cmd, desc) end
+---@param icon? string
+M.xkeymap = function(kb, cmd, desc, icon) M.keymap('x', kb, cmd, desc, icon) end
 
 --- Create insert mode keymap
 ---@param kb string
 ---@param cmd function | string
 ---@param desc? string
-M.ikeymap = function(kb, cmd, desc) M.keymap('i', kb, cmd, desc) end
+---@param icon? string
+M.ikeymap = function(kb, cmd, desc, icon) M.keymap('i', kb, cmd, desc, icon) end
 
 --- Create normal mode keymap
 ---@param kb string
 ---@param cmd function | string
 ---@param desc? string
-M.nkeymap = function(kb, cmd, desc) M.keymap('n', kb, cmd, desc) end
+---@param icon? string
+M.nkeymap = function(kb, cmd, desc, icon) M.keymap('n', kb, cmd, desc, icon) end
 
 --- Create terminal mode keymap
 ---@param kb string
 ---@param cmd function | string
 ---@param desc? string
-M.tkeymap = function(kb, cmd, desc) M.keymap('t', kb, cmd, desc) end
+---@param icon? string
+M.tkeymap = function(kb, cmd, desc, icon) M.keymap('t', kb, cmd, desc, icon) end
 
 --- Create insert/normal mode keymap
 ---@param kb string
 ---@param cmd function | string
 ---@param desc? string
-M.inkeymap = function(kb, cmd, desc)
+---@param icon? string
+M.inkeymap = function(kb, cmd, desc, icon)
     M.ikeymap(kb, cmd, desc)
     M.nkeymap(kb, cmd, desc)
 end
@@ -65,47 +86,79 @@ M.create_bufkeymapper = function(bufnr)
     ---@param kb string
     ---@param cmd function | string
     ---@param desc? string
-    bm.keymap = function(mode, kb, cmd, desc)
-        local opts = buf_km_opts
-        if desc ~= nil then opts.desc = desc end
-        vim.keymap.set(mode, kb, cmd, opts)
+    ---@param icon? string
+    bm.keymap = function(mode, kb, cmd, desc, icon)
+        if icon ~= nil then
+            require('which-key').add {
+                {
+                    kb,
+                    cmd,
+                    mode = mode,
+                    desc = desc,
+                    icon = icon,
+                    buffer = bufnr,
+                    noremap = buf_km_opts.noremap,
+                    silent = buf_km_opts.silent,
+                },
+            }
+        else
+            local opts = buf_km_opts
+            if desc ~= nil then opts.desc = desc end
+            vim.keymap.set(mode, kb, cmd, opts)
+        end
     end
 
     --- Create visual mode keymap
     ---@param kb string
     ---@param cmd function | string
     ---@param desc? string
-    bm.vkeymap = function(kb, cmd, desc) bm.keymap('v', kb, cmd, desc) end
+    ---@param icon? string
+    bm.vkeymap = function(kb, cmd, desc, icon)
+        bm.keymap('v', kb, cmd, desc, icon)
+    end
 
     --- Create visual/select mode keymap
     ---@param kb string
     ---@param cmd function | string
     ---@param desc? string
-    bm.xkeymap = function(kb, cmd, desc) bm.keymap('x', kb, cmd, desc) end
+    ---@param icon? string
+    bm.xkeymap = function(kb, cmd, desc, icon)
+        bm.keymap('x', kb, cmd, desc, icon)
+    end
 
     --- Create insert mode keymap
     ---@param kb string
     ---@param cmd function | string
     ---@param desc? string
-    bm.ikeymap = function(kb, cmd, desc) bm.keymap('i', kb, cmd, desc) end
+    ---@param icon? string
+    bm.ikeymap = function(kb, cmd, desc, icon)
+        bm.keymap('i', kb, cmd, desc, icon)
+    end
 
     --- Create normal mode keymap
     ---@param kb string
     ---@param cmd function | string
     ---@param desc? string
-    bm.nkeymap = function(kb, cmd, desc) bm.keymap('n', kb, cmd, desc) end
+    ---@param icon? string
+    bm.nkeymap = function(kb, cmd, desc, icon)
+        bm.keymap('n', kb, cmd, desc, icon)
+    end
 
     --- Create terminal mode keymap
     ---@param kb string
     ---@param cmd function | string
     ---@param desc? string
-    bm.tkeymap = function(kb, cmd, desc) bm.keymap('t', kb, cmd, desc) end
+    ---@param icon? string
+    bm.tkeymap = function(kb, cmd, desc, icon)
+        bm.keymap('t', kb, cmd, desc, icon)
+    end
 
     --- Create insert/normal mode keymap
     ---@param kb string
     ---@param cmd function | string
     ---@param desc? string
-    bm.inkeymap = function(kb, cmd, desc)
+    ---@param icon? string
+    bm.inkeymap = function(kb, cmd, desc, icon)
         bm.ikeymap(kb, cmd, desc)
         bm.nkeymap(kb, cmd, desc)
     end

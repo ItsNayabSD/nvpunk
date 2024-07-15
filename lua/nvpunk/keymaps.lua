@@ -42,14 +42,13 @@ M.set_keymaps = function()
         '<cmd>sp<cr><cmd>terminal<cr>',
         require('nvpunk.internals.icons').vsplit .. ' Vertical'
     )
-    pcall(
-        function()
-            require('which-key').add {
-                { '<leader>/', group = ' Term Split' },
-                { '<leader>W', group = 'Whitespace' },
-            }
-        end
-    )
+    pcall(function()
+        local icons = require 'nvpunk.internals.icons'
+        require('which-key').add {
+            { '<leader>/', group = 'Term Split', icon = icons.terminal },
+            { '<leader>W', group = 'Whitespace' },
+        }
+    end)
 end
 
 return M

@@ -63,7 +63,7 @@ return {
         {
             '<leader>bu',
             '<cmd>lua require"dapui".toggle()<cr>',
-            desc = ' DAP UI',
+            desc = 'DAP UI',
         },
     },
 }

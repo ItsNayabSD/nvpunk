@@ -114,4 +114,6 @@ return {
     search = '',
     telescope = '',
     telescope_caret = '',
+    terminal = '',
+    lightning = '󱐋',
 }

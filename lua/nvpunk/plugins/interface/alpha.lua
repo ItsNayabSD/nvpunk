@@ -136,7 +136,8 @@ return {
         require('nvpunk.internals.keymapper').nkeymap(
             '<leader>A',
             '<CMD>Alpha<CR>',
-            icons.home .. ' Open Greeter'
+            'Open Greeter',
+            icons.home
         )
     end,
 }

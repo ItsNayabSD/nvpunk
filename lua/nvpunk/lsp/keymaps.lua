@@ -83,13 +83,23 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
         'Load all workspace diagnostics'
     )
     -- bm.nkeymap('<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Open definition')
-    bm.nkeymap('<leader>rn', vim.lsp.buf.rename, 'Rename')
+    bm.nkeymap('<leader>rn', vim.lsp.buf.rename, 'Rename', icons.pencil)
     bm.nkeymap('gr', vim.lsp.buf.references, 'References')
-    bm.nkeymap('<leader>e', vim.diagnostic.open_float, 'Show diagnostics')
-    bm.nkeymap('[d', vim.diagnostic.goto_prev, 'Prev diagnostic')
-    bm.nkeymap(']d', vim.diagnostic.goto_next, 'Next diagnostic')
+    bm.nkeymap(
+        '<leader>e',
+        vim.diagnostic.open_float,
+        'Show diagnostics',
+        icons.diag_hint
+    )
+    bm.nkeymap('[d', vim.diagnostic.goto_prev, 'Prev diagnostic', icons.prev)
+    bm.nkeymap(']d', vim.diagnostic.goto_next, 'Next diagnostic', icons.next)
     -- bm.nkeymap('<leader>q', vim.diagnostic.setloclist)
-    bm.nkeymap('<leader>ca', vim.lsp.buf.code_action, 'Code actions')
+    bm.nkeymap(
+        '<leader>ca',
+        vim.lsp.buf.code_action,
+        'Code actions',
+        icons.lightning
+    )
 
     wk.add {
         {
@@ -115,16 +125,13 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
         bm.nkeymap(
             '<leader>f',
             function() vim.lsp.buf.format { async = true } end,
-            icons.sparkle .. ' Format'
+            'Format',
+            icons.sparkle
         )
     else
-        bm.nkeymap(
-            '<leader>f',
-            '<cmd>Neoformat<cr>',
-            icons.sparkle .. ' Format'
-        )
+        bm.nkeymap('<leader>f', '<cmd>Neoformat<cr>', 'Format', icons.sparkle)
     end
-    bm.nkeymap('<leader>F', '<cmd>Neoformat<cr>', icons.sparkle .. ' Neoformat')
+    bm.nkeymap('<leader>F', '<cmd>Neoformat<cr>', 'Neoformat', icons.sparkle)
 
     if extra_keymaps ~= nil then extra_keymaps(bm) end
 end

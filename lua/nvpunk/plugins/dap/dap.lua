@@ -1,9 +1,16 @@
+local icons = require 'nvpunk.internals.icons'
 return {
     'mfussenegger/nvim-dap',
+    init = function()
+        require('which-key').add {
+            {
+                { '<leader>b', group = 'Debug', icon = icons.bug },
+            },
+        }
+    end,
     config = function() require 'dap' end,
     lazy = true,
     keys = {
-        { '<leader>b', desc = ' Debug' },
         {
             '<leader>bb',
             '<cmd>lua require"dap".toggle_breakpoint()<cr>',
