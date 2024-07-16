@@ -10,17 +10,22 @@ local keymap_opts = { noremap = true, silent = true }
 ---@param icon? string
 M.keymap = function(mode, kb, cmd, desc, icon)
     if icon ~= nil then
-        require('which-key').add {
-            {
-                kb,
-                cmd,
-                mode = mode,
-                desc = desc,
-                icon = icon,
-                noremap = keymap_opts.noremap,
-                silent = keymap_opts.silent,
-            },
-        }
+        -- if importing which-key fails, still set the keymap
+        if not pcall(function()
+                require('which-key').add {
+                    {
+                        kb,
+                        cmd,
+                        mode = mode,
+                        desc = desc,
+                        icon = icon,
+                        noremap = keymap_opts.noremap,
+                        silent = keymap_opts.silent,
+                    },
+                }
+            end) then
+            M.keymap(mode, kb, cmd, desc)
+        end
     else
         local opts = keymap_opts
         if desc ~= nil then opts.desc = desc end
@@ -89,18 +94,23 @@ M.create_bufkeymapper = function(bufnr)
     ---@param icon? string
     bm.keymap = function(mode, kb, cmd, desc, icon)
         if icon ~= nil then
-            require('which-key').add {
-                {
-                    kb,
-                    cmd,
-                    mode = mode,
-                    desc = desc,
-                    icon = icon,
-                    buffer = bufnr,
-                    noremap = buf_km_opts.noremap,
-                    silent = buf_km_opts.silent,
-                },
-            }
+            -- if importing which-key fails, still set the keymap
+            if not pcall(function()
+                    require('which-key').add {
+                        {
+                            kb,
+                            cmd,
+                            mode = mode,
+                            desc = desc,
+                            icon = icon,
+                            buffer = bufnr,
+                            noremap = buf_km_opts.noremap,
+                            silent = buf_km_opts.silent,
+                        },
+                    }
+                end) then
+                bm.keymap(mode, kb, cmd, desc)
+            end
         else
             local opts = buf_km_opts
             if desc ~= nil then opts.desc = desc end

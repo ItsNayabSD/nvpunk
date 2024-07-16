@@ -1,5 +1,11 @@
 return {
     double_arrow_right = '',
+    small_double_arrow_right = '»',
+    arrow_right = '',
+    arrow_left = '',
+    arrow_up = '',
+    arrow_down = '',
+    plus_square = ' ',
     tick = '',
     x = '',
     diag_error = '󰅙',
