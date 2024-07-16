@@ -42,7 +42,9 @@ REFERENCES.................................................|nvpunk-references|
 NAVIGATION                                                 *nvpunk-navigation*
 
 - Use the buttons in the greeter
-- Press `<space>`, `g` or `z` to explore more functionality
+- Type `:W` to show the available keymaps
+- Most keymaps start with `<space>`, `g` and `z`, press them and a window will
+  pop out and detail various functionalities
 - Right click or press `<A-m>` to show the categorized context menu
 
 ==============================================================================
@@ -80,8 +82,8 @@ Tree-sitter is an advanced language parsing library used to build syntax trees
 for your code. It’s mostly used for rich syntax higlighting, and by other
 plugins that need to interpret your code as a tree structure.
 
-NvPunk is configured to install all available Tree-sitter modules by default,
-so you should be all set.
+Nvpunk will install tree-sitter modules as they are needed (i.e.: when you
+open a supported file type for the first time).
 
 To update the installed Tree-sitter modules you can run the following command:
 
@@ -90,7 +92,7 @@ To update the installed Tree-sitter modules you can run the following command:
 <
 
 ==============================================================================
-SHORTCUTS                                                   *nvpunk-shortcuts* 
+SHORTCUTS                                                   *nvpunk-shortcuts*
 
 Here's a non-exaustive list of shortcuts, devided into categories.
 
