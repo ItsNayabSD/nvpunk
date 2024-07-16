@@ -14,7 +14,7 @@ return {
         }
     end,
     keys = {
-        { 'go', '<cmd>AerialToggle<cr>', mode = 'n', desc = 'פּ Outline' },
+        { 'go', '<cmd>AerialToggle<cr>', mode = 'n', desc = 'Outline' },
     },
     cmd = {
         'AerialToggle',
