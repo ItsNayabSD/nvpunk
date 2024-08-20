@@ -2,6 +2,10 @@ local M = {}
 local km = require 'nvpunk.internals.keymapper'
 local icons = require 'nvpunk.internals.icons'
 
+---Set buffer keymaps for attaching language servers
+---@param client vim.lsp.Client
+---@param bufnr number
+---@param extra_keymaps function
 M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
     local wk = require 'which-key'
     local bm = km.create_bufkeymapper(bufnr)
@@ -120,14 +124,37 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
         'Enable'
     )
 
+    local function set_fmt_keymap()
+        local function set_km()
+            bm.nkeymap(
+                '<leader>f',
+                function()
+                    vim.lsp.buf.format()
+                end,
+                'Format',
+                icons.sparkle
+            )
+        end
+
+        if vim.bo.filetype == 'typescript' or vim.bo.filetype == 'javascript' then
+            for _, folder in ipairs(vim.lsp.buf.list_workspace_folders()) do
+                for fname, ftype in vim.fs.dir(folder) do
+                    if ftype == 'file' and (fname == 'biome.json' or fname == 'biome.jsonc') then
+                        if client.name == 'biome' then
+                            vim.notify 'using biome'
+                            set_km()
+                        end
+                        return
+                    end
+                end
+            end
+        end
+        set_km()
+    end
+
     -- Set some keybinds conditional on server capabilities
-    if client.server_capabilities.documentFormattingProvider then
-        bm.nkeymap(
-            '<leader>f',
-            function() vim.lsp.buf.format { async = true } end,
-            'Format',
-            icons.sparkle
-        )
+    if client.server_capabilities.documentFormattingProvider or client.name == 'biome' then
+        set_fmt_keymap()
     else
         bm.nkeymap('<leader>f', '<cmd>Neoformat<cr>', 'Format', icons.sparkle)
     end
