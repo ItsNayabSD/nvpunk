@@ -141,7 +141,6 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
                 for fname, ftype in vim.fs.dir(folder) do
                     if ftype == 'file' and (fname == 'biome.json' or fname == 'biome.jsonc') then
                         if client.name == 'biome' then
-                            vim.notify 'using biome'
                             set_km()
                         end
                         return
