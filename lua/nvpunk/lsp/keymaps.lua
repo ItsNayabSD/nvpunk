@@ -125,11 +125,11 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
     )
 
     local function set_fmt_keymap()
-        local function set_km()
+        local function set_km(opts)
             bm.nkeymap(
                 '<leader>f',
                 function()
-                    vim.lsp.buf.format()
+                    vim.lsp.buf.format(opts)
                 end,
                 'Format',
                 icons.sparkle
@@ -141,7 +141,7 @@ M.set_lsp_keymaps = function(client, bufnr, extra_keymaps)
                 for fname, ftype in vim.fs.dir(folder) do
                     if ftype == 'file' and (fname == 'biome.json' or fname == 'biome.jsonc') then
                         if client.name == 'biome' then
-                            set_km()
+                            set_km({ name = 'biome' })
                         end
                         return
                     end
