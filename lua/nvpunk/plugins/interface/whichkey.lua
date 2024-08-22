@@ -17,6 +17,12 @@ return {
                 ellipsis = icons.ellipsis,
             },
             spelling = { enabled = true, suggestions = 20 },
+            filter = function (mapping)
+                return not vim.startswith(
+                    mapping.lhs,
+                    '<Esc>'
+                )
+            end
         }
     end,
     priority = 9999,
