@@ -6,6 +6,7 @@ local plugins = {
     'ultimate_autopair',
     'caser',
     'nvim_ts_autotag',
+    'mini_ai',
 }
 
 return vim.tbl_map(function(plugin) return require(PFX .. plugin) end, plugins)
