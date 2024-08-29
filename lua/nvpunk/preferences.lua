@@ -419,7 +419,7 @@ local preferences_menus = {
                     end,
                 },
                 {
-                    label = icons.ui_unordered_list .. '  Move filetree to the ' .. (filetree_position == 'left' and 'right' or 'left'),
+                    label = icons.filetree .. '  Move filetree to the ' .. (filetree_position == 'left' and 'right' or 'left'),
                     func = function()
                         M.set_filetree_position(M.get_filetree_position() == 'left' and 'right' or 'left')
                         vim.notify('Filetree position changed, restart Nvpunk to apply these changes')
