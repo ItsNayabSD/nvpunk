@@ -153,7 +153,7 @@ return {
                 },
             },
             window = {
-                position = 'left',
+                position = require('nvpunk.preferences').get_filetree_position(),
                 width = '40',
                 mapping_options = {
                     noremap = true,

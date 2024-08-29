@@ -22,6 +22,7 @@ local DEFAULT_PREFERENCES = {
     folding_guide_enabled = true,
     relative_numbers = true,
     global_statusbar = true,
+    filetree_position = 'left',
 }
 
 --- Make sure that conf has all keys
@@ -221,6 +222,18 @@ M.set_global_statusbar = function(val)
     save_conf(conf)
 end
 
+---@param val 'left' | 'right'
+M.set_filetree_position = function(val)
+    local conf = load_conf()
+    conf.filetree_position = val
+    save_conf(conf)
+end
+
+---@return 'left' | 'right'
+M.get_filetree_position = function()
+    return load_conf().filetree_position
+end
+
 local BORDER_SELECT_OPTS = {
     { label = 'Padded', value = 'solid' },
     { label = 'None', value = 'none' },
@@ -263,6 +276,7 @@ local preferences_menus = {
             local folding_guide_enabled = M.get_folding_guide_enabled()
             local relative_numbers_enabled = M.get_relative_numbers_enabled()
             local global_statusbar = M.get_global_statusbar()
+            local filetree_position = M.get_filetree_position()
             menu({
                 {
                     label = icons.indent
@@ -402,6 +416,13 @@ local preferences_menus = {
                         }, function(item, _)
                             M.set_popup_border(item.value)
                         end)
+                    end,
+                },
+                {
+                    label = icons.ui_unordered_list .. '  Move filetree to the ' .. (filetree_position == 'left' and 'right' or 'left'),
+                    func = function()
+                        M.set_filetree_position(M.get_filetree_position() == 'left' and 'right' or 'left')
+                        vim.notify('Filetree position changed, restart Nvpunk to apply these changes')
                     end,
                 },
             }, {
