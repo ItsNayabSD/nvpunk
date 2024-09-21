@@ -17,6 +17,6 @@ if [ -f "$EXECPATH" ]; then exit 0; fi
 
 git clone https://github.com/microsoft/vscode-js-debug "$CLONEPATH"
 cd "$CLONEPATH"
-npm install
+npm install --legacy-peer-deps
 npx gulp vsDebugServerBundle
 mv dist out
