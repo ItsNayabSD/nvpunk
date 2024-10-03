@@ -41,7 +41,7 @@ return {
                 },
             },
             indent = {
-                enable = true,
+                enable = false, -- tree-sitter indent keeps being broken
             },
         }
     end,
