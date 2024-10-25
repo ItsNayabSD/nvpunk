@@ -256,4 +256,5 @@ M.setup = function()
     M.set_keymap()
 end
 
+---@deprecated
 return M

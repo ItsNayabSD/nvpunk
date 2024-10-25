@@ -34,6 +34,7 @@ M.filetypes = {
     'startify',
     'toggleterm',
     'vim',
+    'NvMenu'
 }
 
 M.buftypes = {

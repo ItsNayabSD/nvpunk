@@ -16,6 +16,7 @@ local plugins = {
     'noice',
     'ufo',
     'statuscol',
+    'nvchad_menu',
 }
 
 return vim.tbl_map(function(plugin) return require(PFX .. plugin) end, plugins)
