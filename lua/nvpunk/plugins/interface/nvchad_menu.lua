@@ -78,10 +78,10 @@ local menus = {
         shcut('Git add', '<space>ga'),
         shcut('Git unstage', '<space>gu'),
     },
-    nonfile = {
-        shcut(icons.telescope .. ' Find file', '<space>tf'),
-        shcut(icons.telescope .. ' Live grep', '<space>tg'),
-    },
+    -- nonfile = {
+    --     shcut(icons.telescope .. ' Find file', '<space>tf'),
+    --     shcut(icons.telescope .. ' Live grep', '<space>tg'),
+    -- },
 }
 
 ---@param mouse boolean
@@ -89,10 +89,8 @@ local function open_menu(mouse)
     local menu = menus.default
     if vim.bo.ft == 'neo-tree' then
         menu = menus.filetree
-    elseif vim.bo.ft == 'alpha' then
-        return
     elseif vim.tbl_contains(nonfile, vim.bo.ft) then
-        menu = menus.nonfile
+        return
     end
     require('menu').open(menu, { mouse = mouse })
 end
