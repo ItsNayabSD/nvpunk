@@ -92,6 +92,9 @@ local function open_menu(mouse)
     elseif vim.tbl_contains(nonfile, vim.bo.ft) then
         return
     end
+    if mouse then
+        vim.cmd.exec '"normal! \\<RightMouse>"'
+    end
     require('menu').open(menu, { mouse = mouse })
 end
 
@@ -110,8 +113,7 @@ return {
         })
 
         for _, num in ipairs { '', '2-', '3-', '4-' } do
-            vim.keymap.set('n', '<' .. num .. 'RightMouse>', function()
-                vim.cmd.exec '"normal! \\<RightMouse>"'
+            vim.keymap.set({ 'n', 'i', 'v', 's', 'x', 't' }, '<' .. num .. 'RightMouse>', function()
                 open_menu(true)
             end, { noremap = true, silent = true })
         end
