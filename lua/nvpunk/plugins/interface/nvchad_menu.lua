@@ -86,15 +86,14 @@ local menus = {
 
 ---@param mouse boolean
 local function open_menu(mouse)
+    if #require('menu.state').bufids > 0 then return end
     local menu = menus.default
     if vim.bo.ft == 'neo-tree' then
         menu = menus.filetree
     elseif vim.tbl_contains(nonfile, vim.bo.ft) then
         return
     end
-    if mouse then
-        vim.cmd.exec '"normal! \\<RightMouse>"'
-    end
+    if mouse then vim.cmd.exec '"normal! \\<RightMouse>"' end
     require('menu').open(menu, { mouse = mouse })
 end
 
@@ -113,9 +112,12 @@ return {
         })
 
         for _, num in ipairs { '', '2-', '3-', '4-' } do
-            vim.keymap.set({ 'n', 'i', 'v', 's', 'x', 't' }, '<' .. num .. 'RightMouse>', function()
-                open_menu(true)
-            end, { noremap = true, silent = true })
+            vim.keymap.set(
+                { 'n', 'i', 'v', 's', 'x', 't' },
+                '<' .. num .. 'RightMouse>',
+                function() open_menu(true) end,
+                { noremap = true, silent = true }
+            )
         end
     end,
 }
