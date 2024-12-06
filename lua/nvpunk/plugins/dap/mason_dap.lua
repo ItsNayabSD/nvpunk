@@ -12,7 +12,7 @@ return {
         }
         mason_dap.setup {
             ensure_installed = {
-                'node2',
+                -- 'node2',
                 'codelldb',
                 'cppdbg',
                 'python',
