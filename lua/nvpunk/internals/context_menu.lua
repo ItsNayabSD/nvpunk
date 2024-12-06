@@ -5,7 +5,7 @@ local icons = require 'nvpunk.internals.icons'
 --- Checks if current buf has LSPs attached
 ---@return boolean
 M.buf_has_lsp = function()
-    return not vim.tbl_isempty(vim.lsp.get_active_clients {
+    return not vim.tbl_isempty(vim.lsp.get_clients {
         bufnr = vim.api.nvim_get_current_buf(),
     })
 end
@@ -128,7 +128,7 @@ M.set_lsp_rclick_menu = function()
         {
             M.menu_item('Code Actions', '<space>ca'),
             M.menu_item('Go to Declaration', 'gD'),
-            M.menu_item('Go to Definition', 'gd'),
+            M.menu_item('Go to Definition', 'gdt'),
             M.menu_item('Go to Implementation', 'gI'),
             M.menu_item('Signature Help', '<C-k>'),
             M.menu_item('Rename', '<space>rn'),
