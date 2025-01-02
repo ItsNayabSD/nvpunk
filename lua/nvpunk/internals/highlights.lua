@@ -4,6 +4,7 @@ M.HC_HEADER = 'NvpunkHealthcheckHeader'
 M.HC_GOOD = 'NvpunkHealthcheckGood'
 M.HC_BAD = 'NvpunkHealthcheckBad'
 M.RED = 'NvpunkRed'
+M.BLUE = 'NvpunkBlue'
 
 -- shim for missing highlights
 local function set_hl(name, existing)
@@ -25,6 +26,9 @@ M.setup = function()
     })
     vim.api.nvim_set_hl(0, M.RED, {
         fg = '#eb6f92',
+    })
+    vim.api.nvim_set_hl(0, M.BLUE, {
+        fg = '#0F94D2',
     })
 end
 
