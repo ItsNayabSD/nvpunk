@@ -12,7 +12,7 @@ return {
             dependencies = {
                 'rafamadriz/friendly-snippets',
             },
-            version = '1.*',
+            version = 'v2.*',
             build = 'make install_jsregexp',
         },
         'saadparwaiz1/cmp_luasnip',
@@ -45,6 +45,13 @@ return {
                 require('nvpunk.internals.user_conf').SNIPPETS_DIR,
             },
         }
+        luasnip.add_snippets("all", {
+            luasnip.snippet("dateiso", {
+                luasnip.function_node(function()
+                    return vim.fn.strftime("%Y-%m-%dT%H:%M%z")
+                end)
+            })
+        })
 
         cmp.setup {
             snippet = {
