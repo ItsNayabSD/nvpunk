@@ -48,7 +48,7 @@ return {
         luasnip.add_snippets("all", {
             luasnip.snippet("dateiso", {
                 luasnip.function_node(function()
-                    return vim.fn.strftime("%Y-%m-%dT%H:%M%z")
+                    return vim.fn.trim((vim.system({'date', '-Iseconds'}, {text = true}):wait()).stdout)
                 end)
             })
         })
