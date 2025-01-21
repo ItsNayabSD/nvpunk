@@ -3,26 +3,12 @@ return {
     config = function()
         local dap = require 'dap'
         local mason_dap = require 'mason-nvim-dap'
-        local outFiles = {
-            '${workspaceFolder}/dist/**/*.js',
-            '${workspaceFolder}/build/**/*.js',
-            '${workspaceFolder}/lib/**/*.js',
-            '${workspaceFolder}/public/**/*.js',
-            '${workspaceFolder}/out/**/*.js',
-        }
         mason_dap.setup {
             ensure_installed = {
-                -- 'node2',
-                'codelldb',
-                'cppdbg',
-                'python',
             },
             automatic_installation = true,
             automatic_setup = {
                 configurations = function(default)
-                    default.node2[1].outFiles = outFiles
-                    default.node2[2].outFiles = outFiles
-
                     return default
                 end,
             },
@@ -35,7 +21,6 @@ return {
                 name = 'VscodeJS: Launch file',
                 program = '${file}',
                 cwd = '${workspaceFolder}',
-                outFiles = outFiles,
             },
             {
                 type = 'pwa-node',
@@ -77,7 +62,6 @@ return {
                 name = 'VscodeJS: Attach',
                 processId = require('dap.utils').pick_process,
                 cwd = '${workspaceFolder}',
-                outFiles = outFiles,
             },
         }
         for _, lang in ipairs { 'typescript', 'javascript' } do
