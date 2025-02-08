@@ -9,7 +9,6 @@ local plugins = {
     'bufferline',
     'gitsigns',
     'highlight_colors',
-    'indent_blankline',
     'lualine',
     'navic',
     'neotree',

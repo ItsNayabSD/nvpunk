@@ -84,7 +84,6 @@ M.set_indent_blankline_enabled = function(nval)
     local conf = load_conf()
     conf.indent_blankline_enabled = nval
     save_conf(conf)
-    require('nvpunk.plugins.interface.indent_blankline').config()
 end
 
 ---@return boolean
@@ -282,14 +281,14 @@ local preferences_menus = {
                     label = icons.indent
                         .. '  '
                         .. (blankline_enabled and 'Disable' or 'Enable')
-                        .. ' Indent Blankline',
+                        .. ' Indent Guide',
                     func = function()
                         if blankline_enabled then
+                            vim.g.snacks_indent = false
                             M.set_indent_blankline_enabled(false)
-                            vim.schedule(function() vim.cmd 'IBLDisable' end)
                         else
+                            vim.g.snacks_indent = true
                             M.set_indent_blankline_enabled(true)
-                            vim.schedule(function() vim.cmd 'IBLEnable' end)
                         end
                     end,
                 },
@@ -452,5 +451,10 @@ vim.api.nvim_create_user_command(
     function(_) M.preferences_menu() end,
     { nargs = 0 }
 )
+
+M.setup = function()
+    -- initialize post-startup
+    vim.g.snacks_indent = M.get_indent_blankline_enabled()
+end
 
 return M

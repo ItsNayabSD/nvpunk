@@ -2,6 +2,7 @@ local icons = require 'nvpunk.internals.icons'
 -- pretty notifications
 return {
     'rcarriga/nvim-notify',
+    enabled = false,
     init = function()
         require('which-key').add {
             {

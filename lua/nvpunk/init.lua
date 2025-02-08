@@ -7,3 +7,4 @@ require 'nvpunk.lsp.base_conf'
 require('nvpunk.keymaps').set_leader()
 require 'nvpunk.internals.nonumber_autocmd'
 require 'nvpunk.plugin_manager'
+require('nvpunk.preferences').setup()

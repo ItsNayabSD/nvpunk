@@ -99,6 +99,7 @@ end
 
 return {
     'nvchad/menu',
+    enabled = false,
     dependencies = {
         'nvchad/volt',
     },

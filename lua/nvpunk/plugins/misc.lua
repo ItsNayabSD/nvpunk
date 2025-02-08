@@ -25,15 +25,40 @@ return {
             bigfile = { enabled = true },
             dashboard = { enabled = false },
             explorer = { enabled = false },
-            indent = { enabled = false },
+            indent = {
+                enabled = true,
+                animate = {
+                    enabled = false,
+                },
+                scope = {
+                    underline = true,
+                },
+            },
             input = { enabled = false },
             picker = { enabled = false },
-            notifier = { enabled = false },
+            notifier = {
+                enabled = true,
+                style = 'compact',
+            },
             quickfile = { enabled = false },
             scope = { enabled = false },
             scroll = { enabled = false },
             statuscolumn = { enabled = false },
             words = { enabled = false },
+        },
+        lazy = false,
+        keys = {
+            -- notifier
+            {
+                '<leader>nd',
+                function() Snacks.notifier.hide() end,
+                desc = 'Dismiss Notifications',
+            },
+            {
+                '<leader>nl',
+                function() Snacks.notifier.show_history() end,
+                desc = 'List Notifications',
+            },
         },
     },
 }
